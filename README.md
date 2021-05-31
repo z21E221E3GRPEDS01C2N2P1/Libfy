@@ -14,6 +14,10 @@ O Projeto será uma bibliteca de músicas onde o usuário pode organizar suas pr
 
 Consumo da API do Spotify
 
+## Proposta de Mapa do Site
+
+![Mapa do Site](https://github.com/21E221E3GRPEDS01C2N2P1/Libfy/blob/main/Mapa_Site.jpg?raw=true)
+
 ## Considerações
 
 Projeto em desenvolvimento, estando em fase inicial. 
