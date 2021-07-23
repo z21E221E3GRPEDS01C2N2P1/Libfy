@@ -1,1 +1,9 @@
 @import "index.css";
+
+.login{
+display: flex;
+    flex-direction: row;
+}
+.login input{
+
+}
