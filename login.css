@@ -1,9 +1,23 @@
 @import "index.css";
-
+body{
+    background: rgba(200,200,200,0.5);
+}
+.linha{
+    border-bottom: 1px solid gray;
+}
 .login{
-display: flex;
-    flex-direction: row;
+    text-align: center;
+    margin-top: 20vh;
 }
 .login input{
-
+ background: white;
+    border-radius: 0px;
+    border: 3px solid black;
+    width: 50vh;
+}
+.btnlogin{
+    color: white;
+}
+.facebook{
+    background: #3b5998;
 }

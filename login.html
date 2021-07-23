@@ -44,32 +44,50 @@
         <input type="text"
                placeholder="Artists,songs or podcasts" class="pesquisa">
 
-        <a href="signup.html">Sign up</a>
-        <a href="login.html">Log in</a>
+        <a href="signup.html" class="btn">Sign up</a>
+        <a href="login.html" class="btn">Log in</a>
     </section>
 
 
 
 
     <div class="musicas login">
-        <button class="fb btn">Continuar com</button>
-        <button class="fb btn">Continuar com</button>
-        <button class="fb btn">Continuar com</button>
+       <div class="loginalternativ">
+           <a href  class="facebook btn btnlogin">Continuar com</a>
+           <button class="fb btn">Continuar com</button>
+           <button class="fb btn">Continuar com</button>
 
+       </div>
         <div>
-            <div class="spacer"></div><div>ou</div><div class="spacer"></div>
+            <div class="linha"></div><div>ou</div><div class="linha"></div>
         </div>
 
         <div>
             <form action="">
-                <input type="type" placeholder="Email">
-                <input type="text" placeholder="Senha">
-                 <a href>Esqueceu sua senha?</a>
+                <div><label for="loginE"></label>
+                    <input type="type" placeholder="Email" id="loginE"></div>
+                <div><label for="passx"></label>
+                    <input type="text" placeholder="Senha" id="passx"></div>
 
+                 <a href>Esqueceu sua senha?</a>
+                <div>
+                    <input type="checkbox" id="lembrarLogin" checked>
+                    <label for="lembrarLogin">Lembrar de mim</label>
+                </div>
+                <a href class="loginbtn">Entrar</a>
             </form>
+
+            <div class="linha"></div>
+            <footer>
+                <h6>Nao tem uma conta?</h6>
+                <a href="signup.html" class="btn">Inscreva-se</a>
+            </footer>
 
 
         </div>
+
+
+
 
 
 

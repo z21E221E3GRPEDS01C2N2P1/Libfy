@@ -50,7 +50,7 @@ body {
   align-content: flex-start;
   align-items: flex-end;
 }
-.topofixo a{
+.btn{
   color:var(--cor-fundo);
   border-radius: 38%;
   text-decoration: none;
@@ -59,11 +59,11 @@ body {
   font-size: 0.7em;
   display: block;
 }
-.topofixo a{
+.topofixo .btn{
 
   background: rgba(1,1,1,0.1);
 }
-.topofixo a:last-child{
+.topofixo .btn:last-child{
   background-color: white;
 }
 input{
@@ -72,6 +72,7 @@ input{
   color: antiquewhite;
   border: none;
   border-radius: 2em;
+  outline:none;
 
 
 }
