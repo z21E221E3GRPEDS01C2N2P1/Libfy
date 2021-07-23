@@ -8,75 +8,73 @@
     <meta http-equiv="Content-Language"
           content="pt-br">
 
-    <title>Libfy</title>
-    
     <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css
-" integrity="sha384-
-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-          crossorigin="anonymous">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.16.2/axios.js"></script>
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+          integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="shortcut icon" href="icones/favicon.ico" type="image/x-icon">
     <link rel="stylesheet"
-          href="style_index.css"
+          href="index.css"
           type="text/css">
+    <title>Libfy</title>
 </head>
 <body>
-  
-    <div class="sidenav">
-        <a href="index.html" class="botao">
-            <span class="fa fa-home"></span>
-            <p>Home</p>
-        </a>
-        <a href="index.html" class="botao">
-            <span class="fa fa-home"></span>
-            <p>Playlist</p>
-        </a>
-        <a href="index.html" class="botao">
-            <span class="fa fa-home"></span>
-            <p>Home</p>
-        </a>
-        <h6>Your Library</h6>
-        <p>Favoritas</p>
-        <p>Favoritas</p>
-    </div>
-    
-    <div class="main" id="vuehome">
-        <section class="topofixo">
-            <input type="text"
-            placeholder="digite artistas" class="pesquisa">
-           
-            <a href="signup.html">Sign up</a>
-            <a href="login.html">Log in</a>
-        </section>
+
+<div class="sidenav">
+    <a href="index.html" class="botao">
+        <span class="fa fa-home"></span>
+        <p>Home</p>
+    </a>
+    <a href="index.html" class="botao">
+        <span class="fa fa-home"></span>
+        <p>Playlist</p>
+    </a>
+    <a href="index.html" class="botao">
+        <span class="fa fa-home"></span>
+        <p>Home</p>
+    </a>
+    <h6>Your Library</h6>
+    <p>Favoritas</p>
+    <p>Favoritas</p>
+</div>
+
+<div class="main" id="vuehome">
+    <section class="topofixo">
+        <input type="text"
+               placeholder="Artists,songs or podcasts" class="pesquisa">
+
+        <a href="signup.html">Sign up</a>
+        <a href="login.html">Log in</a>
+    </section>
 
 
 
 
-        <div class="musicas">
+    <div class="musicas">
         <h1 class="titulofileira">Teste Vue fetch</h1>
         <section class="fileira">
             <div class="cardmusica">
-                <img src="https://upload.wikimedia.org/wikipedia/en/f/f5/Elvis_Presley_LPM-1254_Album_Cover.jpg" 
-                alt="" class="imagemmusica">
+                <img src="https://upload.wikimedia.org/wikipedia/en/f/f5/Elvis_Presley_LPM-1254_Album_Cover.jpg"
+                     alt="" class="imagemmusica">
                 <p>O proximo texto é consumido pela API:</p>
-                <p>{{versiculo.verses[0].text}}</p>
-                
+                <p>{{vers}}</p>
+
             </div>
             <div class="cardmusica">
-                <img src="https://upload.wikimedia.org/wikipedia/en/f/f5/Elvis_Presley_LPM-1254_Album_Cover.jpg" 
-                alt="" class="imagemmusica">
-                <p>Elvis</p>
-                <p>Elvis</p>
-            </div>
-            <div class="cardmusica">
-                <img src="https://upload.wikimedia.org/wikipedia/en/f/f5/Elvis_Presley_LPM-1254_Album_Cover.jpg" 
-                alt="" class="imagemmusica">
+                <img src="https://upload.wikimedia.org/wikipedia/en/f/f5/Elvis_Presley_LPM-1254_Album_Cover.jpg"
+                     alt="" class="imagemmusica">
                 <p>Elvis</p>
                 <p>Elvis</p>
             </div>
             <div class="cardmusica">
-                <img src="https://upload.wikimedia.org/wikipedia/en/f/f5/Elvis_Presley_LPM-1254_Album_Cover.jpg" 
-                alt="" class="imagemmusica">
+                <img src="https://upload.wikimedia.org/wikipedia/en/f/f5/Elvis_Presley_LPM-1254_Album_Cover.jpg"
+                     alt="" class="imagemmusica">
+                <p>Elvis</p>
+                <p>Elvis</p>
+            </div>
+            <div class="cardmusica">
+                <img src="https://upload.wikimedia.org/wikipedia/en/f/f5/Elvis_Presley_LPM-1254_Album_Cover.jpg"
+                     alt="" class="imagemmusica">
                 <p>Elvis</p>
                 <p>Elvis</p>
             </div>
@@ -85,37 +83,38 @@ BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
         <h1 class="titulofileira">Recentemente Tocadas</h1>
         <section class="fileira">
             <div class="cardmusica">
-                <img src="https://upload.wikimedia.org/wikipedia/en/f/f5/Elvis_Presley_LPM-1254_Album_Cover.jpg" 
-                alt="" class="imagemmusica">
+                <img src="https://upload.wikimedia.org/wikipedia/en/f/f5/Elvis_Presley_LPM-1254_Album_Cover.jpg"
+                     alt="" class="imagemmusica">
                 <p>Elvis</p>
                 <p>Elvis</p>
             </div>
             <div class="cardmusica">
-                <img src="https://upload.wikimedia.org/wikipedia/en/f/f5/Elvis_Presley_LPM-1254_Album_Cover.jpg" 
-                alt="" class="imagemmusica">
+                <img src="https://upload.wikimedia.org/wikipedia/en/f/f5/Elvis_Presley_LPM-1254_Album_Cover.jpg"
+                     alt="" class="imagemmusica">
                 <p>Elvis</p>
                 <p>Elvis</p>
             </div>
             <div class="cardmusica">
-                <img src="https://upload.wikimedia.org/wikipedia/en/f/f5/Elvis_Presley_LPM-1254_Album_Cover.jpg" 
-                alt="" class="imagemmusica">
+                <img src="https://upload.wikimedia.org/wikipedia/en/f/f5/Elvis_Presley_LPM-1254_Album_Cover.jpg"
+                     alt="" class="imagemmusica">
                 <p>Elvis</p>
                 <p>Elvis</p>
             </div>
             <div class="cardmusica">
-                <img src="https://upload.wikimedia.org/wikipedia/en/f/f5/Elvis_Presley_LPM-1254_Album_Cover.jpg" 
-                alt="" class="imagemmusica">
+                <img src="https://upload.wikimedia.org/wikipedia/en/f/f5/Elvis_Presley_LPM-1254_Album_Cover.jpg"
+                     alt="" class="imagemmusica">
                 <p>Elvis</p>
                 <p>Elvis</p>
             </div>
         </section>
-        </div>
-         
     </div>
 
+</div>
 
 
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
 <script src="vs.js"></script>
 </body>
 </html>
