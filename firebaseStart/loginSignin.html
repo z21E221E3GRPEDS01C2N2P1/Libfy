@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Language"
+          content="pt-br">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+          integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="shortcut icon" href="icones/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet"
+          href="login.css"
+          type="text/css">
+    <title>Libfy</title>
+</head>
+<body>
+
+<div class="sidenav">
+    <a href="loginSignin.html" class="botao">
+        <span class="fa fa-home"></span>
+        <p>Home</p>
+    </a>
+    <a href="loginSignin.html" class="botao">
+        <span class="fa fa-home"></span>
+        <p>Playlist</p>
+    </a>
+    <a href="loginSignin.html" class="botao">
+        <span class="fa fa-home"></span>
+        <p>Home</p>
+    </a>
+    <h6>Your Library</h6>
+    <p>Favoritas</p>
+    <p>Favoritas</p>
+</div>
+
+<div class="main" id="vuelogin">
+    <section class="topofixo">
+        <input type="text"
+               placeholder="Artists,songs or podcasts" class="pesquisa">
+
+        <a href="signup.html" class="btn">Sign up</a>
+        <a href="login.html" class="btn">Log in</a>
+    </section>
+
+
+
+
+    <div class="musicas login">
+        <div class="loginalternativ">
+            <a href  class="facebook btn btnlogin">Continuar com</a>
+            <button class="fb btn">Continuar com</button>
+            <button class="fb btn">Continuar com</button>
+
+        </div>
+        <div>
+            <div class="linha"></div><div>ou</div><div class="linha"></div>
+        </div>
+
+        <div>
+            <form action="">
+                <h6 class="alerta"> {{this.msgErro}}</h6>
+                <div><label for="loginE"></label>
+                    <input type="type"
+                           v-model="email"
+                           placeholder="Email" id="loginE"></div>
+                <div><label for="passx"></label>
+                    <input type="text"
+                           v-model="senha"
+                           placeholder="Senha" id="passx"></div>
+
+                <a href>Esqueceu sua senha?</a>
+                <div>
+                    <input type="checkbox" id="lembrarLogin" checked>
+                    <label for="lembrarLogin">Lembrar de mim</label>
+                </div>
+                <div v-if="logando">
+                    <a href class="loginbtn" v-on:click="cadastrarLogin">Cadastrar</a>
+                </div>
+                <div v-else>
+                    <a href class="loginbtn" v-on:click="logarLogin">Entrar</a>
+                </div>
+            </form>
+
+            <div class="linha"></div>
+            <footer>
+                <h6>Nao tem uma conta?</h6>
+                <a href="signup.html" class="btn">Inscreva-se</a>
+            </footer>
+
+
+        </div>
+
+
+
+
+
+
+
+    </div>
+
+</div>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
+
+<script src="firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-firestore.js"></script>
+
+
+<script src="vueloginSignin.js"></script>
+</body>
+</html>

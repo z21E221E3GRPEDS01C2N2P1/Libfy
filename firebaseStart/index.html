@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Language"
+          content="pt-br">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+          integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="shortcut icon" href="icones/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet"
+          href="index.css"
+          type="text/css">
+    <title>Libfy</title>
+</head>
+<body>
+
+<div class="sidenav">
+    <a href="index.html" class="botao">
+        <span class="fa fa-home"></span>
+        <p>Home</p>
+    </a>
+    <a href="index.html" class="botao">
+        <span class="fa fa-home"></span>
+        <p>Playlist</p>
+    </a>
+    <a href="index.html" class="botao">
+        <span class="fa fa-home"></span>
+        <p>Home</p>
+    </a>
+    <h6>Your Library</h6>
+    <p>Favoritas</p>
+    <p>Favoritas</p>
+</div>
+
+<div class="main" id="vuehome">
+    <section class="topofixo">
+        <input type="text"
+               placeholder="Artists,songs or podcasts" class="pesquisa">
+
+        <a href="signup.html" class="btn">Sign up</a>
+        <a href="login.html" class="btn">Log in</a>
+    </section>
+
+
+
+
+    <div class="musicas">
+        <h1 class="titulofileira">Teste Vue fetch</h1>
+        <section class="fileira">
+            <div class="cardmusica">
+                <img src="https://upload.wikimedia.org/wikipedia/en/f/f5/Elvis_Presley_LPM-1254_Album_Cover.jpg"
+                     alt="" class="imagemmusica"
+                v-on:click="darLikeEmAlbumElvis">
+                <p>Elvis ultimo album</p>
+                <p>Clique nessa musica para adicionar a collection firestore</p>
+
+            </div>
+            <div class="cardmusica">
+                <img src="https://upload.wikimedia.org/wikipedia/en/f/f5/Elvis_Presley_LPM-1254_Album_Cover.jpg"
+                     alt="" class="imagemmusica"
+
+                >
+                <p>{{this.albumsLikado.length!==0?this.albumsLikado[0]:'Elvis ultimo album'}}</p>
+                <p>Clique nessa musica para mostrar a collection firestore</p>
+
+            </div>
+            <div class="cardmusica">
+                <img src="https://upload.wikimedia.org/wikipedia/en/f/f5/Elvis_Presley_LPM-1254_Album_Cover.jpg"
+                     alt="" class="imagemmusica">
+                <p>Elvis</p>
+                <p>Elvis</p>
+            </div>
+            <div class="cardmusica">
+                <img src="https://upload.wikimedia.org/wikipedia/en/f/f5/Elvis_Presley_LPM-1254_Album_Cover.jpg"
+                     alt="" class="imagemmusica">
+                <p>Elvis</p>
+                <p>Elvis</p>
+            </div>
+        </section>
+
+        <h1 class="titulofileira">Recentemente Tocadas</h1>
+        <section class="fileira">
+            <div class="cardmusica">
+                <img src="https://upload.wikimedia.org/wikipedia/en/f/f5/Elvis_Presley_LPM-1254_Album_Cover.jpg"
+                     alt="" class="imagemmusica">
+                <p>Elvis</p>
+                <p>Elvis</p>
+            </div>
+            <div class="cardmusica">
+                <img src="https://upload.wikimedia.org/wikipedia/en/f/f5/Elvis_Presley_LPM-1254_Album_Cover.jpg"
+                     alt="" class="imagemmusica">
+                <p>Elvis</p>
+                <p>Elvis</p>
+            </div>
+            <div class="cardmusica">
+                <img src="https://upload.wikimedia.org/wikipedia/en/f/f5/Elvis_Presley_LPM-1254_Album_Cover.jpg"
+                     alt="" class="imagemmusica">
+                <p>Elvis</p>
+                <p>Elvis</p>
+            </div>
+            <div class="cardmusica">
+                <img src="https://upload.wikimedia.org/wikipedia/en/f/f5/Elvis_Presley_LPM-1254_Album_Cover.jpg"
+                     alt="" class="imagemmusica">
+                <p>Elvis</p>
+                <p>Elvis</p>
+            </div>
+        </section>
+    </div>
+
+</div>
+
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
+
+<script src="firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-firestore.js"></script>
+
+
+<script src="index.js"></script>
+</body>
+</html>
