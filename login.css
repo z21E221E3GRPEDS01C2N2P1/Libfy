@@ -8,9 +8,11 @@ body{
 .login{
     text-align: center;
     margin-top: 20vh;
+    display: flex;
+    flex-direction: column;
 }
 .login input{
- background: white;
+    background: white;
     border-radius: 0px;
     border: 3px solid black;
     width: 50vh;
@@ -20,4 +22,8 @@ body{
 }
 .facebook{
     background: #3b5998;
+}
+a {
+    text-decoration: none;
+    font-size: -2%;
 }
