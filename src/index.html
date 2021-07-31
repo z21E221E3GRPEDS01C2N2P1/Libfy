@@ -13,9 +13,8 @@
           integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <link rel="shortcut icon" href="icones/favicon.ico" type="image/x-icon">
-
     <link rel="stylesheet"
-          href="login.css"
+          href="index.css"
           type="text/css">
     <title>Libfy</title>
 </head>
@@ -39,7 +38,7 @@
     <p>Favoritas</p>
 </div>
 
-<div class="main" id="vuelogin">
+<div class="main" id="vuehome">
     <section class="topofixo">
         <input type="text"
                placeholder="Artists,songs or podcasts" class="pesquisa">
@@ -51,54 +50,71 @@
 
 
 
-    <div class="musicas login">
-        <div class="loginalternativ">
-            <a href  class="facebook btn btnlogin">Continuar com</a>
-            <button class="fb btn">Continuar com</button>
-            <button class="fb btn">Continuar com</button>
+    <div class="musicas">
+        <h1 class="titulofileira">Teste Vue fetch</h1>
+        <section class="fileira">
+            <div class="cardmusica">
+                <img src="https://upload.wikimedia.org/wikipedia/en/f/f5/Elvis_Presley_LPM-1254_Album_Cover.jpg"
+                     alt="" class="imagemmusica"
+                v-on:click="darLikeEmAlbumElvis">
+                <p>Elvis ultimo album</p>
+                <p>Clique nessa musica para adicionar a collection firestore</p>
 
-        </div>
-        <div>
-            <div class="linha"></div><div>ou</div><div class="linha"></div>
-        </div>
+            </div>
+            <div class="cardmusica">
+                <img src="https://upload.wikimedia.org/wikipedia/en/f/f5/Elvis_Presley_LPM-1254_Album_Cover.jpg"
+                     alt="" class="imagemmusica"
 
-        <div>
-            <form action="">
-                <div><label for="loginE"></label>
-                    <input type="type"
-                           v-model="email"
-                           placeholder="Email" id="loginE"></div>
-                <div><label for="passx"></label>
-                    <input type="text"
-                           v-model="senha"
-                           placeholder="Senha" id="passx"></div>
+                >
+                <p>{{this.albumsLikado.length!==0?this.albumsLikado[0]:'Elvis ultimo album'}}</p>
+                <p>Clique nessa musica para mostrar a collection firestore</p>
 
-                <a href>Esqueceu sua senha?</a>
-                <div>
-                    <input type="checkbox" id="lembrarLogin" checked>
-                    <label for="lembrarLogin">Lembrar de mim</label>
-                </div>
-                <a href class="loginbtn" v-on:click="cadastrarLogin">Entrar</a>
-            </form>
+            </div>
+            <div class="cardmusica">
+                <img src="https://upload.wikimedia.org/wikipedia/en/f/f5/Elvis_Presley_LPM-1254_Album_Cover.jpg"
+                     alt="" class="imagemmusica">
+                <p>Elvis</p>
+                <p>Elvis</p>
+            </div>
+            <div class="cardmusica">
+                <img src="https://upload.wikimedia.org/wikipedia/en/f/f5/Elvis_Presley_LPM-1254_Album_Cover.jpg"
+                     alt="" class="imagemmusica">
+                <p>Elvis</p>
+                <p>Elvis</p>
+            </div>
+        </section>
 
-            <div class="linha"></div>
-            <footer>
-                <h6>Nao tem uma conta?</h6>
-                <a href="signup.html" class="btn">Inscreva-se</a>
-            </footer>
-
-
-        </div>
-
-
-
-
-
-
-
+        <h1 class="titulofileira">Recentemente Tocadas</h1>
+        <section class="fileira">
+            <div class="cardmusica">
+                <img src="https://upload.wikimedia.org/wikipedia/en/f/f5/Elvis_Presley_LPM-1254_Album_Cover.jpg"
+                     alt="" class="imagemmusica">
+                <p>Elvis</p>
+                <p>Elvis</p>
+            </div>
+            <div class="cardmusica">
+                <img src="https://upload.wikimedia.org/wikipedia/en/f/f5/Elvis_Presley_LPM-1254_Album_Cover.jpg"
+                     alt="" class="imagemmusica">
+                <p>Elvis</p>
+                <p>Elvis</p>
+            </div>
+            <div class="cardmusica">
+                <img src="https://upload.wikimedia.org/wikipedia/en/f/f5/Elvis_Presley_LPM-1254_Album_Cover.jpg"
+                     alt="" class="imagemmusica">
+                <p>Elvis</p>
+                <p>Elvis</p>
+            </div>
+            <div class="cardmusica">
+                <img src="https://upload.wikimedia.org/wikipedia/en/f/f5/Elvis_Presley_LPM-1254_Album_Cover.jpg"
+                     alt="" class="imagemmusica">
+                <p>Elvis</p>
+                <p>Elvis</p>
+            </div>
+        </section>
     </div>
 
 </div>
+
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -107,7 +123,9 @@
 
 <script src="firebase.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-firestore.js"></script>
 
-<script src="vs.js"></script>
+
+<script src="index.js"></script>
 </body>
 </html>
