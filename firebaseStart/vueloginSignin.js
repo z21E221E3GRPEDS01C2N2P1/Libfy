@@ -29,7 +29,8 @@ var app = new Vue({
                 })
         },
         logarLogin(e){
-
+            firebase.auth().
+                signInWithEmailAndPassword()
         },
 
     },

@@ -51,7 +51,7 @@
 
 
     <div class="musicas">
-        <h1 class="titulofileira">Teste Vue fetch</h1>
+        <h1 class="titulofileira">Teste Vue firebase</h1>
         <section class="fileira">
             <div class="cardmusica">
                 <img src="https://upload.wikimedia.org/wikipedia/en/f/f5/Elvis_Presley_LPM-1254_Album_Cover.jpg"
@@ -64,9 +64,10 @@
             <div class="cardmusica">
                 <img src="https://upload.wikimedia.org/wikipedia/en/f/f5/Elvis_Presley_LPM-1254_Album_Cover.jpg"
                      alt="" class="imagemmusica"
-
+                v-on:click="mostrarTodosAlbunsDoUsuario"
                 >
-                <p>{{this.albumsLikado.length!==0?this.albumsLikado[0]:'Elvis ultimo album'}}</p>
+                <p>{{this.albumsLikado.length!==0?
+                    this.albumsLikado[0]:'Elvis ultimo album'}}</p>
                 <p>Clique nessa musica para mostrar a collection firestore</p>
 
             </div>
