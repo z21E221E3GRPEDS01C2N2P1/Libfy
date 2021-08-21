@@ -79,37 +79,7 @@ input{
 .pesquisa{
   padding: 1em;
 }
-.main {
-  margin-left: 160px; /* Same as the width of the sidenav */
-  font-size: 28px; /* Increased text to enable scrolling */
-  padding: 0px 10px;
 
-}
-.musicas{
-  margin-top: 2em;
-}
-
-.fileira{
-  display: inline-flex;
-}
-.titulofileira{
-  font-size: 1.2em;
-  margin:0;
-  margin-top:5%;
-  color:white;
-}
-.cardmusica{
-  margin: 1%;
-  border-radius: 2%;
-}
-.cardmusica p{
-  line-height: 0;
-  font-size: 0.5em;
-}
-.cardmusica p:first-child{
-  font-size: 1em;
-  color:white;
-}
 
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}

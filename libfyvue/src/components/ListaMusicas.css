@@ -1,0 +1,33 @@
+
+main {
+  margin-left: 160px; /* Same as the width of the sidenav */
+  font-size: 28px; /* Increased text to enable scrolling */
+  padding: 0px 10px;
+  
+  
+}
+.musicas{
+  margin-top: 2em;
+  text-align: left;
+}
+
+.fileira{
+  display: inline-flex;
+}
+.titulofileira{
+  font-size: 1.2em;
+   
+  color:white;
+}
+.cardmusica{
+  margin: 1%;
+  border-radius: 2%;
+}
+.cardmusica p{
+  line-height: 0;
+  font-size: 0.5em;
+}
+.cardmusica p:first-child{
+  font-size: 1em;
+  color:white;
+}
