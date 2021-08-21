@@ -11,6 +11,12 @@ const routes = [
     component: Home
   },
   {
+    path: '/cadastrar',
+    name: 'Cadastro',
+    component: () => import('../views/Cadastro.vue')
+  },
+
+  {
     path: '/about',
     name: 'About',
     // route level code-splitting
@@ -21,6 +27,7 @@ const routes = [
 ]
 
 const router = new VueRouter({
+  mode:'history',
   routes
 })
 

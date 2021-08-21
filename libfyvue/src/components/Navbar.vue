@@ -22,7 +22,8 @@
     <input type="text"
            placeholder="Artists,songs or podcasts" class="pesquisa">
 
-    <a href="signup.html" class="btn">Sign up</a>
+<router-link to="/cadastrar" class="btn">Cadastrar</router-link>
+    
     <a href="login.html" class="btn">Log in</a>
 </section>
   </div>
