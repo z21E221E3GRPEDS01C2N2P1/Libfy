@@ -39,7 +39,7 @@ body {
   color:purple;
 }
 
-.main > .topofixo{
+  .topofixo{
   position: fixed;
   z-index: 1;
   left: 30%;
