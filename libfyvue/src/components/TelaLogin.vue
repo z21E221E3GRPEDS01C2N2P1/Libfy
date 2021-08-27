@@ -79,8 +79,7 @@ export default {
     cadastrando:Boolean
   },
   data:()=>{
-      return{
-        msgErro:'',
+      return{ 
         emailu: "",
         senha: "",
         msgErro: "",
