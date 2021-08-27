@@ -69,8 +69,8 @@
 </template>
 
 <script>
-import * as firebas from "firebase/app";
-import "firebase/auth";
+import firebase from "firebase";
+ 
 
 export default {
   name: "TelaLogin",
@@ -85,9 +85,7 @@ export default {
         senha: "",
         msgErro: "",
         vers: "nome musica elvis",
-        logando: true,
-        firestore: null,
-        firebase:null
+        logando: true, 
   }
   },
   methods: {
@@ -95,7 +93,7 @@ export default {
       e.preventDefault();
       firebase
         .auth()
-        .createUserWithEmailAndPassword(this.email, this.senha)
+        .createUserWithEmailAndPassword(this.emailu, this.senha)
         .then((credenciais) => {
           let usuario = credenciais.user;
           console.log(usuario);
@@ -125,20 +123,20 @@ export default {
       };
 
       // Initialize Firebase
-     this.firebase= firebas.initializeApp(firebaseConfig);
+     firebase.initializeApp(firebaseConfig);
     }
     importFire();
 
-    function initFireStore() {
-      firestore = firebase.firestore();
+    /* function initFireStore() {
+      this.firestore = firebase.firestore();
     }
     initFireStore();
-    const collection = firestore.collection("musicas");
+    const collection = this.firestore.collection("musicas");
     collection.add({
       nome: "Elvis",
       tocou: 234.34,
       cod: "230485",
-    });
+    }); */
   },
 };
 </script>
