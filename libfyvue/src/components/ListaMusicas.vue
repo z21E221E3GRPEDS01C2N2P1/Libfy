@@ -1,7 +1,7 @@
 <template> 
 
 <main> 
-        <h1 class="titulofileira">Teste Vue firebase</h1>
+        <h1 class="titulofileira">Mais tocadas</h1>
     <div class="musicas">
             <section class="fileira">
                

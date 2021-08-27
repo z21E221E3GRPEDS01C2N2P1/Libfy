@@ -12,7 +12,7 @@
     </a>
     <a href="index.html" class="botao">
         <span class="fa fa-home"></span>
-        <p>Home</p>
+        <p>Notícias</p>
     </a>
     <h6>Your Library</h6>
     <p>Favoritas</p>
