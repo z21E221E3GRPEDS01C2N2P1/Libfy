@@ -4,47 +4,12 @@
         <h1 class="titulofileira">Mais tocadas</h1>
     <div class="musicas">
             <section class="fileira">
-               
-                <div class="cardmusica">
-                    <img src="https://upload.wikimedia.org/wikipedia/en/f/f5/Elvis_Presley_LPM-1254_Album_Cover.jpg"
-                        alt="" class="imagemmusica">
-                    <p>Elvis</p>
-                    <p>Elvis</p>
-                </div>
-                <div class="cardmusica">
-                    <img src="https://upload.wikimedia.org/wikipedia/en/f/f5/Elvis_Presley_LPM-1254_Album_Cover.jpg"
-                        alt="" class="imagemmusica">
-                    <p>Elvis</p>
-                    <p>Elvis</p>
-                </div>
+               <MusicaCard v-for="nr in 5" v-bind:key="nr"/>
             </section>
 
         <h1 class="titulofileira">Recentemente Tocadas</h1>
         <section class="fileira">
-            <div class="cardmusica">
-                <img src="https://upload.wikimedia.org/wikipedia/en/f/f5/Elvis_Presley_LPM-1254_Album_Cover.jpg"
-                     alt="" class="imagemmusica">
-                <p>Elvis</p>
-                <p>Elvis</p>
-            </div>
-            <div class="cardmusica">
-                <img src="https://upload.wikimedia.org/wikipedia/en/f/f5/Elvis_Presley_LPM-1254_Album_Cover.jpg"
-                     alt="" class="imagemmusica">
-                <p>Elvis</p>
-                <p>Elvis</p>
-            </div>
-            <div class="cardmusica">
-                <img src="https://upload.wikimedia.org/wikipedia/en/f/f5/Elvis_Presley_LPM-1254_Album_Cover.jpg"
-                     alt="" class="imagemmusica">
-                <p>Elvis</p>
-                <p>Elvis</p>
-            </div>
-            <div class="cardmusica">
-                <img src="https://upload.wikimedia.org/wikipedia/en/f/f5/Elvis_Presley_LPM-1254_Album_Cover.jpg"
-                     alt="" class="imagemmusica">
-                <p>Elvis</p>
-                <p>Elvis</p>
-            </div>
+            <MusicaCard v-for="nr in 5" v-bind:key="nr"/>
         </section>
     </div>
 </main>
@@ -52,7 +17,9 @@
 </template>
 
 <script>
+import MusicaCard from './MusicaCard.vue'
 export default {
+  components: { MusicaCard },
   name: 'ListaMusicas',
    
 }
