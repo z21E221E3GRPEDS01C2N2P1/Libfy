@@ -5,6 +5,17 @@ body{
 .linha{
     border-bottom: 1px solid gray;
 }
+.loginalternativ{
+    display: flex; 
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: space-around;
+    justify-content: center;
+    align-items: center;
+}
+.btn{
+    color:black;
+}
 .login{
     text-align: center;
     margin-top: 20vh;
