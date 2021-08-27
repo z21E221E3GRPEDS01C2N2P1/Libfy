@@ -1,31 +1,15 @@
 .btnlogin{
-    -webkit-text-size-adjust: 100%;
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
-    font-family: circular-spotify-ui,Helvetica Neue,Helvetica,Arial,sans-serif;
-    box-sizing: border-box;
-    text-decoration: none;
-    margin-bottom: 0;
-    font-weight: 700;
-    text-align: center;
-    vertical-align: middle;
-    touch-action: manipulation;
-    cursor: pointer;
-    background-image: none;
-    border: 1px solid transparent;
-    user-select: none;
-    display: block;
-    width: 100%;
-    font-size: 14px;
-    line-height: 1;
+    
     border-radius: 500px;
     transition-property: background-color,border-color,color,box-shadow,filter;
     transition-duration: .3s;
     border-width: 0;
     letter-spacing: 2px; 
     text-transform: uppercase;
-    white-space: normal;
-    color: #fff; 
+    white-space: normal; 
     max-width: 122vh;
     padding: 16px 14px 18px;
     padding-top: 14px;
+    border: 1px rgba(1, 1, 1, 0.287) solid;
+    
 }

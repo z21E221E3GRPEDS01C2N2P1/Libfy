@@ -1,6 +1,6 @@
 <template>
   <div class="cadastrar"> 
-    <TelaLogin></TelaLogin>
+    <TelaLogin v-bind:cadastrando="true"></TelaLogin>
   </div>
 </template>
 

@@ -6,17 +6,17 @@
     />
 
     <div class="main" id="vuelogin">
-      <h1>teste</h1>
+      <h1>Login - Libfy</h1>
 
       <div class="musicas login">
         <div class="loginalternativ">
-          <a href class="facebook btn btnlogin"
+          <a href class="btnlogin facebook btn"
             ><i class="fab fa-facebook-f"></i> Continuar com</a
           >
-          <button class=" btn btnlogin">Continuar com</button>
-          <button class=" btn btnlogin">Continuar com</button>
+          <button class="btn btnlogin">Continuar com</button>
+          <button class="btn btnlogin">Continuar com</button>
         </div>
-        <div>
+        <div class="linhacontainer">
           <div class="linha"></div>
           <div>ou</div>
           <div class="linha"></div>
@@ -29,7 +29,7 @@
               <label for="loginE"></label>
               <input
                 type="type"
-                v-model="email"
+                v-model="emailu"
                 placeholder="Email"
                 id="loginE"
               />
@@ -49,18 +49,18 @@
               <input type="checkbox" id="lembrarLogin" checked />
               <label for="lembrarLogin">Lembrar de mim</label>
             </div>
-            <div v-if="logando">
-              <a href class="loginbtn" v-on:click="cadastrarLogin">Cadastrar</a>
+            <div v-if="cadastrando">
+              <a href class="loginbtn " v-on:click="cadastrarLogin">Cadastrar</a>
             </div>
             <div v-else>
-              <a href class="loginbtn" v-on:click="logarLogin">Entrar</a>
+              <a href class="loginbtn " v-on:click="logarLogin">Entrar</a>
             </div>
           </form>
 
           <div class="linha"></div>
           <footer>
             <h6>Nao tem uma conta?</h6>
-            <a href="signup.html" class="btn">Inscreva-se</a>
+            <a href="signup.html" class="btnlogin btn">Inscreva-se</a>
           </footer>
         </div>
       </div>
@@ -69,20 +69,26 @@
 </template>
 
 <script>
-import * as firebase from "firebase/app"
+import * as firebas from "firebase/app";
+import "firebase/auth";
 
 export default {
   name: "TelaLogin",
   props: {
     msg: String,
+    cadastrando:Boolean
   },
-  data: {
-    email: "",
-    senha: "",
-    msgErro: "",
-    vers: "nome musica elvis",
-    logando: true,
-    firestore: null,
+  data:()=>{
+      return{
+        msgErro:'',
+        emailu: "",
+        senha: "",
+        msgErro: "",
+        vers: "nome musica elvis",
+        logando: true,
+        firestore: null,
+        firebase:null
+  }
   },
   methods: {
     cadastrarLogin(e) {
@@ -119,8 +125,9 @@ export default {
       };
 
       // Initialize Firebase
-      firebase.initializeApp(firebaseConfig);
-    }importFire()
+     this.firebase= firebas.initializeApp(firebaseConfig);
+    }
+    importFire();
 
     function initFireStore() {
       firestore = firebase.firestore();
