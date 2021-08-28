@@ -7,11 +7,11 @@
         <p>Home</p>
       </a>
       <a href="index.html" class="botao">
-        <span class="fa fa-home"></span>
-        <p>Playlist</p>
+        <span class="fas fa-music"></span>
+        <p>Playlists</p>
       </a>
       <a href="index.html" class="botao">
-        <span class="fa fa-home"></span>
+        <span class="fas fa-heart"></span>
         <p>Notícias</p>
       </a>
       <h6>Your Library</h6>
