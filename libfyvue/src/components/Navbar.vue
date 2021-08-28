@@ -26,7 +26,7 @@
       />
 
       <router-link to="/cadastrar" class="btn">Cadastrar</router-link>
-
+      
       <a href="login.html" class="btn">Log in</a>
     </section>
   </div>
