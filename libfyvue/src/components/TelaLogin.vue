@@ -1,5 +1,8 @@
 <template>
-<v-container>
+<v-container 
+            
+            align="center"
+            justify="center">
   
   <section>
     <div class="main" id="vuelogin">
