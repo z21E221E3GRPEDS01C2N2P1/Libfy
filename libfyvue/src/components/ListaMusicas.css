@@ -1,6 +1,6 @@
 
 main {
-  margin-left: 160px;
+  margin:12vh 0 0vh 52vh;
   font-size: 28px; 
   padding: 0px 10px;
   background-color: rgb(61, 49, 49);
@@ -14,8 +14,7 @@ main {
   display: inline-flex;
 }
 .titulofileira{
-  font-size: 1.2em;
-   
+  font-size: 1.2em; 
   text-align: left;
   color:white;
 }

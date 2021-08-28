@@ -66,14 +66,14 @@ body {
   background-color: white;
 } 
 input{
-
+  color: antiquewhite;
   outline:none;
 }
 .pesquisa{
   padding: 1em;
 
   background-color: var(--cor-fundo-escura);
-  color: antiquewhite;
+  
   border: none;
   border-radius: 0.7em;
 

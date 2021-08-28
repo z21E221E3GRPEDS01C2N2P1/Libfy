@@ -1,7 +1,8 @@
 <template>
+<v-container>
+  
   <section>
-      <div class="main" id="vuelogin">
-
+    <div class="main" id="vuelogin">
       <h1>Login - Libfy</h1>
 
       <div class="musicas login">
@@ -12,17 +13,23 @@
           <button class="btn btnlogin">Continuar com google</button>
           <button class="btn btnlogin">Continuar com</button>
         </div>
-        
+
         <div class="linhacontainer">
-          <v-divider 
-              :key="index"
-              inset
-            ></v-divider>
-          <strong>ou</strong>
-           <v-divider 
-              :key="index"
-              inset
-            ></v-divider>
+          <v-row no-gutters>
+            <v-col cols="12" sm="5">
+              
+                <v-divider  inset></v-divider>
+              
+            </v-col>
+            <v-col cols="12" sm="2">
+              or
+            </v-col>
+            <v-col cols="12" sm="5">
+              
+                <v-divider  inset></v-divider>
+              
+            </v-col>
+          </v-row>
         </div>
 
         <div>
@@ -53,10 +60,10 @@
               <label for="lembrarLogin">Lembrar de mim</label>
             </div>
             <div v-if="cadastrando">
-              <a href class="loginbtn " v-on:click="cadastrarLogin">Cadastrar</a>
+              <a href class="loginbtn" v-on:click="cadastrarLogin">Cadastrar</a>
             </div>
             <div v-else>
-              <a href class="loginbtn " v-on:click="logarLogin">Entrar</a>
+              <a href class="loginbtn" v-on:click="logarLogin">Entrar</a>
             </div>
           </form>
 
@@ -66,37 +73,29 @@
             <a href="signup.html" class="btnlogin btn">Inscreva-se</a>
           </footer>
         </div>
-      </div>  
+      </div>
     </div>
-
-     
-   
-   
-   
-   
-   
-   
   </section>
+</v-container>
 </template>
 
 <script>
 import firebase from "firebase";
- 
 
 export default {
   name: "TelaLogin",
   props: {
     msg: String,
-    cadastrando:Boolean
+    cadastrando: Boolean,
   },
-  data:()=>{
-      return{ 
-        emailu: "",
-        senha: "",
-        msgErro: "",
-        vers: "nome musica elvis",
-        logando: true, 
-  }
+  data: () => {
+    return {
+      emailu: "",
+      senha: "",
+      msgErro: "",
+      vers: "nome musica elvis",
+      logando: true,
+    };
   },
   methods: {
     cadastrarLogin(e) {
@@ -133,7 +132,7 @@ export default {
       };
 
       // Initialize Firebase
-     firebase.initializeApp(firebaseConfig);
+      firebase.initializeApp(firebaseConfig);
     }
     importFire();
 
