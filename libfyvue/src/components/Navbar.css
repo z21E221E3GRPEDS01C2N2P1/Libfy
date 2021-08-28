@@ -42,13 +42,12 @@ body {
   .topofixo{
   position: fixed;
   z-index: 1;
-  left: 30%;
-  top:3%;
-  display: flex;
-  height: 2em;
+  left: 50%; 
+  display: flex; 
   flex-direction: row;
   align-content: flex-start;
   align-items: flex-end;
+  
 }
 .btn{
   color:var(--cor-fundo);
@@ -65,19 +64,20 @@ body {
 }
 .topofixo .btn:last-child{
   background-color: white;
-}
+} 
 input{
+
+  outline:none;
+}
+.pesquisa{
+  padding: 1em;
 
   background-color: var(--cor-fundo-escura);
   color: antiquewhite;
   border: none;
-  border-radius: 2em;
-  outline:none;
+  border-radius: 0.7em;
 
 
-}
-.pesquisa{
-  padding: 1em;
 }
 
 

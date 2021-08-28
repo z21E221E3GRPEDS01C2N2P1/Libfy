@@ -19,15 +19,26 @@
       <p>Favoritas</p>
     </div>
     <section class="topofixo">
-      <input
+      <div class="pesquisa">
+        
+        <input
         type="text"
-        placeholder="Artists,songs or podcasts"
-        class="pesquisa"
+        placeholder="Artists,songs or podcasts" 
       />
-
-      <router-link to="/cadastrar" class="btn">Cadastrar</router-link>
-      
-      <a href="login.html" class="btn">Log in</a>
+      </div>
+      <v-btn
+      rounded
+      color="primary"
+      dark to="/cadastrar"
+    >  Cadastrar 
+    
+    </v-btn>
+    <v-btn
+      rounded  to="/cadastrar" 
+    >  Log in 
+    
+    </v-btn>
+     
     </section>
   </div>
 </template>

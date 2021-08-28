@@ -1,9 +1,6 @@
 <template>
   <section>
-    <link
-      href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
-      rel="stylesheet"
-    />
+    
 
     <div class="main" id="vuelogin">
       <h1>Login - Libfy</h1>
