@@ -13,6 +13,7 @@
       <a href="index.html" class="botao">
         <span class="fas fa-heart"></span>
         <p>Notícias</p>
+        
       </a>
       <h6>Your Library</h6>
       <p>Favoritas</p>
