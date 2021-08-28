@@ -1,23 +1,37 @@
 <template>
- <v-slide-item  >
-
-  <div class="cardmusica">
-                <img src="https://upload.wikimedia.org/wikipedia/en/f/f5/Elvis_Presley_LPM-1254_Album_Cover.jpg"
-                     alt="" class="imagemmusica">
-                <p>Elvis</p>
-                <p>Elvis</p>
-    </div>
- </v-slide-item>
+  <v-slide-item v-slot="{ active, toggle }">
+    <v-card
+      :color="active ? 'primary' : 'grey lighten-1'"
+      class="  cardmusica" 
+      @click="toggle"
+      
+    >
+      <img
+        v-bind:src="selemusica.album"
+        alt=""
+        class="imagemmusica"
+      />
+      <p>{{selemusica.nome}}</p>
+      <p>{{selemusica.ano}}</p>
+    </v-card>
+  </v-slide-item>
 </template>
 
 <script>
-// @ is an alias to /sr 
+
+// @ is an alias to /sr
 export default {
-  name: 'MusicaCard',
-  components: {  
-  }
-}
+  name: "MusicaCard",
+  props:['selemusica'],
+  
+  data: () => {
+    return{
+      
+    }
+  },
+  components: {},
+};
 </script>
 <style scoped>
-@import 'MusicaCard.css';
+@import "MusicaCard.css";
 </style>

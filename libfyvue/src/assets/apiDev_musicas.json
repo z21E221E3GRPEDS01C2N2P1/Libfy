@@ -1,0 +1,12 @@
+{
+    "musicas":[{"id":1,"nome":"Etta","ano":1993,"album":"http://dummyimage.com/211x100.png/dddddd/000000"},
+        {"id":2,"nome":"Anderea","ano":1989,"album":"http://dummyimage.com/173x100.png/dddddd/000000"},
+        {"id":3,"nome":"Daphene","ano":2008,"album":"http://dummyimage.com/247x100.png/dddddd/000000"},
+        {"id":4,"nome":"Belva","ano":1994,"album":"http://dummyimage.com/179x100.png/ff4444/ffffff"},
+        {"id":5,"nome":"Flossi","ano":2006,"album":"http://dummyimage.com/213x100.png/5fa2dd/ffffff"},
+        {"id":6,"nome":"Brooks","ano":1966,"album":"http://dummyimage.com/118x100.png/ff4444/ffffff"},
+        {"id":7,"nome":"Frazer","ano":1993,"album":"http://dummyimage.com/213x100.png/dddddd/000000"},
+        {"id":8,"nome":"Sibelle","ano":1994,"album":"http://dummyimage.com/220x100.png/dddddd/000000"},
+        {"id":9,"nome":"Benjamen","ano":1995,"album":"http://dummyimage.com/138x100.png/dddddd/000000"},
+        {"id":10,"nome":"Ruthie","ano":1995,"album":"http://dummyimage.com/205x100.png/dddddd/000000"}]
+}
