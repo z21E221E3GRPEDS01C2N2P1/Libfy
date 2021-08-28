@@ -10,7 +10,7 @@
 <script>
 // @ is an alias to /sr 
 export default {
-  name: 'Home',
+  name: 'MusicaCard',
   components: {  
   }
 }

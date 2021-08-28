@@ -13,7 +13,6 @@
       <a href="index.html" class="botao">
         <span class="fas fa-heart"></span>
         <p>Notícias</p>
-        
       </a>
       <h6>Your Library</h6>
       <p>Favoritas</p>
@@ -52,5 +51,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-@import "Navbar.css";
+  @import "Navbar.css";
 </style>

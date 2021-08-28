@@ -1,8 +1,7 @@
 <template>
   <section>
-    
+      <div class="main" id="vuelogin">
 
-    <div class="main" id="vuelogin">
       <h1>Login - Libfy</h1>
 
       <div class="musicas login">
@@ -10,13 +9,20 @@
           <a href class="btnlogin facebook btn"
             ><i class="fab fa-facebook-f"></i> Continuar com</a
           >
-          <button class="btn btnlogin">Continuar com</button>
+          <button class="btn btnlogin">Continuar com google</button>
           <button class="btn btnlogin">Continuar com</button>
         </div>
+        
         <div class="linhacontainer">
-          <div class="linha"></div>
-          <div>ou</div>
-          <div class="linha"></div>
+          <v-divider 
+              :key="index"
+              inset
+            ></v-divider>
+          <strong>ou</strong>
+           <v-divider 
+              :key="index"
+              inset
+            ></v-divider>
         </div>
 
         <div>
@@ -60,8 +66,16 @@
             <a href="signup.html" class="btnlogin btn">Inscreva-se</a>
           </footer>
         </div>
-      </div>
+      </div>  
     </div>
+
+     
+   
+   
+   
+   
+   
+   
   </section>
 </template>
 
