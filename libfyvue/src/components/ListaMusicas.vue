@@ -2,16 +2,17 @@
 
 <main> 
         <h1 class="titulofileira">Mais tocadas</h1>
-    <div class="musicas">
+      <div class="musicas">
             <section class="fileira">
-               <MusicaCard v-for="nr in 5" v-bind:key="nr"/>
+                 <v-hover  ></v-hover>
+               <MusicaCard v-for="nr in 8" v-bind:key="nr"/>
             </section>
 
         <h1 class="titulofileira">Recentemente Tocadas</h1>
         <section class="fileira">
             <MusicaCard v-for="nr in 5" v-bind:key="nr"/>
         </section>
-    </div>
+    </div> 
 </main>
 
 </template>
