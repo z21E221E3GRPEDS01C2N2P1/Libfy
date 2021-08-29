@@ -6,14 +6,13 @@
           <h1>Login - Libfy</h1>
 
           <div class="loginalternativ">
-            <a href class="btnlogin facebook btn"
-              ><i class="fab fa-facebook-f"></i> Continuar com</a
-            >
-            <button class="btn btnlogin">Continuar com google</button>
+            
             <v-btn rounded to="/cadastrar" class="btn" block
-              ><i class="fab fa-facebook-f"></i> Sign up for Libfy
+              ><i class="fab fa-facebook-f"></i> Continue with facebook</v-btn>
+            <v-btn rounded to="/cadastrar" class="btn" block
+              >Continue With Google
             </v-btn>
-            <button class="btn btnlogin">Continuar com</button>
+            
           </div>
 
           <div class="linhacontainer">
