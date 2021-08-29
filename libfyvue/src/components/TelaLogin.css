@@ -1,40 +1,30 @@
 
-body{
-    background: rgba(200,200,200,0.5);
-}
-.linhacontainer{
-    
+.main,main,html,#app{
+    /* reset sidebar */
+    background:var(--cor-fundo);
+    color: white;
+    margin:0;/* 
+    background:white; */
 }
 .linha{
     border-bottom: 1px solid gray;
 }
+
+.linhacontainer{
+    margin-top:3vh;
+    
+}
+
 .loginalternativ{
     display: flex; 
     flex-wrap: wrap;
-    flex-direction: column;
-    align-content: space-around;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;   
 }
 .btn{
     color:black;
-}
-.login{
-    text-align: center;
-    margin-top: 20vh;
-    display: flex;
-    flex-direction: column;
-}
-.login input{
-    background: white;
-    border-radius: 0px;
-    border: 3px solid black;
-    width: 50vh;
-} 
-.facebook{
-    background: #3b5998;
-    color:white;
-    border: 1px solid black ;
+    min-height: 7vh;
+    background:var(--cor-primary) !important;/* gambiarra */
+    margin:0.5vh;
 }
 a {
     text-decoration: none;
@@ -43,4 +33,20 @@ a {
 input{
     color:black;
   }
-  
+.facebook{
+    background: #3b5998;
+    color:white;
+    border: 1px solid black ;
+}
+.login{
+    text-align: center;
+    margin-top: 7vh;
+    display: flex;
+    flex-direction: column;
+} 
+.login input{
+    background: white;
+    border-radius: 0px;
+    border: 3px solid black;
+    width: 100%;
+} 

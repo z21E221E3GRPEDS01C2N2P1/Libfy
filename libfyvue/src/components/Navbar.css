@@ -1,8 +1,4 @@
-:root{
-  --cor-fundo:#191414;
-  --cor-fundo-escura:#121212;
-  --cor-selecao:#49347b;
-}
+
 body {
   font-family: "Lato", sans-serif;
   background-color: rgb(61, 49, 49);

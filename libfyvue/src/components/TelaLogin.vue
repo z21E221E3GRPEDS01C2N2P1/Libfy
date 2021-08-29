@@ -1,85 +1,91 @@
 <template>
-<v-container 
-            
-            align="center"
-            justify="center">
-  
-  <section>
-    <div class="main" id="vuelogin">
-      <h1>Login - Libfy</h1>
+  <main>
+    <v-container class="main" align="center" justify="center">
+      <section>
+        <div class="login">
+          <h1>Login - Libfy</h1>
 
-      <div class="musicas login">
-        <div class="loginalternativ">
-          <a href class="btnlogin facebook btn"
-            ><i class="fab fa-facebook-f"></i> Continuar com</a
-          >
-          <button class="btn btnlogin">Continuar com google</button>
-          <button class="btn btnlogin">Continuar com</button>
+          <div class="loginalternativ">
+            <a href class="btnlogin facebook btn"
+              ><i class="fab fa-facebook-f"></i> Continuar com</a
+            >
+            <button class="btn btnlogin">Continuar com google</button>
+            <v-btn rounded to="/cadastrar" class="btn" block
+              ><i class="fab fa-facebook-f"></i> Sign up for Libfy
+            </v-btn>
+            <button class="btn btnlogin">Continuar com</button>
+          </div>
+
+          <div class="linhacontainer">
+            <v-row no-gutters>
+              <v-col cols="12" sm="5">
+                <v-divider inset color="white"></v-divider>
+              </v-col>
+              <v-col cols="12" sm="2"> or </v-col>
+              <v-col cols="12" sm="5">
+                <v-divider inset color="white"></v-divider>
+              </v-col>
+            </v-row>
+          </div>
+
+          <main>
+            <form action="" class="">
+              <h6 class="alerta">{{ this.msgErro }}</h6>
+              <div>
+                <label for="loginE"></label>
+                <input
+                  type="type"
+                  v-model="emailu"
+                  placeholder="Email"
+                  id="loginE"
+                />
+              </div>
+              <div>
+                <label for="passx"></label>
+                <input
+                  type="text"
+                  v-model="senha"
+                  placeholder="Senha"
+                  id="passx"
+                />
+              </div>
+
+              <a href>Esqueceu sua senha?</a>
+              <div>
+                <input type="checkbox" id="lembrarLogin" checked />
+                <label for="lembrarLogin">Lembrar de mim</label>
+              </div>
+              <div v-if="cadastrando">
+                <v-btn rounded  v-on:click="cadastrarLogin"
+
+                  class="btn" block
+                  >Cadastrar</v-btn
+                >
+              </div>
+              <div v-else>
+                <v-btn
+                  rounded 
+                  to="/cadastrar"
+                  class="btn"
+                  v-on:click="logarLogin"
+                  >Entrar</v-btn
+                >
+              </div>
+            </form>
+
+            <div class="linha"></div>
+            <v-container class="loginalternativ">
+              <h6>Nao tem uma conta?</h6>
+
+              <v-btn rounded to="/cadastrar" class="btn">
+                Sign up for Libfy
+              </v-btn>
+            </v-container>
+          </main>
         </div>
-
-        <div class="linhacontainer">
-          <v-row no-gutters>
-            <v-col cols="12" sm="5">
-              
-                <v-divider  inset></v-divider>
-              
-            </v-col>
-            <v-col cols="12" sm="2">
-              or
-            </v-col>
-            <v-col cols="12" sm="5">
-              
-                <v-divider  inset></v-divider>
-              
-            </v-col>
-          </v-row>
-        </div>
-
-        <div>
-          <form action="">
-            <h6 class="alerta">{{ this.msgErro }}</h6>
-            <div>
-              <label for="loginE"></label>
-              <input
-                type="type"
-                v-model="emailu"
-                placeholder="Email"
-                id="loginE"
-              />
-            </div>
-            <div>
-              <label for="passx"></label>
-              <input
-                type="text"
-                v-model="senha"
-                placeholder="Senha"
-                id="passx"
-              />
-            </div>
-
-            <a href>Esqueceu sua senha?</a>
-            <div>
-              <input type="checkbox" id="lembrarLogin" checked />
-              <label for="lembrarLogin">Lembrar de mim</label>
-            </div>
-            <div v-if="cadastrando">
-              <a href class="loginbtn" v-on:click="cadastrarLogin">Cadastrar</a>
-            </div>
-            <div v-else>
-              <a href class="loginbtn" v-on:click="logarLogin">Entrar</a>
-            </div>
-          </form>
-
-          <div class="linha"></div>
-          <footer>
-            <h6>Nao tem uma conta?</h6>
-            <a href="signup.html" class="btnlogin btn">Inscreva-se</a>
-          </footer>
-        </div>
-      </div>
-    </div>
-  </section>
-</v-container>
+      </section>
+    </v-container>
+  </main>
 </template>
 
 <script>
