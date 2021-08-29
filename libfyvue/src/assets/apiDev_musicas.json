@@ -1,5 +1,5 @@
 {
-    "musicas":[{"id":1,"nome":"Etta","ano":1993,"album":"http://dummyimage.com/211x100.png/dddddd/000000"},
+    "musicas":[{"id":1,"nome":"Etta","ano":1993,"album":"https://upload.wikimedia.org/wikipedia/en/f/f5/Elvis_Presley_LPM-1254_Album_Cover.jpg"},
         {"id":2,"nome":"Anderea","ano":1989,"album":"http://dummyimage.com/173x100.png/dddddd/000000"},
         {"id":3,"nome":"Daphene","ano":2008,"album":"http://dummyimage.com/247x100.png/dddddd/000000"},
         {"id":4,"nome":"Belva","ano":1994,"album":"http://dummyimage.com/179x100.png/ff4444/ffffff"},
