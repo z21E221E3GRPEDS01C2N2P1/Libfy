@@ -6,6 +6,9 @@
     margin:0;/* 
     background:white; */
 }
+.fab{
+    margin-right: 1px;
+}
 .linha{
     border-bottom: 1px solid gray;
 }

@@ -2,23 +2,32 @@
   <main>
     <h1 class="titulofileira">Mais tocadas</h1>
     <div class="musicas">
-      <section class="fileira">
-        <v-sheet class="mx-auto" dark>
-          <v-slide-group multiple show-arrows center-active dark>
+      <section  >
+        <v-sheet class="mx-auto" dark >
+          <v-slide-group
+            multiple
+            show-arrows
+            center-active
+            dark 
+          >
             <MusicaCard
-            v-for="musica in temp_GetMusicas" v-bind:key="musica.id"
-             v-bind:selemusica="musica" />
+              v-for="musica in temp_GetMusicas"
+              v-bind:key="musica.id"
+              v-bind:selemusica="musica"
+            />
           </v-slide-group>
         </v-sheet>
       </section>
 
       <h1 class="titulofileira">Recentemente Tocadas</h1>
-      <section class="fileira">
-         <v-sheet class="mx-auto" dark>
+      <section  >
+        <v-sheet class="mx-auto" dark>
           <v-slide-group multiple show-arrows center-active dark>
             <MusicaCard
-            v-for="musica in temp_GetMusicas" v-bind:key="musica.id"
-             v-bind:selemusica="musica" />
+              v-for="musica in temp_GetMusicas"
+              v-bind:key="musica.id"
+              v-bind:selemusica="musica"
+            />
           </v-slide-group>
         </v-sheet>
       </section>

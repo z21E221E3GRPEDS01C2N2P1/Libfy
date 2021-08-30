@@ -10,7 +10,7 @@
             <v-btn rounded to="/cadastrar" class="btn" block
               ><i class="fab fa-facebook-f"></i> Continue with facebook</v-btn>
             <v-btn rounded to="/cadastrar" class="btn" block
-              >Continue With Google
+              ><i class="fab fa-google"></i> Continue With Google
             </v-btn>
             
           </div>

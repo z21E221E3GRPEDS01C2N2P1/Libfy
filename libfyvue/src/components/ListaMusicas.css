@@ -1,6 +1,6 @@
 
 main {
-  margin-left:32%;
+  margin-left:15%;
   margin-top:1%;
   font-size: 28px; 
   padding: 0px 10px;
@@ -10,10 +10,7 @@ main {
 .musicas{
   margin-top: 2em;
 }
-
-.fileira{
-  display: inline-flex;
-}
+ 
 .titulofileira{
   font-size: 1.2em; 
   text-align: left;
