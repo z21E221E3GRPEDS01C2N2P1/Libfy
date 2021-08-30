@@ -3,10 +3,10 @@
     <h1 class="titulofileira">Mais tocadas</h1>
     <div class="musicas">
       <section>
-        <v-sheet class="mx-auto">
-          <v-slide-group multiple show-arrows center-active>
+        <v-sheet class="mx-auto" dark>
+          <v-slide-group multiple show-arrows center-active dark>
             <MusicaCard
-            v-for="musica in temp_GetMusicas" v-bind:key="musica"
+            v-for="musica in temp_GetMusicas" v-bind:key="musica.id"
              v-bind:selemusica="musica" />
           </v-slide-group>
         </v-sheet>
@@ -14,7 +14,13 @@
 
       <h1 class="titulofileira">Recentemente Tocadas</h1>
       <section class="fileira">
-        <MusicaCard v-for="nr in 5" v-bind:key="nr" />
+         <v-sheet class="mx-auto" dark>
+          <v-slide-group multiple show-arrows center-active dark>
+            <MusicaCard
+            v-for="musica in temp_GetMusicas" v-bind:key="musica.id"
+             v-bind:selemusica="musica" />
+          </v-slide-group>
+        </v-sheet>
       </section>
     </div>
   </main>
