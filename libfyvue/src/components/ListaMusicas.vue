@@ -2,7 +2,7 @@
   <main>
     <h1 class="titulofileira">Mais tocadas</h1>
     <div class="musicas">
-      <section>
+      <section class="fileira">
         <v-sheet class="mx-auto" dark>
           <v-slide-group multiple show-arrows center-active dark>
             <MusicaCard

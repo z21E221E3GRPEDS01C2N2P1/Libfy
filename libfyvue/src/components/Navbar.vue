@@ -6,12 +6,7 @@
         <span class="fa fa-home"></span>
         <p>Home</p>
       </a>
-       <v-btn 
-      :color="'blue-grey'"
-      class="ma-2 white--text" 
-    > teste in 
-    
-    </v-btn>
+      
       <a href="index.html" class="botao">
         <span class="fas fa-music"></span>
         <p>Playlists</p>
