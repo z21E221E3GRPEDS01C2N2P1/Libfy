@@ -129,9 +129,11 @@ export default {
     },
     logarLogin(e) {
       firebase.auth().signInWithEmailAndPassword(
-        this.emailu,this.senha).then(
+        this.emailu,this.senha).then((crendenciais)=>{
+          
+        }
 
-        );
+        ).catch();
     },
   },
   mounted() {
