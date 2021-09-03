@@ -11,7 +11,7 @@ const meuDataStore = createPersistedState({
 const store = new Vuex.Store({
   state: {  // equivalente ao data de um componente
     
-    vaa:'abcdfd'
+    qualquerCois:'abcdfd'
   },
   getters: { // equivalente ao computed de um componente
 

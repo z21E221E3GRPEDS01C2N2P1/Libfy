@@ -1,6 +1,6 @@
 <template>
   <main>
-    <h1 class="titulofileira">Mais tocadas{{aav}}</h1>
+    <h1 class="titulofileira">Mais tocadas{{this.qualquerCois}}</h1>
     <div class="musicas">
       <section  >
         <v-sheet class="mx-auto" dark >
@@ -47,7 +47,7 @@ export default {
     temp_GetMusicas() {
       return apiD_musicas.musicas;
     },
-    ...mapState(['aav'])
+    ...mapState(['qualquerCois'])
     
   },
   data: () => {
@@ -57,6 +57,7 @@ export default {
   },
   mounted(){
     this.$store.dispatch('carregar')
+    this.busmitter.on('lsd')
   }
 };
 </script>

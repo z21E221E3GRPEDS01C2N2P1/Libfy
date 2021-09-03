@@ -7,13 +7,8 @@ import '@fortawesome/fontawesome-free/css/all.css'
 import '@fortawesome/fontawesome-free/js/all.js'
 
 import store from './store'
-import mitt from 'mitt'
+
  
-
-const bus = mitt()
- 
-
-
 
  
 
