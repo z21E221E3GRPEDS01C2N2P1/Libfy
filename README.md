@@ -6,6 +6,15 @@ Projeto desenvolvido por **Elvis Lopes**, **Gabriel Madeira**, **João Victor Ol
 
 **Uma biblioteca de música.**
 
+### Como posso começar?
+
+* Instale as dependencias com o comando
+<br/> `npm i` <br/>
+<br/>
+
+- Sirva o projeto:
+<br/> `npm run serve` <br/> <br/>
+
 ## Assunto
 
 O Projeto será uma bibliteca de músicas onde o usuário pode organizar suas preferências, pesquisando músicas, artitas, albuns e playlist.
