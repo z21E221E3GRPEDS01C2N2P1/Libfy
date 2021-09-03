@@ -11,6 +11,11 @@ const rotasmain = [
     name: 'Cadastro',
     component: () => import('./views/Cadastro.vue')
   },
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import('./views/Login.vue')
+  },
 
   {
     path: '/about',

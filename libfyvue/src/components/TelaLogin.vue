@@ -3,7 +3,7 @@
     <v-container class="main" align="center" justify="center">
       <section>
         <div class="login">
-          <h1>Login - Libfy</h1>
+          <h1></h1>
 
           <div class="loginalternativ">
             
@@ -28,26 +28,30 @@
           </div>
 
           <main>
-            <form action="" class="">
+            <form action="" >
               <h6 class="alerta">{{ this.msgErro }}</h6>
-              <div>
-                <label for="loginE"></label>
-                <input
+            <section class="label">
+                <div>
+                <label for="loginE">Email</label>
+                <input dark
                   type="type"
                   v-model="emailu"
-                  placeholder="Email"
+                  placeholder="Enter your e-mail"
                   id="loginE"
+                  class="input"
                 />
               </div>
               <div>
-                <label for="passx"></label>
+                <label for="passx">Password</label>
                 <input
                   type="text"
                   v-model="senha"
-                  placeholder="Senha"
-                  id="passx"
+                  placeholder="Enter your password"
+                  id="passx" 
+                  class="input"
                 />
               </div>
+            </section>
 
               <a href>Esqueceu sua senha?</a>
               <div>
@@ -55,8 +59,7 @@
                 <label for="lembrarLogin">Lembrar de mim</label>
               </div>
               <div v-if="cadastrando">
-                <v-btn rounded  v-on:click="cadastrarLogin"
-
+                <v-btn rounded  v-on:click="cadastrarLogin" 
                   class="btn" block
                   >Cadastrar</v-btn
                 >
@@ -65,7 +68,7 @@
                 <v-btn
                   rounded 
                   to="/cadastrar"
-                  class="btn"
+                  class="btn" block
                   v-on:click="logarLogin"
                   >Entrar</v-btn
                 >

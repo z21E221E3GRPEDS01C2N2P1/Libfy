@@ -33,9 +33,6 @@ a {
     text-decoration: none;
     font-size: -2%;
 }
-input{
-    color:black;
-  }
 .facebook{
     background: #3b5998;
     color:white;
@@ -56,3 +53,12 @@ input{
 i{
     margin-right: 2px;
 }
+
+.input{
+    background: black !important; 
+    border: 1px solid rgba(255,255,255,0.4) !important;
+  }
+  .label{ 
+      text-align: left;
+      
+  }

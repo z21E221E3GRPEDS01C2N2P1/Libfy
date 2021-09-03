@@ -2,10 +2,12 @@
 <template>
   <div class="navbb">
     <div class="sidenav">
-      <a href="index.html" class="botao">
+     
+
+      <router-link to="/login">
         <span class="fa fa-home"></span>
         <p>Home</p>
-      </a>
+      </router-link>
       
       <a href="index.html" class="botao">
         <span class="fas fa-music"></span>
@@ -35,9 +37,8 @@
     
     </v-btn>
     <v-btn
-      rounded  to="/cadastrar" 
+      rounded  to="/login" 
     >  Log in 
-    
     </v-btn>
 
     
