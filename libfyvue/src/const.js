@@ -1,6 +1,7 @@
 import Home from './views/Home.vue'
 import apiD_musicas from './assets/apiDev_musicas.json'
 import firebase from "firebase";
+
 function importFire() {
   var firebaseConfig = {
     apiKey: "AIzaSyDQYcaY9B89obl52Opf8ORFl_6ywN9EbIg",
@@ -47,6 +48,9 @@ const rotasmain = [
     component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
   }
   ]
-
+  
+  const baseUrlApi = {
+    musicas:'./assets/apiDev_musicas.json'
+  }
 
   export {rotasmain, apiD_musicas, firebase};

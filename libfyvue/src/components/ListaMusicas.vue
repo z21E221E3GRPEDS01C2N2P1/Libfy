@@ -1,6 +1,6 @@
 <template>
   <main>
-    <h1 class="titulofileira">Mais tocadas</h1>
+    <h1 class="titulofileira">Mais tocadas{{aav}}</h1>
     <div class="musicas">
       <section  >
         <v-sheet class="mx-auto" dark >
@@ -37,6 +37,7 @@
 
 <script>
 import MusicaCard from "./MusicaCard.vue";
+import {mapState} from 'vuex'
 
 import { apiD_musicas } from "../const";
 export default {
@@ -46,12 +47,17 @@ export default {
     temp_GetMusicas() {
       return apiD_musicas.musicas;
     },
+    ...mapState(['aav'])
+    
   },
   data: () => {
     return {
       s_musica: null,
     };
   },
+  mounted(){
+    this.$store.dispatch('carregar')
+  }
 };
 </script>
 
