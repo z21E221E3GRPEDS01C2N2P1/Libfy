@@ -21,7 +21,7 @@ Consumo da API do Spotify
 ![Mapa do Site](https://github.com/21E221E3GRPEDS01C2N2P1/Libfy/blob/main/Mapa_Site.jpg?raw=true)
 
 ### Como posso começar a desenvolver com esse projeto?
-
+* Entre na pasta principal do projeto `cd libfyvue`
 * Instale as dependencias com o comando
 <br/> `npm i` <br/>
 <br/>
