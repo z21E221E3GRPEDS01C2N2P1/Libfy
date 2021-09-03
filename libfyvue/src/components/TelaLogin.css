@@ -51,14 +51,18 @@ a {
     width: 100%;
 } 
 i{
-    margin-right: 2px;
+    margin: 20px ;
 }
 
 .input{
     background: black !important; 
-    border: 1px solid rgba(255,255,255,0.4) !important;
+    border: 2px solid rgba(255,255,255,0.4) !important;
+    padding:1.6vh;
   }
   .label{ 
-      text-align: left;
+      text-align: left; 
       
+  }
+  .check{
+      width: 10vh !important; 
   }

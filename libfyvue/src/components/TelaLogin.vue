@@ -1,6 +1,6 @@
 <template>
-  <main>
-    <v-container class="main" align="center" justify="center">
+  <main class="loginalternativ"> 
+    <v-container class="main pa-16 ma-auto lesswidth" >
       <section>
         <div class="login">
           <h1></h1>
@@ -8,9 +8,9 @@
           <div class="loginalternativ">
             
             <v-btn rounded to="/cadastrar" class="btn" block
-              ><i class="fab fa-facebook-f"></i> Continue with facebook</v-btn>
+              ><i class="fab fa-facebook-f ma-2"></i> Continue with facebook</v-btn>
             <v-btn rounded to="/cadastrar" class="btn" block
-              ><i class="fab fa-google"></i> Continue With Google
+              ><i class="fab fa-google ma-2"></i> Continue With Google
             </v-btn>
             
           </div>
@@ -33,7 +33,7 @@
             <section class="label">
                 <div>
                 <label for="loginE">Email</label>
-                <input dark
+                <input 
                   type="type"
                   v-model="emailu"
                   placeholder="Enter your e-mail"
@@ -53,11 +53,7 @@
               </div>
             </section>
 
-              <a href>Esqueceu sua senha?</a>
-              <div>
-                <input type="checkbox" id="lembrarLogin" checked />
-                <label for="lembrarLogin">Lembrar de mim</label>
-              </div>
+              
               <div v-if="cadastrando">
                 <v-btn rounded  v-on:click="cadastrarLogin" 
                   class="btn" block
@@ -65,6 +61,13 @@
                 >
               </div>
               <div v-else>
+                <section class="label">
+                <a href>Esqueceu sua senha?</a>
+                <div>
+                  <input type="checkbox" id="lembrarLogin" checked class="check" />
+                <label for="lembrarLogin">Lembrar de mim</label>
+                </div>
+              </section>
                 <v-btn
                   rounded 
                   to="/cadastrar"
@@ -72,6 +75,7 @@
                   v-on:click="logarLogin"
                   >Entrar</v-btn
                 >
+              
               </div>
             </form>
 
@@ -87,6 +91,7 @@
         </div>
       </section>
     </v-container>
+    
   </main>
 </template>
 
@@ -165,4 +170,11 @@ export default {
 <style scoped>
 @import "TelaLogin.css";
 @import "btnspotify.css";
+@media (min-width: 1200px)
+{
+  .lesswidth{
+    width:50%
+  }
+  
+  }
 </style>
