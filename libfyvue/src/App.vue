@@ -26,4 +26,9 @@ export default {
 #app{
   background-color: rgb(61, 49, 49);
 }
+.topofixo{
+  transition: all 5s,ease-in;
+  
+  
+}
 </style>

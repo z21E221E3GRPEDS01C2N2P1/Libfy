@@ -1,6 +1,6 @@
 <template>
   <main>
-    <h1 class="titulofileira">Mais tocadas{{this.qualquerCois}}</h1>
+    <h1 class="titulofileira">Mais tocadas </h1>
     <div class="musicas">
       <section  >
         <v-sheet class="mx-auto" dark >
@@ -56,8 +56,7 @@ export default {
     };
   },
   mounted(){
-    this.$store.dispatch('carregar')
-    this.busmitter.on('lsd')
+    this.$store.dispatch('carregar') 
   }
 };
 </script>
