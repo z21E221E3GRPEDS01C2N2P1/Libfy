@@ -56,8 +56,7 @@ export default {
     };
   },
   mounted(){
-    this.$store.dispatch('carregar')
-    this.busmitter.on('lsd')
+    this.$store.dispatch('carregar') 
   }
 };
 </script>

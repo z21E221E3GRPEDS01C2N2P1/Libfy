@@ -69,8 +69,7 @@
                 </div>
               </section>
                 <v-btn
-                  rounded 
-                  to="/cadastrar"
+                  rounded  
                   class="btn" block
                   v-on:click="logarLogin"
                   >Entrar</v-btn
@@ -95,8 +94,8 @@
   </main>
 </template>
 
-<script>
-import {firebase} from '../const'
+<script>  
+import firebase from '../plugins/firebase'
 
 export default {
   name: "TelaLogin",
@@ -109,7 +108,7 @@ export default {
       emailu: "",
       senha: "",
       msgErro: "",
-      vers: "nome musica elvis",
+      vers: "nome musfica elvis",
       logando: true,
     };
   },
@@ -120,6 +119,9 @@ export default {
         .auth()
         .createUserWithEmailAndPassword(this.emailu, this.senha)
         .then((credenciais) => {
+          /* credenciais.user.updateProfile({
+            displayName:
+          }) */
           let usuario = credenciais.user;
           console.log(usuario);
         })
@@ -128,12 +130,14 @@ export default {
         });
     },
     logarLogin(e) {
+      console.log('credenciais')
       firebase.auth().signInWithEmailAndPassword(
-        this.emailu,this.senha).then((crendenciais)=>{
-          
+        this.emailu,this.senha).then((credenciais)=>{
+          console.log(credenciais)
+          this.$store.dispatch('logaUsuario',credenciais)
         }
 
-        ).catch();
+        ).catch(e=>console.log(e));
     },
   },
   mounted() {
