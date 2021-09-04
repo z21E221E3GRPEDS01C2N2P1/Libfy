@@ -18,7 +18,13 @@ const rotasmain = [
     name: 'Login',
     component: () => import('./views/Login.vue')
   },
+  
 
+  {
+    path: '/perfilusuario',
+    name: 'PerfilUsuario',
+    component: () => import('./views/PerfilUsuario.vue')
+  },
   {
     path: '/about',
     name: 'About',
