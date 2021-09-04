@@ -37,6 +37,5 @@ export default {
 }
 .botaomobile{
    position:static !important;
-    
-}
+    }
 </style>
