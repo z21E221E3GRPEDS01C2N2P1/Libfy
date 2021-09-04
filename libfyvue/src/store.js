@@ -24,6 +24,9 @@ const store = new Vuex.Store({
 
     getUser(state){
       return state.user;
+    },
+    getQualquerCois(state){
+      return state.qualquerCois;
     }
 
   },

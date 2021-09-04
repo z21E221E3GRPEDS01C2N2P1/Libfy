@@ -21,18 +21,24 @@
       <p>Favoritas</p>
       <p>Favoritas</p>
     </div>
-    <section class="topofixo d-flex flex-row">
+    <section class="topofixo d-flex flex-row justify-start align-center">
       <div class="pesquisa">
         
         <input
         type="text"
         placeholder="Artists,songs or podcasts" 
       />
+      
       </div>
-     <main class="d-flex flex-row transparent">
+      <main v-if="user.loggedIn" class="d-flex flex-row transparent ">
+        <v-btn rounded color="primary" dark  > Deslogar </v-btn>
+     </main>
+     <main v-else class="d-flex flex-row transparent ">{{user.loggedIn}}
         <v-btn rounded color="primary" dark to="/cadastrar"> Cadastrar </v-btn>
         <v-btn rounded to="/login"> Log in </v-btn>
       </main>
+
+     
 
     
      
@@ -41,8 +47,28 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 export default {
   name: "Navbar",
+  computed:{
+    ...mapGetters({
+      user:"getUser",
+      getQualquerCois:"getQualquerCois"
+    })
+  },
+  methods:{
+    deslogar(){
+       firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          this.$router.replace({
+            name: "Home"
+          });
+        });
+    }
+  }
+
 };
 </script>
 
