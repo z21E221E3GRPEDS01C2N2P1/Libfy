@@ -31,9 +31,9 @@
       
       </div>
       <main v-if="user.loggedIn" class="d-flex flex-row transparent ">
-        <v-btn rounded color="primary" dark  > Deslogar </v-btn>
+        <v-btn rounded color="primary" dark v-on:click="deslogar"  > Deslogar </v-btn>
      </main>
-     <main v-else class="d-flex flex-row transparent ">{{user.loggedIn}}
+     <main v-else class="d-flex flex-row transparent "> 
         <v-btn rounded color="primary" dark to="/cadastrar"> Cadastrar </v-btn>
         <v-btn rounded to="/login"> Log in </v-btn>
       </main>
@@ -48,6 +48,8 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import firebase from '../plugins/firebase'
+
 export default {
   name: "Navbar",
   computed:{

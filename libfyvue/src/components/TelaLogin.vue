@@ -133,8 +133,9 @@ export default {
       console.log('credenciais')
       firebase.auth().signInWithEmailAndPassword(
         this.emailu,this.senha).then((credenciais)=>{
-          console.log(credenciais)
+          
           this.$store.dispatch('logaUsuario',credenciais)
+          this.$router.push({name:'Home'})
         }
 
         ).catch(e=>console.log(e));
