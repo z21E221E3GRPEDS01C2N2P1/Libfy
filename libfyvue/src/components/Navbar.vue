@@ -55,18 +55,6 @@ export default {
       getQualquerCois: "getQualquerCois",
     }),
   },
-  methods: {
-    deslogar() {
-      firebase
-        .auth()
-        .signOut()
-        .then(() => {
-          this.$router.replace({
-            name: "Home",
-          });
-        });
-    },
-  },
 };
 </script>
 

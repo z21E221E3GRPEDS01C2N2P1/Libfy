@@ -25,6 +25,12 @@ const store = new Vuex.Store({
     getUser(state){
       return state.user;
     },
+    getNomeUsuario(state) {
+      if (state.user.data.displayName) {
+        return state.user.data.displayName;
+      }
+      return state.user.data.email;
+    },
     getQualquerCois(state){
       return state.qualquerCois;
     }
