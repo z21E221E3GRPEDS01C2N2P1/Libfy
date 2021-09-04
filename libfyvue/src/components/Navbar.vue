@@ -21,7 +21,7 @@
       <p>Favoritas</p>
       <p>Favoritas</p>
     </div>
-    <section class="topofixo">
+    <section class="topofixo d-flex flex-row">
       <div class="pesquisa">
         
         <input
@@ -29,17 +29,10 @@
         placeholder="Artists,songs or podcasts" 
       />
       </div>
-      <v-btn
-      rounded
-      color="primary"
-      dark to="/cadastrar"
-    >  Cadastrar 
-    
-    </v-btn>
-    <v-btn
-      rounded  to="/login" 
-    >  Log in 
-    </v-btn>
+     <main class="d-flex flex-row transparent">
+        <v-btn rounded color="primary" dark to="/cadastrar"> Cadastrar </v-btn>
+        <v-btn rounded to="/login"> Log in </v-btn>
+      </main>
 
     
      
