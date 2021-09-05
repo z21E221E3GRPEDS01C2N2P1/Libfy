@@ -29,6 +29,8 @@ export default {
 .topofixo{
   transition: all 5s,ease-in;
   
-  
 }
+.icone{
+  color:white;
+} 
 </style>

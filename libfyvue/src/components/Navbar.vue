@@ -7,10 +7,10 @@
         <p>Home</p>
       </router-link>
 
-      <a href="index.html" class="botao">
+      <div v-on:click="teste_api" class="botao">
         <span class="fas fa-music"></span>
         <p>Playlists</p>
-      </a>
+      </div>
       <a href="index.html" class="botao">
         <span class="fas fa-heart"></span>
         <p>Notícias</p>
@@ -21,7 +21,7 @@
     </div>
     <section class="topofixo d-flex flex-row justify-start align-center">
       <div class="pesquisa">
-        <i class="fa fa-search"  aria-hidden="true"></i>
+        <i class="fa fa-search icone"  aria-hidden="true"></i>
         <input type="text" placeholder="Artists,songs or podcasts" />
       </div>
       <div :class="esconderSideBar ? 'd-none' : ''">
@@ -55,6 +55,11 @@ export default {
       getQualquerCois: "getQualquerCois",
     }),
   },
+    methods:{
+      teste_api(){
+        this.$store.dispatch("puxaMusicas")
+      }
+    }
 };
 </script>
 

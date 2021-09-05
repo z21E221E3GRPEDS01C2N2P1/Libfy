@@ -1,18 +1,24 @@
 <template>
-  <main class="loginalternativ"> 
-    <v-container class="main pa-16 ma-auto lesswidth" >
+  <main class="loginalternativ">
+    <v-container class="main pa-16 ma-auto lesswidth">
       <section>
         <div class="login">
           <h1></h1>
 
           <div class="loginalternativ">
-            
             <v-btn rounded to="/cadastrar" class="btn" block
-              ><i class="fab fa-facebook-f ma-2"></i> Continue with facebook</v-btn>
+              ><i class="fab fa-facebook-f ma-2 icone"></i> 
+              <div v-if="cadastrando">Cadastre-se com facebook</div>
+              <div v-else>Continue with
+              facebook</div>
+              </v-btn
+            >
             <v-btn rounded to="/cadastrar" class="btn" block
-              ><i class="fab fa-google ma-2"></i> Continue With Google
+              ><i class="fab fa-google ma-2 icone"></i>
+              <div v-if="cadastrando">Cadastre-se com Google</div>
+              <div v-else>
+               Continue With Google</div>
             </v-btn>
-            
           </div>
 
           <div class="linhacontainer">
@@ -28,53 +34,52 @@
           </div>
 
           <main>
-            <form action="" >
+            <form action="">
               <h6 class="alerta">{{ this.msgErro }}</h6>
-            <section class="label">
+              <section class="label">
                 <div>
-                <label for="loginE">Email</label>
-                <input 
-                  type="type"
-                  v-model="emailu"
-                  placeholder="Enter your e-mail"
-                  id="loginE"
-                  class="input"
-                />
-              </div>
-              <div>
-                <label for="passx">Password</label>
-                <input
-                  type="text"
-                  v-model="senha"
-                  placeholder="Enter your password"
-                  id="passx" 
-                  class="input"
-                />
-              </div>
-            </section>
+                  <label for="loginE">Email</label>
+                  <input
+                    type="type"
+                    v-model="emailu"
+                    placeholder="Enter your e-mail"
+                    id="loginE"
+                    class="input"
+                  />
+                </div>
+                <div>
+                  <label for="passx">Password</label>
+                  <input
+                    type="password"
+                    v-model="senha"
+                    placeholder="Enter your password"
+                    id="passx"
+                    class="input"
+                  />
+                </div>
+              </section>
 
-              
               <div v-if="cadastrando">
-                <v-btn rounded  v-on:click="cadastrarLogin" 
-                  class="btn" block
+                <v-btn rounded v-on:click="cadastrarLogin" class="btn" block
                   >Cadastrar</v-btn
                 >
               </div>
               <div v-else>
                 <section class="label">
-                <a href>Esqueceu sua senha?</a>
-                <div>
-                  <input type="checkbox" id="lembrarLogin" checked class="check" />
-                <label for="lembrarLogin">Lembrar de mim</label>
-                </div>
-              </section>
-                <v-btn
-                  rounded  
-                  class="btn" block
-                  v-on:click="logarLogin"
+                  <a href>Esqueceu sua senha?</a>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="lembrarLogin"
+                      checked
+                      class="check"
+                    />
+                    <label for="lembrarLogin">Lembrar de mim</label>
+                  </div>
+                </section>
+                <v-btn rounded class="btn" block v-on:click="logarLogin"
                   >Entrar</v-btn
                 >
-              
               </div>
             </form>
 
@@ -90,12 +95,11 @@
         </div>
       </section>
     </v-container>
-    
   </main>
 </template>
 
-<script>  
-import firebase from '../plugins/firebase'
+<script>
+import firebase from "../plugins/firebase";
 
 export default {
   name: "TelaLogin",
@@ -130,20 +134,17 @@ export default {
         });
     },
     logarLogin(e) {
-      console.log('credenciais')
-      firebase.auth().signInWithEmailAndPassword(
-        this.emailu,this.senha).then((credenciais)=>{
-          
-          this.$store.dispatch('logaUsuario',credenciais)
-          this.$router.push({name:'Home'})
-        }
-
-        ).catch(e=>console.log(e));
+      console.log("credenciais");
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(this.emailu, this.senha)
+        .then((credenciais) => { 
+          this.$router.push({ name: "Home" });
+        })
+        .catch((e) => console.log(e));
     },
   },
   mounted() {
-    
-
     /* function initFireStore() {
       this.firestore = firebase.firestore();
     }
@@ -162,11 +163,9 @@ export default {
 <style scoped>
 @import "TelaLogin.css";
 @import "btnspotify.css";
-@media (min-width: 1200px)
-{
-  .lesswidth{
-    width:50%
+@media (min-width: 1200px) {
+  .lesswidth {
+    width: 50%;
   }
-  
-  }
+}
 </style>

@@ -37,17 +37,22 @@
 
 <script>
 import MusicaCard from "./MusicaCard.vue";
-import {mapState} from 'vuex'
+import {mapGetters, mapState} from 'vuex'
 
 import { apiD_musicas } from "../const";
 export default {
   components: { MusicaCard },
   name: "ListaMusicas",
   computed: {
+    ...mapState(['qualquerCois']),
+    ...mapGetters(['getMaisTocadasArr']),
+    getMusicasMaisTocadas(){
+      return this.getMaisTocadasArr
+    },
+
     temp_GetMusicas() {
       return apiD_musicas.musicas;
     },
-    ...mapState(['qualquerCois'])
     
   },
   data: () => {
