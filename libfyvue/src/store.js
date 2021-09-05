@@ -50,6 +50,9 @@ const store = new Vuex.Store({
     SET_MUSICAS_MAIS_TOCADAS(state, data) {
       let { albums } = data
       state.maisTocadasArray = albums
+    },
+    set_qualquercois(state,strin){
+      state.qualquerCois = strin
     }
 
   },
@@ -57,6 +60,26 @@ const store = new Vuex.Store({
     async carregar({ commit }) {
       commit('SET_MUSICAS_MAIS_TOCADAS',apiD_musicas.amostra_dados_spotify_famosos)
       console.log('carregou')
+
+      const config = {
+        headers: {
+          Authorization: `Bearer ${SCOPELESS_AUTHTOKEN2}`,
+
+          Accept: 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded',
+        }
+      };
+      
+      /* axios.get("https://api.spotify.com/v1/browse/" +
+        "new-releases?country=SE&limit=10&offset=5",
+        config).then(({ data }) => {
+          console.log(data)
+          commit('SET_MUSICAS_MAIS_TOCADAS',data.albums.items)
+        }
+        ) */
+    },
+    qualCtest({commit},payload){
+      commit('set_qualquercois',payload)
     },
     async carregarUsuario({ commit }, user) {
       commit("SET_LOGGED_IN", user !== null);
@@ -72,25 +95,7 @@ const store = new Vuex.Store({
     async logaUsuario({ commit }, cred) {
       console.log('ave')
     },
-    async puxaMusicas() {
-      commit('SET_MUSICAS_MAIS_TOCADAS',apiD_musicas.amostra_dados_spotify_famosos)
-
-      const config = {
-        headers: {
-          Authorization: `Bearer ${SCOPELESS_AUTHTOKEN2}`,
-
-          Accept: 'application/json',
-          'Content-Type': 'application/x-www-form-urlencoded',
-        }
-      };
-      axios.get("https://api.spotify.com/v1/browse/" +
-        "new-releases?country=SE&limit=10&offset=5",
-        config).then(({ data }) => {
-          console.log(data)
-          commit('SET_MUSICAS_MAIS_TOCADAS',data.albums.items)
-        }
-        )
-    }
+    
 
   },
   plugins: [meuDataStore]
