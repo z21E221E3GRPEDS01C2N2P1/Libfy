@@ -50,10 +50,7 @@ const store = new Vuex.Store({
     SET_MUSICAS_MAIS_TOCADAS(state, data) {
       let { albums } = data
       state.maisTocadasArray = albums
-    },
-    set_qualquercois(state,strin){
-      state.qualquerCois = strin
-    }
+    }, 
 
   },
   actions: { // equivalente ao methods de um componente
@@ -77,10 +74,7 @@ const store = new Vuex.Store({
           commit('SET_MUSICAS_MAIS_TOCADAS',data.albums.items)
         }
         ) */
-    },
-    qualCtest({commit},payload){
-      commit('set_qualquercois',payload)
-    },
+    }, 
     async carregarUsuario({ commit }, user) {
       commit("SET_LOGGED_IN", user !== null);
       if (user) {

@@ -17,9 +17,7 @@
             />
           </v-slide-group>
         </v-sheet>
-      </section>
-      <input type="text" v-model="test_ql">
-      <button v-on:click="simbor">testv</button>
+      </section> 
       <h1 class="titulofileira">Recentemente Tocadas</h1>
       <section  >
         <v-sheet class="mx-auto" dark>
@@ -54,15 +52,10 @@ export default {
   },
   data: () => {
     return {
-      s_musica: null,
-      test_ql:''
+      s_musica: null, 
     };
   },
-  methods:{
-    simbor(){
-      this.$store.dispatch('qualCtest',this.test_ql)
-      
-    }
+  methods:{ 
   },
   mounted(){
     this.$store.dispatch('carregar') 
