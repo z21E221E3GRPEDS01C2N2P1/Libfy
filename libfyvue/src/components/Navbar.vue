@@ -7,10 +7,10 @@
         <p>Home</p>
       </router-link>
 
-      <div v-on:click="teste_api" class="botao">
+      <router-link to="/login">
         <span class="fas fa-music"></span>
         <p>Playlists</p>
-      </div>
+      </router-link>
       <a href="index.html" class="botao">
         <span class="fas fa-heart"></span>
         <p>Notícias</p>
@@ -55,10 +55,7 @@ export default {
       getQualquerCois: "getQualquerCois",
     }),
   },
-    methods:{
-      teste_api(){
-        this.$store.dispatch("puxaMusicas")
-      }
+    methods:{ 
     }
 };
 </script>

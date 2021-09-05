@@ -1,8 +1,13 @@
 import Home from './views/Home.vue'
 import apiD_musicas from './assets/apiDev_musicas.json'
- 
-const OAUTHTOKEN_LIBFY = 'BQBZmS-lWjilmbNx4cDbE2X5Z5EKLcPgAJNbxYLNYu4I4L_0oAPTYPahMmyF7ia2AlFO4oiygAgIlW0CcZD9zcn8YEREBWCcOA9ANyhc0rGgcLTh_qdRw8myD8MURTVAFszgNr0z3Zw2zaBWKL7fr6qGcS5QtJ1cM_DDjZwdQ7b1DRo'
-const SCOPELESS_AUTHTOKEN2 = 'BQBZV-Z4_mle_5nE9SKLgbqtC8VGFFNeENk68oL9qqqDaggIOmRvowDzbyzB062sBEwA5wgHPG53tai3Y8akj3XjtStEz9QZJsyunJ5fG06Yy_DjPcmG9-f7WJB0BCD_Kxfz0tDIwztRyGpWZbJJmVRROMq8fkYe3asG-LkUuxWM5E2GaJfU'
+
+const LIBFY_FIRST_ACCESSTOKEN = 'BQBZmS-lWjilmbNx4cDbE2X5Z5EKLcPgAJNbxYLNYu4I4L_0oAPTYPahMmyF7ia2AlFO4oiygAgIlW0CcZD9zcn8YEREBWCcOA9ANyhc0rGgcLTh_qdRw8myD8MURTVAFszgNr0z3Zw2zaBWKL7fr6qGcS5QtJ1cM_DDjZwdQ7b1DRo'
+const LIBFY_REFRESHH_TOKEN = 'AQAVmK4y7krTMEKYVXB6Yk8rmnntu2UvJ6aqxHmMxXMuzBnUThHDFV9pZsissXfNCWtSAtEKzTKC7nItlCf3oOHm9v7Ag7Jdj-jHavM0ZUqXm6LkQ5Buvjz-6EY1UnGd7X8'
+const LIBFY_CLIENT_ID = '10fb72562a3f45969296b336205c3e4a'
+const LIBFY_CLIENT_SECRET = 'cf283f7f71cc4896827331b94d330714'
+
+const post_GETTOKENURL = 'https://accounts.spotify.com/api/token'
+
 const rotasmain = [
   {
     path: '/',
@@ -19,7 +24,7 @@ const rotasmain = [
     name: 'Login',
     component: () => import('./views/Login.vue')
   },
-  
+
 
   {
     path: '/perfilusuario',
@@ -34,10 +39,14 @@ const rotasmain = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
   }
-  ]
-  
-  const baseUrlApi = {
-    apimusicas:'./assets/apiDev_musicas.json'
-  }
+]
 
-  export {rotasmain, apiD_musicas,SCOPELESS_AUTHTOKEN2  };
+const baseUrlApi = {
+  apimusicas: './assets/apiDev_musicas.json'
+}
+
+export {
+  rotasmain, apiD_musicas, LIBFY_REFRESHH_TOKEN,
+  LIBFY_CLIENT_ID, LIBFY_FIRST_ACCESSTOKEN, LIBFY_CLIENT_SECRET,
+  post_GETTOKENURL
+};
