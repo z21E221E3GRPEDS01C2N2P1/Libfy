@@ -32,7 +32,7 @@ const store = new Vuex.Store({
       if (state.user.data.displayName) {
         return state.user.data.displayName;
       }
-      return state.user.data.email;
+      return state.user.data.email ? state.user.data.email : '';
     },
     getMaisTocadasArr(state){return state.maisTocadasArray},
     getQualquerCois(state) {
@@ -48,7 +48,8 @@ const store = new Vuex.Store({
       state.user.data = data;
     },
     SET_MUSICAS_MAIS_TOCADAS(state, data) {
-      state.maisTocadasArray = data
+      let { albums } = data
+      state.maisTocadasArray = albums
     }
 
   },

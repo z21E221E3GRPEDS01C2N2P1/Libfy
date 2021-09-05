@@ -11,9 +11,9 @@
             dark 
           >
             <MusicaCard
-              v-for="musica in temp_GetMusicas"
-              v-bind:key="musica.id"
-              v-bind:selemusica="musica"
+              v-for="album in getMusicasMaisTocadas.items"
+              v-bind:key="album.id"
+              v-bind:selemusica="album"
             />
           </v-slide-group>
         </v-sheet>
@@ -23,11 +23,7 @@
       <section  >
         <v-sheet class="mx-auto" dark>
           <v-slide-group multiple show-arrows center-active dark>
-            <MusicaCard
-              v-for="musica in temp_GetMusicas"
-              v-bind:key="musica.id"
-              v-bind:selemusica="musica"
-            />
+           
           </v-slide-group>
         </v-sheet>
       </section>

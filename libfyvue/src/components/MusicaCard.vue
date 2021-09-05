@@ -7,12 +7,12 @@
       
     >
       <img
-        v-bind:src="selemusica.album"
+        v-bind:src="selemusica.images[1].url"
         alt=""
         class="imagemmusica"
       />
-      <p>{{selemusica.nome}}</p>
-      <p>{{selemusica.ano}}</p>
+      <p>{{selemusica.artists[0].name}}</p>
+      <p>{{selemusica.name}}</p> 
     </v-card>
   </v-slide-item>
 </template>
