@@ -30,7 +30,7 @@
       </div>
       <div :class="esconderSideBar ? 'd-none' : ''">
         <main v-if="user.loggedIn" class="d-flex flex-row transparent">
-          <v-btn rounded dark to="/perfilusuario"> Guest1234 </v-btn>
+          <v-btn rounded dark to="/perfilusuario"> {{gNomeUsuario}} </v-btn>
         </main>
 
         <main v-else class="d-flex flex-row transparent">
