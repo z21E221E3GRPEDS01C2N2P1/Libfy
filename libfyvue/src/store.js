@@ -164,7 +164,7 @@ const store = new Vuex.Store({
         }
       ).then(databrut => {
         debugger
-        commit('SET_PESQUISA_RESULTADO', databrut)
+        commit('SET_PESQUISA_RESULTADO', databrut.data)
       })
     },
 
