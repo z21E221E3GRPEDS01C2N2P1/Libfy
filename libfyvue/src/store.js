@@ -96,7 +96,7 @@ const store = new Vuex.Store({
         }
       }
 
-      await axios.get("https://api.spotify.com/v1/browse/new-releases?country=SE&limit=10&offset=5",
+       axios.get("https://api.spotify.com/v1/browse/new-releases?country=BR&limit=10&offset=5",
         {
           headers:
             config_get_axios.headers
@@ -122,15 +122,17 @@ const store = new Vuex.Store({
               commit('SET_LIBFY_TOKENACESS', {
                 access: databruto.data.access_token,
                 refresh: LIBFY_REFRESHH_TOKEN
-              })
-
-              axios.get("https://api.spotify.com/v1/browse/new-releases?country=BR&limit=10&offset=5",
+              }).then(_=>{
+                axios.get("https://api.spotify.com/v1/browse/new-releases?country=BR&limit=10&offset=5",
                 {
                   headers:
                     config_get_axios.headers
                 }).then(({ data }) => {
                   let albums = data.albums
                   commit('SET_MUSICAS_MAIS_TOCADAS', albums)
+              
+              })
+
                 })
 
             })
