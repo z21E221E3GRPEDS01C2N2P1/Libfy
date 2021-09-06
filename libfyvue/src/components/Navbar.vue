@@ -54,7 +54,8 @@ export default {
   computed: {
     ...mapGetters({
       user: "getUser",
-      getQualquerCois: "getQualquerCois"
+      getQualquerCois: "getQualquerCois",
+      gNomeUsuario:"getNomeUsuario"
     })
   },
   methods: {

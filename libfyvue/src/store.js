@@ -118,7 +118,7 @@ const store = new Vuex.Store({
 
             .then(databruto => {
               console.log('meLasquei, mas peguei access token   ')
-
+              debugger
               commit('SET_LIBFY_TOKENACESS', {
                 access: databruto.data.access_token,
                 refresh: LIBFY_REFRESHH_TOKEN

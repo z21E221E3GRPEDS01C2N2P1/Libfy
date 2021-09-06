@@ -3,25 +3,34 @@
     <v-container class="main pa-16 ma-auto lesswidth">
       <section>
         <div class="login">
-          <h1></h1>
+         <v-container>  
+           
+            <v-img
+            lazy-src="@/assets/logo.png"
+            contain
+            class="ml-15"
+            max-width="40%"
+            src="@/assets/logo.png"
+          ></v-img>
+         
+         </v-container>
 
           <div class="loginalternativ">
             <v-btn rounded to="/cadastrar" class="btn" block
-              ><i class="fab fa-facebook-f ma-2 icone"></i> 
+              ><i class="fab fa-facebook-f ma-2 icone"></i>
               <div v-if="cadastrando">Cadastre-se com facebook</div>
-              <div v-else>Continue with
-              facebook</div>
-              </v-btn
-            >
+              <div v-else>Continue with facebook</div>
+            </v-btn>
             <v-btn rounded to="/cadastrar" class="btn" block
               ><i class="fab fa-google ma-2 icone"></i>
               <div v-if="cadastrando">Cadastre-se com Google</div>
               <div v-else>
-               Continue With Google</div>
+                Continue With Google
+              </div>
             </v-btn>
           </div>
 
-          <div class="linhacontainer">
+          <div class="linhacontainer mt-10">
             <v-row no-gutters>
               <v-col cols="12" sm="5">
                 <v-divider inset color="white"></v-divider>
@@ -60,7 +69,7 @@
               </section>
 
               <div v-if="cadastrando">
-                <v-btn rounded v-on:click="cadastrarLogin" class="btn" block
+                <v-btn rounded v-on:click="cadastrarLogin" class="btn mb-10 mt-10" block
                   >Cadastrar</v-btn
                 >
               </div>
@@ -77,7 +86,7 @@
                     <label for="lembrarLogin">Lembrar de mim</label>
                   </div>
                 </section>
-                <v-btn rounded class="btn" block v-on:click="logarLogin"
+                <v-btn rounded class="btn mb-10 mt-10" block v-on:click="logarLogin"
                   >Entrar</v-btn
                 >
               </div>
@@ -105,7 +114,7 @@ export default {
   name: "TelaLogin",
   props: {
     msg: String,
-    cadastrando: Boolean,
+    cadastrando: Boolean
   },
   data: () => {
     return {
@@ -113,7 +122,7 @@ export default {
       senha: "",
       msgErro: "",
       vers: "nome musfica elvis",
-      logando: true,
+      logando: true
     };
   },
   methods: {
@@ -122,25 +131,25 @@ export default {
       firebase
         .auth()
         .createUserWithEmailAndPassword(this.emailu, this.senha)
-        .then((credenciais) => {
+        .then(credenciais => {
           /* credenciais.user.updateProfile({
             displayName:
           }) */
-          let usuario = credenciais.user; 
+          let usuario = credenciais.user;
         })
-        .catch((erro) => {
+        .catch(erro => {
           this.msgErro = `${erro.code} ${erro.message}`;
         });
     },
-    logarLogin(e) { 
+    logarLogin(e) {
       firebase
         .auth()
         .signInWithEmailAndPassword(this.emailu, this.senha)
-        .then((credenciais) => { 
+        .then(credenciais => {
           this.$router.push({ name: "Home" });
         })
-        .catch((e) => console.log(e));
-    },
+        .catch(e => console.log(e));
+    }
   },
   mounted() {
     /* function initFireStore() {
@@ -153,7 +162,7 @@ export default {
       tocou: 234.34,
       cod: "230485",
     }); */
-  },
+  }
 };
 </script>
 
