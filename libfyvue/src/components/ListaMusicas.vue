@@ -1,9 +1,9 @@
 <template>
-  <main>
+  <main class="main">
     <h1 class="titulofileira">Mais tocadas </h1>
     <div class="musicas ">
       <section class="" >
-        <v-sheet class="mx-auto " dark >
+        <v-sheet class="mx-auto bg-purple-4" dark  >
           <v-slide-group
             multiple
             show-arrows
