@@ -49,11 +49,12 @@ const store = new Vuex.Store({
     SET_USER(state, data) {
       state.user.data = data;
     },
-    SET_MUSICAS_MAIS_TOCADAS(state, data) {
-      let { albums } = data
-      state.maisTocadasArray = albums
+    SET_MUSICAS_MAIS_TOCADAS(state, items) {
+      let {albums} = items
+      state.maisTocadasArray = albums.items
     },
     SET_LIBFY_TOKENACESS(state, { access, refresh }) {
+      
       state.libfy_token_acesso = access
       state.libfy_novo_refresh = refresh
     },
@@ -68,11 +69,12 @@ const store = new Vuex.Store({
         })
       }
       commit('SET_MUSICAS_MAIS_TOCADAS', apiD_musicas.amostra_dados_spotify_famosos)
-      console.log('carregou')
+      console.log('carregou'+state.libfy_novo_refresh)
+      //const token works
 
       const config_get_axios = {
         headers: {
-          Authorization: `Bearer ${state.libfy_novo_refresh}`,
+          Authorization: `Bearer ${LIBFY_FIRST_ACCESSTOKEN}`,
 
           Accept: 'application/json',
           'Content-Type': 'application/x-www-form-urlencoded',
@@ -80,25 +82,25 @@ const store = new Vuex.Store({
       };
       const config_refreshtoken = {
         headers: {
-          Authorization: `Basic ${LIBFY_CLIENT_ID} : ${LIBFY_CLIENT_SECRET}`,
+          Authorization: `Basic ${LIBFY_CLIENT_ID}:${LIBFY_CLIENT_SECRET}`,
 
           Accept: 'application/json',
           'Content-Type': 'application/x-www-form-urlencoded',
         }
       }
 
-      axios.get("https://api.spotify.com/v1/browse/" +
+      await axios.get("https://api.spotify.com/v1/browse/" +
         "new-releases?country=SE&limit=10&offset=5",
         config_get_axios).then(({ data }) => {
           console.log(data)
-          commit('SET_MUSICAS_MAIS_TOCADAS', data.albums.items)
+          let itens = data.albums.items
+          commit('SET_MUSICAS_MAIS_TOCADAS', itens)
         }
         ).catch((meLasquei) => {
           let url_gettoken = post_GETTOKENURL;
-          url_gettoken += "grant_type=refresh_token";
-          url_gettoken += "&refresh_token=" + LIBFY_REFRESHH_TOKEN;
-          url_gettoken += "&client_id=" + LIBFY_CLIENT_ID;
-
+          url_gettoken += "?grant_type=refresh_token";
+          url_gettoken += "&refresh_token=" + LIBFY_REFRESHH_TOKEN+'';
+          url_gettoken += "&client_id=" + LIBFY_CLIENT_ID; 
           console.log('vou postar no' + url_gettoken)
 
           axios.post(url_gettoken, config_refreshtoken).then(data => {
