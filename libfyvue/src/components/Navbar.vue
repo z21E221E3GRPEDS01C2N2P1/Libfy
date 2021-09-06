@@ -21,11 +21,14 @@
     </div>
     <section class="topofixo d-flex flex-row justify-start align-center">
       <div class="pesquisa">
-        <i class="fa fa-search icone"  aria-hidden="true"></i>
-        <input type="text" placeholder="Artists,songs or podcasts" />
+        <i class="fa fa-search icone" aria-hidden="true"></i>
+        <input
+          type="text"
+          placeholder="Artists,songs or podcasts"
+          v-on:keyup.enter="pesquisarMusica"
+        />
       </div>
       <div :class="esconderSideBar ? 'd-none' : ''">
-
         <main v-if="user.loggedIn" class="d-flex flex-row transparent">
           <v-btn rounded dark to="/perfilusuario"> Guest1234 </v-btn>
         </main>
@@ -36,7 +39,6 @@
           </v-btn>
           <v-btn rounded to="/login"> Log in </v-btn>
         </main>
-
       </div>
     </section>
   </div>
@@ -52,11 +54,15 @@ export default {
   computed: {
     ...mapGetters({
       user: "getUser",
-      getQualquerCois: "getQualquerCois",
-    }),
+      getQualquerCois: "getQualquerCois"
+    })
   },
-    methods:{ 
+  methods: {
+    pesquisarMusica(e){
+      this.$store.dispatch('pesquisaMusica',e.target.value)
+
     }
+  }
 };
 </script>
 

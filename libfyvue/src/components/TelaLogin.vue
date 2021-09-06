@@ -126,15 +126,13 @@ export default {
           /* credenciais.user.updateProfile({
             displayName:
           }) */
-          let usuario = credenciais.user;
-          console.log(usuario);
+          let usuario = credenciais.user; 
         })
         .catch((erro) => {
           this.msgErro = `${erro.code} ${erro.message}`;
         });
     },
-    logarLogin(e) {
-      console.log("credenciais");
+    logarLogin(e) { 
       firebase
         .auth()
         .signInWithEmailAndPassword(this.emailu, this.senha)
