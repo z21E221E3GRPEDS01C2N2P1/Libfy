@@ -61,7 +61,7 @@ export default {
   methods: {
     pesquisarMusica(e){
       this.$store.dispatch('pesquisaMusica',e.target.value)
-
+      this.$router.push({name:'Pesquisa'})
     }
   }
 };

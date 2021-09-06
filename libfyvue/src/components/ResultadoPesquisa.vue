@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main  class="main">
     <h1 class="titulofileira">Mais tocadas </h1>
     <div class="musicas ">
       <section class="" >
@@ -11,9 +11,9 @@
             dark 
           >
             <MusicaCard
-              v-for="album in getMusicasMaisTocadas"
-              v-bind:key="album.id"
-              v-bind:selemusica="album"
+              v-for="artist in gPesquisaResult.artists.items"
+              v-bind:key="artist.id"
+              v-bind:selemusica="artist"
             />
           </v-slide-group>
         </v-sheet>
@@ -23,9 +23,9 @@
         <v-sheet class="mx-auto" dark>
           <v-slide-group multiple show-arrows center-active dark>
            <MusicaCard
-              v-for="album in getMusicasMaisTocadas"
-              v-bind:key="album.id"
-              v-bind:selemusica="album"
+              v-for="tracks in gPesquisaResult.tracks.items"
+              v-bind:key="tracks.id"
+              v-bind:selemusica="tracks"
             />
           </v-slide-group>
         </v-sheet>
@@ -37,22 +37,20 @@
 <script>
 import MusicaCard from "./MusicaCard.vue";
 import {mapGetters, mapState} from 'vuex'
-
-import { apiD_musicas } from "../const";
+ 
 export default {
   components: { MusicaCard },
-  name: "ListaMusicas",
+  name: "ResultadoPesquisa",
   computed: {
     ...mapState(['qualquerCois']),
-    ...mapGetters(['getMaisTocadasArr']),
+    ...mapGetters(['getMaisTocadasArr','getPesquisaResult']),
     getMusicasMaisTocadas(){
       return this.getMaisTocadasArr
     },
-
-    temp_GetMusicas() {
-      return apiD_musicas.musicas;
-    },
-    
+    gPesquisaResult(){
+      return this.getPesquisaResult
+    }
+ 
   },
   data: () => {
     return {
@@ -61,8 +59,7 @@ export default {
   },
   methods:{ 
   },
-  mounted(){
-    this.$store.dispatch('carregar') 
+  mounted(){ 
   }
 };
 </script>

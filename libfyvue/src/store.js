@@ -41,6 +41,9 @@ const store = new Vuex.Store({
     getMaisTocadasArr(state) { return state.maisTocadasArray },
     getQualquerCois(state) {
       return state.qualquerCois;
+    },
+    getPesquisaResult(state){
+      return state.resultadoPesquisa
     }
 
   },
@@ -118,7 +121,7 @@ const store = new Vuex.Store({
 
             .then(databruto => {
               console.log('meLasquei, mas peguei access token   ')
-              debugger
+              
               commit('SET_LIBFY_TOKENACESS', {
                 access: databruto.data.access_token,
                 refresh: LIBFY_REFRESHH_TOKEN
