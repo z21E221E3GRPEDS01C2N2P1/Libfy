@@ -4,7 +4,6 @@ import axios from 'axios'
 import createPersistedState from 'vuex-persistedstate'
 import { LIBFY_CLIENT_ID, LIBFY_CLIENT_SECRET, LIBFY_FIRST_ACCESSTOKEN, LIBFY_REFRESHH_TOKEN, post_GETTOKENURL } from './const'
 import { apiD_musicas } from "./const";
-import { config } from 'vue/types/umd'
 
 Vue.use(Vuex)
 
@@ -99,14 +98,12 @@ const store = new Vuex.Store({
         }
         ).catch((meLasquei) => {
           let url_gettoken = post_GETTOKENURL;
-          //converter isso para obj
           url_gettoken += "?grant_type=refresh_token";
           url_gettoken += "&refresh_token=" + LIBFY_REFRESHH_TOKEN+'';
           url_gettoken += "&client_id=" + LIBFY_CLIENT_ID; 
           console.log('vou postar no' + url_gettoken)
-          
+          //transformar urlgettoken em obj
           config_refreshtoken.method='post'
-          config_refreshtoken.url=
           axios.post(url_gettoken, config_refreshtoken).then(data => {
             console.log('meLasquei, data eh' + data + 'meLasquei')
             commit('SET_LIBFY_TOKENACESS', {
