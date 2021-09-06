@@ -1,5 +1,6 @@
 <template>
   <v-slide-item v-slot="{ active, toggle }">
+
     <v-card
       :color="active ? 'primary' : 'grey lighten-1'"
       class="  cardmusica" 

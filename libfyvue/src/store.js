@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+import qs from 'qs'
 import createPersistedState from 'vuex-persistedstate'
 import { LIBFY_CLIENT_ID, LIBFY_CLIENT_SECRET, LIBFY_FIRST_ACCESSTOKEN, LIBFY_REFRESHH_TOKEN, post_GETTOKENURL } from './const'
 import { apiD_musicas } from "./const";
@@ -8,7 +9,7 @@ import { apiD_musicas } from "./const";
 Vue.use(Vuex)
 
 const meuDataStore = createPersistedState({
-  paths: ["qualquerCois"]
+  paths: ["qualquerCois", "libfy_novo_refresh", "libfy_token_acesso"]
 })
 
 const store = new Vuex.Store({
@@ -20,7 +21,7 @@ const store = new Vuex.Store({
         loggedIn: false
       },
       maisTocadasArray: [],
-      libfy_token_acesso: '',
+      libfy_token_acesso: 'nd',
       libfy_novo_refresh: ''
     }
 
@@ -49,12 +50,12 @@ const store = new Vuex.Store({
     SET_USER(state, data) {
       state.user.data = data;
     },
-    SET_MUSICAS_MAIS_TOCADAS(state, items) {
-      let {albums} = items
+    SET_MUSICAS_MAIS_TOCADAS(state, data) {
+      let { albums } = data 
       state.maisTocadasArray = albums.items
     },
     SET_LIBFY_TOKENACESS(state, { access, refresh }) {
-      
+
       state.libfy_token_acesso = access
       state.libfy_novo_refresh = refresh
     },
@@ -69,48 +70,79 @@ const store = new Vuex.Store({
         })
       }
       commit('SET_MUSICAS_MAIS_TOCADAS', apiD_musicas.amostra_dados_spotify_famosos)
-      console.log('carregou'+state.libfy_novo_refresh)
+      console.log('carregou' + state.libfy_novo_refresh)
       //const token works
 
       const config_get_axios = {
         headers: {
-          Authorization: `Bearer ${LIBFY_FIRST_ACCESSTOKEN}`,
+          Authorization: `Bearer ${state.libfy_token_acesso}`,
 
           Accept: 'application/json',
           'Content-Type': 'application/x-www-form-urlencoded',
         }
       };
-      const config_refreshtoken = {
+      const headers = {
         headers: {
-          Authorization: `Basic ${LIBFY_CLIENT_ID}:${LIBFY_CLIENT_SECRET}`,
-
           Accept: 'application/json',
           'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        auth: {
+          username: LIBFY_CLIENT_ID,
+          password: LIBFY_CLIENT_SECRET
         }
       }
 
-      await axios.get("https://api.spotify.com/v1/browse/" +
-        "new-releases?country=SE&limit=10&offset=5",
-        config_get_axios).then(({ data }) => {
-          console.log(data)
-          let itens = data.albums.items
-          commit('SET_MUSICAS_MAIS_TOCADAS', itens)
+      await axios.get("https://api.spotify.com/v1/browse/new-releases?country=SE&limit=10&offset=5",
+        {
+          headers:
+            config_get_axios.headers
+        }).then(({ data }) => {
+          console.log(data) 
+          commit('SET_MUSICAS_MAIS_TOCADAS', data)
         }
         ).catch((meLasquei) => {
-          let url_gettoken = post_GETTOKENURL;
+          /* let url_gettoken = post_GETTOKENURL;
           url_gettoken += "?grant_type=refresh_token";
           url_gettoken += "&refresh_token=" + LIBFY_REFRESHH_TOKEN+'';
           url_gettoken += "&client_id=" + LIBFY_CLIENT_ID; 
-          console.log('vou postar no' + url_gettoken)
+          console.log('vou postar no' + url_gettoken) */
           //transformar urlgettoken em obj
-          config_refreshtoken.method='post'
-          axios.post(url_gettoken, config_refreshtoken).then(data => {
-            console.log('meLasquei, data eh' + data + 'meLasquei')
-            commit('SET_LIBFY_TOKENACESS', {
-              access: data.access_token,
-              refresh: data.refresh_token
+          let dataraw = {
+            grant_type: "client_credentials",
+            refresh_token: "AQAVmK4y7krTMEKYVXB6Yk8rmnntu2UvJ6aqxHmMxXMuzBnUThHDFV9pZsissXfNCWtSAtEKzTKC7nItlCf3oOHm9v7Ag7Jdj-jHavM0ZUqXm6LkQ5Buvjz-6EY1UnGd7X8",
+            client_id: "10fb72562a3f45969296b336205c3e4a"
+          }
+          let data = {
+            grant_type: 'client_credentials'
+          }
+
+
+          axios.post(
+            post_GETTOKENURL,
+            qs.stringify(data),
+            headers
+          )
+
+            .then(databruto => {
+              console.log('meLasquei, mas peguei access token eh ')
+ 
+              commit('SET_LIBFY_TOKENACESS', {
+                access: databruto.data.access_token,
+                refresh: LIBFY_REFRESHH_TOKEN
+              })
+              axios.get("https://api.spotify.com/v1/browse/new-releases?country=SE&limit=10&offset=5",
+                {
+                  headers:
+                    config_get_axios.headers
+                }).then(({ data }) => {
+                  console.log(data)
+                  debugger
+                  let albums = data.albums
+                  commit('SET_MUSICAS_MAIS_TOCADAS', albums)
+                })
+
             })
-          }).catch(lascouMuito => console.log('lascoumt' + lascouMuito))
+            .catch(lascouMuito => console.log('lascou mt' + lascouMuito))
         })
     },
     async carregarUsuario({ commit }, user) {

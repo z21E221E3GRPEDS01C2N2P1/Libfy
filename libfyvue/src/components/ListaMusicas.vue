@@ -11,7 +11,7 @@
             dark 
           >
             <MusicaCard
-              v-for="album in getMusicasMaisTocadas.items"
+              v-for="album in getMusicasMaisTocadas"
               v-bind:key="album.id"
               v-bind:selemusica="album"
             />
