@@ -1,6 +1,6 @@
 <template>
   <main  class="main">
-    <h1 class="titulofileira">Mais tocadas </h1>
+    <h1 class="titulofileira"> Artists </h1>
     <div class="musicas ">
       <section class="" >
         <v-sheet class="mx-auto " dark >
@@ -9,16 +9,14 @@
             show-arrows
             center-active
             dark 
-            v-if="gPesquisaResult.artists.items"
           >
-            <ArtistaCard
-            
+            <MusicaCard 
               v-for="artist in gPesquisaResult.artists.items"
-              v-bind:key="artist.id"
-              v-bind:selemusica="artist"
+              v-bind:key="artist.id" 
+              v-bind:seleartista="artist"
             />
-          </v-slide-group>
-            <h1 v-else>{{getPesquisaResult}}</h1>
+
+          </v-slide-group> 
         </v-sheet>
       </section> 
       <h1 class="titulofileira">Recentemente Tocadas</h1>

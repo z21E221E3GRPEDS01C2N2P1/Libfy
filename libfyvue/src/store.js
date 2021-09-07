@@ -78,16 +78,7 @@ const store = new Vuex.Store({
       }
       commit('SET_MUSICAS_MAIS_TOCADAS', apiD_musicas.amostra_dados_spotify_famosos)
 
-      //const token works
-
-      const config_get_axios = {
-        headers: {
-          Authorization: `Bearer ${state.libfy_token_acesso}`,
-
-          Accept: 'application/json',
-          'Content-Type': 'application/x-www-form-urlencoded',
-        }
-      };
+       
       const headers = {
         headers: {
           Accept: 'application/json',
@@ -99,10 +90,14 @@ const store = new Vuex.Store({
         }
       }
 
-       axios.get("https://api.spotify.com/v1/browse/new-releases?country=BR&limit=10&offset=5",
+       axios.get("https://api.spotify.com/v1/browse/new-releases?country=RU&limit=10&offset=5",
         {
-          headers:
-            config_get_axios.headers
+          headers: {
+            Authorization: `Bearer ${state.libfy_token_acesso}`,
+  
+            Accept: 'application/json',
+            'Content-Type': 'application/x-www-form-urlencoded',
+          }
         }).then(({ data }) => {
           commit('SET_MUSICAS_MAIS_TOCADAS', data)
         }
@@ -128,10 +123,14 @@ const store = new Vuex.Store({
               })
             })
               .then(_=>{
-                axios.get("https://api.spotify.com/v1/browse/new-releases?country=BR&limit=10&offset=5",
+                axios.get("https://api.spotify.com/v1/browse/new-releases?country=RU&limit=10&offset=5",
                 {
-                  headers:
-                    config_get_axios.headers
+                  headers: {
+                    Authorization: `Bearer ${state.libfy_token_acesso}`,
+          
+                    Accept: 'application/json',
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                  }
                 }).then(({ data }) => {
                   let albums = data.albums
                   commit('SET_MUSICAS_MAIS_TOCADAS', albums)

@@ -1,11 +1,11 @@
 <template>
-  <v-slide-item v-slot="{ active, toggle }">
+  <v-slide-item v-slot="{ active, toggle }" dark>
 
     <v-card
-      :color="active ? 'primary' : 'grey lighten-1'"
-      class="  cardmusica" 
+      :color="active ? 'secondary' : 'purple darken-5'"
+      class="cardmusica" 
       @click="toggle"
-      
+      dark
     >
       <img
         v-bind:src="selemusica.images[1].url"

@@ -1,18 +1,21 @@
 <template>
-  <v-slide-item v-slot="{ active, toggle }">
-
+  <v-slide-item
+  v-if="seleartista.images"
+   v-slot="{ active, toggle }">
+    
     <v-card
       :color="active ? 'primary' : 'grey lighten-1'"
       class="  cardmusica" 
       @click="toggle" 
     >
       <v-img
-      lazy-src="@/assets/logo.png"
+      lazy-src="../assets/logo.png"
       contain
-        v-bind:src="selemusica.images[1].url"
+        v-bind:src="artista.image"
         max-width="250" 
         class="imagemmusica"
       ></v-img> 
+      <p>ll</p>
     </v-card>
   </v-slide-item>
 </template>
@@ -22,8 +25,15 @@
 // @ is an alias to /sr
 export default {
   name: "ArtistaCard",
-  props:['selemusica'],
-  
+  props:['seleartista'],
+  computed:{
+    artista(){
+      return{
+        image:this.seleartista.images[1].url?
+        this.seleartista.images[1].url : '../assets/logo.png'
+      }
+    }
+  },
   data: () => {
     return{
       
