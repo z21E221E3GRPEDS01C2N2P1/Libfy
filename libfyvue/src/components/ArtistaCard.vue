@@ -4,20 +4,15 @@
     <v-card
       :color="active ? 'primary' : 'grey lighten-1'"
       class="  cardmusica" 
-      @click="toggle"
-      
+      @click="toggle" 
     >
-      <img
+      <v-img
+      lazy-src="@/assets/logo.png"
+      contain
         v-bind:src="selemusica.images[1].url"
-        alt=""
+        max-width="250" 
         class="imagemmusica"
-      />
-      
-      <p>{{selemusica.artists[0].name?
-        selemusica.artists[0].name
-        :
-        selemusica.followers.total}}</p>
-      <p>{{selemusica.name}}</p> 
+      ></v-img> 
     </v-card>
   </v-slide-item>
 </template>
@@ -26,7 +21,7 @@
 
 // @ is an alias to /sr
 export default {
-  name: "MusicaCard",
+  name: "ArtistaCard",
   props:['selemusica'],
   
   data: () => {

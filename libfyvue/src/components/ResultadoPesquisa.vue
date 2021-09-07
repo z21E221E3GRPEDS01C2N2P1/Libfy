@@ -11,7 +11,7 @@
             dark 
             v-if="gPesquisaResult.artists.items"
           >
-            <MusicaCard
+            <ArtistaCard
             
               v-for="artist in gPesquisaResult.artists.items"
               v-bind:key="artist.id"
@@ -40,9 +40,10 @@
 <script>
 import MusicaCard from "./MusicaCard.vue";
 import {mapGetters, mapState} from 'vuex'
+import ArtistaCard from './ArtistaCard.vue';
  
 export default {
-  components: { MusicaCard },
+  components: { MusicaCard, ArtistaCard },
   name: "ResultadoPesquisa",
   computed: {
     ...mapState(['qualquerCois']),
