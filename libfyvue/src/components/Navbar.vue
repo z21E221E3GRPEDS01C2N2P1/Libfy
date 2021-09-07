@@ -2,12 +2,13 @@
 <template>
   <div class="navbb">
     <div class="sidenav" :class="esconderSideBar ? 'd-none' : ''">
-      <router-link to="/">
-        <span class="fa fa-home"></span>
-        <p>Home</p>
+      <router-link to="/" class="purple white--text">
+        <span class="fa fa-home"></span> Home
+        
       </router-link>
 
-      <router-link to="/login">
+     <section v-if="user.loggedIn">
+        <router-link to="/login">
         <span class="fas fa-music"></span>
         <p>Playlists</p>
       </router-link>
@@ -18,6 +19,7 @@
       <h6>Your Library</h6>
       <p>Favoritas</p>
       <p>Favoritas</p>
+     </section> 
     </div>
     <section class="topofixo d-flex flex-row justify-start align-center">
       <div class="pesquisa">
