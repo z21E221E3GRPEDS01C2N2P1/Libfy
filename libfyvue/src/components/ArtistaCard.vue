@@ -29,7 +29,7 @@ export default {
   computed: {
     artista() {
       return {
-        image: this.seleartista.images[1].url || "@/assets/logo.png",
+        image: this.seleartista.images[1].url? this.seleartista.images[1].url || "@/assets/logo.png" : '@/assets/logo.png',
         seguidores: `${this.seleartista.followers.total}` || "Many",
         nome: `${this.seleartista.name}` || ""
       };
