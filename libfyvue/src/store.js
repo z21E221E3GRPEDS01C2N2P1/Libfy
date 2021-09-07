@@ -21,9 +21,11 @@ const store = new Vuex.Store({
         loggedIn: false
       },
       maisTocadasArray: [],
+      pesquisaDoUsuario:'',
       resultadoPesquisa: [],
       libfy_token_acesso: 'nd',
-      libfy_novo_refresh: ''
+      libfy_novo_refresh: '',
+      deve_recarregar_api:false
     }
 
   },
@@ -33,10 +35,9 @@ const store = new Vuex.Store({
       return state.user;
     },
     getNomeUsuario(state) {
-      if (state.user.data.displayName) {
-        return state.user.data.displayName;
-      }
-      return state.user.data.email ? state.user.data.email : '';
+      return state.user.data?.displayName || 
+      state.user.data?.email ||
+      'Guest1234'
     },
     getMaisTocadasArr(state) { return state.maisTocadasArray },
     getQualquerCois(state) {
@@ -50,6 +51,9 @@ const store = new Vuex.Store({
   mutations: { // altera o state 
     SET_LOGGED_IN(state, value) {
       state.user.loggedIn = value;
+    },
+    ALTERNA_RECARREGAR(state){
+      state.deve_recarregar_api = !state.deve_recarregar_api
     },
     SET_USER(state, data) {
       state.user.data = data;
@@ -65,6 +69,9 @@ const store = new Vuex.Store({
     },
     SET_PESQUISA_RESULTADO(state, data) {
       state.resultadoPesquisa = data
+    },
+    SET_PESQUISAQUERY(state,data){
+      state.pesquisaDoUsuario=data
     }
 
   },
@@ -90,7 +97,7 @@ const store = new Vuex.Store({
         }
       }
 
-       axios.get("https://api.spotify.com/v1/browse/new-releases?country=RU&limit=10&offset=5",
+       axios.get("https://api.spotify.com/v1/browse/new-releases?country=BR&limit=10&offset=5",
         {
           headers: {
             Authorization: `Bearer ${state.libfy_token_acesso}`,
@@ -102,44 +109,24 @@ const store = new Vuex.Store({
           commit('SET_MUSICAS_MAIS_TOCADAS', data)
         }
         ).catch((meLasquei) => {
-
           let data = {
             grant_type: 'client_credentials'
           }
-
-
-          axios.post(
-            post_GETTOKENURL,
-            qs.stringify(data),
-            headers
-          )
-
-            .then(databruto => {
-              console.log('meLasquei, mas peguei access token   ')
-              
-              commit('SET_LIBFY_TOKENACESS', {
-                access: databruto.data.access_token,
-                refresh: LIBFY_REFRESHH_TOKEN
-              })
-            })
-              .then(_=>{
-                axios.get("https://api.spotify.com/v1/browse/new-releases?country=RU&limit=10&offset=5",
-                {
-                  headers: {
-                    Authorization: `Bearer ${state.libfy_token_acesso}`,
-          
-                    Accept: 'application/json',
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                  }
-                }).then(({ data }) => {
-                  let albums = data.albums
-                  commit('SET_MUSICAS_MAIS_TOCADAS', albums)
-              
-              })
-            })
-
-            
-            .catch(lascouMuito => console.log('lascou mt' + lascouMuito))
+            axios.post(
+              post_GETTOKENURL,
+              qs.stringify(data),
+              headers
+            ).then(databruto => {
+                console.log('meLasquei, mas peguei access token '+meLasquei)
+                
+                commit('SET_LIBFY_TOKENACESS', {
+                  access: databruto.data.access_token,
+                  refresh: LIBFY_REFRESHH_TOKEN
+                })
+            }).then(_=>{ 
+                commit('ALTERNA_RECARREGAR')                 
+          })         
+          .catch(lascouMuito => console.log('lascou mt' + lascouMuito))
         })
     },
     async carregarUsuario({ commit }, user) {
@@ -153,21 +140,22 @@ const store = new Vuex.Store({
         commit("SET_USER", null);
       }
     },
-    async pesquisaMusica({ commit, state }, nome) {
-      const config_get_axios = {
-        headers: {
-          Authorization: `Bearer ${state.libfy_token_acesso}`, 
-          Accept: 'application/json',
-        }
-      };
-      const tempQuery = '?q=Muse&type=track%2Cartist&market=US&limit=10&offset=5'
+    async pesquisaMusica({ commit, state }) {
+     let nome = state.pesquisaDoUsuario
 
+      if(!nome)  return;
+
+      const tempQuery = `?q=${nome}&type=track%2Cartist&limit=10&offset=5`
+ 
       axios.get(`https://api.spotify.com/v1/search${tempQuery}`,
         {
-          headers: config_get_axios.headers,
-          'Content-Type': 'application/x-www-form-urlencoded',
+          headers: {
+            Authorization: `Bearer ${state.libfy_token_acesso}`, 
+            Accept: 'application/json',
+            'Content-Type': 'application/x-www-form-urlencoded',
+          }
         }
-      ).then(databrut => { 
+      ).then(databrut => {  
         commit('SET_PESQUISA_RESULTADO', databrut.data)
       })
     },

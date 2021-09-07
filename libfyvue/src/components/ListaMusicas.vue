@@ -37,21 +37,17 @@
 <script>
 import MusicaCard from "./MusicaCard.vue";
 import {mapGetters, mapState} from 'vuex'
-
-import { apiD_musicas } from "../const";
+ 
 export default {
   components: { MusicaCard },
   name: "ListaMusicas",
   computed: {
-    ...mapState(['qualquerCois']),
+    ...mapState(['qualquerCois','deve_recarregar_api']),
     ...mapGetters(['getMaisTocadasArr']),
     getMusicasMaisTocadas(){
       return this.getMaisTocadasArr
     },
-
-    temp_GetMusicas() {
-      return apiD_musicas.musicas;
-    },
+ 
     
   },
   data: () => {
@@ -62,7 +58,15 @@ export default {
   methods:{ 
   },
   mounted(){
-    this.$store.dispatch('carregar') 
+    
+    this.$store.dispatch('carregar')  
+    setTimeout(()=>{
+      
+      if(this.deve_recarregar_api){
+      
+       this.$store.dispatch('carregar') 
+    }
+    },3000)
   }
 };
 </script>

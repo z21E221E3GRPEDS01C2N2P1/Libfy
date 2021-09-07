@@ -42,7 +42,7 @@ export default {
     ...mapGetters(["getUser","getNomeUsuario"]),
      
     nomeUsuario() {
-      return this.getNomeUsuario
+      return this.getNomeUsuario || ''
     },
   },
 

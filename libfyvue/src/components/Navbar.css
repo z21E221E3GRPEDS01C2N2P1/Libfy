@@ -1,7 +1,6 @@
 
 body {
-  font-family: "Lato", sans-serif;
-  background-color: rgb(61, 49, 49);
+  font-family: "Lato", sans-serif; 
 }
 
 .sidenav {
@@ -18,6 +17,17 @@ body {
   color: white;
 }
 
+@media (max-width: 600px)
+{
+  .sidenav
+   {
+     display: none;
+   }
+   .topofixo{
+    left: 0; 
+  }
+  
+  }
 .sidenav a,p {
   padding: 6px 8px 6px 16px;
   text-decoration: none;
@@ -36,9 +46,9 @@ body {
 }
 
   .topofixo{
+    left: 50%; 
   position: fixed;
   z-index: 1;
-  left: 50%; 
    
   
 }   
