@@ -167,8 +167,7 @@ const store = new Vuex.Store({
           headers: config_get_axios.headers,
           'Content-Type': 'application/x-www-form-urlencoded',
         }
-      ).then(databrut => {
-        debugger
+      ).then(databrut => { 
         commit('SET_PESQUISA_RESULTADO', databrut.data)
       })
     },

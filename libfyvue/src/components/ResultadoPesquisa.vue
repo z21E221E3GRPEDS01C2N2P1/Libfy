@@ -10,7 +10,7 @@
             center-active
             dark 
           >
-            <MusicaCard 
+            <ArtistaCard 
               v-for="artist in gPesquisaResult.artists.items"
               v-bind:key="artist.id" 
               v-bind:seleartista="artist"
