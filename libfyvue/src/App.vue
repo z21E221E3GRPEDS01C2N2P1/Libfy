@@ -33,4 +33,18 @@ export default {
 .icone{
   color:white;
 } 
+.main {
+    margin-left:21vh;
+  margin-top:1%;
+  font-size: 28px; 
+  padding: 0px 10px; 
+
+}
+@media (max-width: 600px)
+{
+  
+.main {
+    margin-left:1vh;
+    }
+}
 </style>

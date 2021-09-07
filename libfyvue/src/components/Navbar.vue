@@ -70,8 +70,7 @@ export default {
   methods: {
     pesquisarMusica(e){ 
       this.$store.dispatch('pesquisaMusica',this.pesquisatex)
-      
-      debugger
+       
       this.$router.push({name:'Pesquisa'})
     }
   }

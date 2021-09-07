@@ -33,10 +33,9 @@ const store = new Vuex.Store({
       return state.user;
     },
     getNomeUsuario(state) {
-      if (state.user.data.displayName) {
-        return state.user.data.displayName;
-      }
-      return state.user.data.email ? state.user.data.email : '';
+      return state.user.data?.displayName || 
+      state.user.data?.email ||
+      'Guest1234'
     },
     getMaisTocadasArr(state) { return state.maisTocadasArray },
     getQualquerCois(state) {
