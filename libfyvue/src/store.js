@@ -90,7 +90,7 @@ const store = new Vuex.Store({
         }
       }
 
-       axios.get("https://api.spotify.com/v1/browse/new-releases?country=RU&limit=10&offset=5",
+       axios.get("https://api.spotify.com/v1/browse/new-releases?country=BR&limit=10&offset=5",
         {
           headers: {
             Authorization: `Bearer ${state.libfy_token_acesso}`,
@@ -123,7 +123,7 @@ const store = new Vuex.Store({
               })
             })
               .then(_=>{
-                axios.get("https://api.spotify.com/v1/browse/new-releases?country=RU&limit=10&offset=5",
+                axios.get("https://api.spotify.com/v1/browse/new-releases?country=BR&limit=10&offset=5",
                 {
                   headers: {
                     Authorization: `Bearer ${state.libfy_token_acesso}`,
@@ -154,18 +154,19 @@ const store = new Vuex.Store({
       }
     },
     async pesquisaMusica({ commit, state }, nome) {
-      const config_get_axios = {
-        headers: {
-          Authorization: `Bearer ${state.libfy_token_acesso}`, 
-          Accept: 'application/json',
-        }
-      };
-      const tempQuery = '?q=Muse&type=track%2Cartist&market=US&limit=10&offset=5'
+     
 
+      if(!nome)  return;
+
+      const tempQuery = `?q=${nome}&type=track%2Cartist&limit=10&offset=5`
+ 
       axios.get(`https://api.spotify.com/v1/search${tempQuery}`,
         {
-          headers: config_get_axios.headers,
-          'Content-Type': 'application/x-www-form-urlencoded',
+          headers: {
+            Authorization: `Bearer ${state.libfy_token_acesso}`, 
+            Accept: 'application/json',
+            'Content-Type': 'application/x-www-form-urlencoded',
+          }
         }
       ).then(databrut => { 
         commit('SET_PESQUISA_RESULTADO', databrut.data)

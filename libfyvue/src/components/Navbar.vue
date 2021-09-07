@@ -28,6 +28,7 @@
           type="text"
           placeholder="Artists,songs or podcasts"
           v-on:keyup.enter="pesquisarMusica"
+          v-model="pesquisatex"
         />
       </div>
       <div :class="esconderSideBar ? 'd-none' : ''">
@@ -53,16 +54,24 @@ import firebase from "../plugins/firebase";
 export default {
   name: "Navbar",
   props: ["esconderSideBar"],
+  data:()=>{
+    return{
+      pesquisatex:''
+    }
+  },
   computed: {
     ...mapGetters({
       user: "getUser",
       getQualquerCois: "getQualquerCois",
-      gNomeUsuario:"getNomeUsuario"
+      gNomeUsuario:"getNomeUsuario",
+      gPesqR:"getPesquisaResult"
     })
   },
   methods: {
-    pesquisarMusica(e){
-      this.$store.dispatch('pesquisaMusica',e.target.value)
+    pesquisarMusica(e){ 
+      this.$store.dispatch('pesquisaMusica',this.pesquisatex)
+      
+      debugger
       this.$router.push({name:'Pesquisa'})
     }
   }
