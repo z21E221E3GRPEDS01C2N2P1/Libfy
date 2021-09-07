@@ -10,7 +10,7 @@ Projeto desenvolvido por **Elvis Lopes**, **Gabriel Madeira**, **João Victor Ol
 
 ## Assunto
 
-O Projeto será uma bibliteca de músicas onde o usuário pode organizar suas preferências, pesquisando músicas, artitas, albuns e playlist.
+O Projeto será uma biblioteca de músicas onde o usuário pode organizar suas preferências, pesquisando músicas, artistas, albuns e playlist.
 
 ## API
 
