@@ -125,7 +125,9 @@ const store = new Vuex.Store({
               commit('SET_LIBFY_TOKENACESS', {
                 access: databruto.data.access_token,
                 refresh: LIBFY_REFRESHH_TOKEN
-              }).then(_=>{
+              })
+            })
+              .then(_=>{
                 axios.get("https://api.spotify.com/v1/browse/new-releases?country=BR&limit=10&offset=5",
                 {
                   headers:
@@ -135,10 +137,9 @@ const store = new Vuex.Store({
                   commit('SET_MUSICAS_MAIS_TOCADAS', albums)
               
               })
-
-                })
-
             })
+
+            
             .catch(lascouMuito => console.log('lascou mt' + lascouMuito))
         })
     },

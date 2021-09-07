@@ -2,7 +2,7 @@
 <template>
   <div class="navbb">
     <div class="sidenav" :class="esconderSideBar ? 'd-none' : ''">
-      <router-link to="/login">
+      <router-link to="/">
         <span class="fa fa-home"></span>
         <p>Home</p>
       </router-link>

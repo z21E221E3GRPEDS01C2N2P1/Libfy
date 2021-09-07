@@ -12,7 +12,10 @@
         alt=""
         class="imagemmusica"
       />
-      <p>{{selemusica.artists[0].name}}</p>
+      <p>{{selemusica.artists[0].name?
+        selemusica.artists[0].name
+        :
+        selemusica.followers.total}}</p>
       <p>{{selemusica.name}}</p> 
     </v-card>
   </v-slide-item>

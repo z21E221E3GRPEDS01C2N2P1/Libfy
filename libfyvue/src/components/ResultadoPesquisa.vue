@@ -9,24 +9,27 @@
             show-arrows
             center-active
             dark 
+            v-if="gPesquisaResult.artists.items"
           >
             <MusicaCard
+            
               v-for="artist in gPesquisaResult.artists.items"
               v-bind:key="artist.id"
               v-bind:selemusica="artist"
             />
           </v-slide-group>
+            <h1 v-else>{{getPesquisaResult}}</h1>
         </v-sheet>
       </section> 
       <h1 class="titulofileira">Recentemente Tocadas</h1>
       <section  >
         <v-sheet class="mx-auto" dark>
           <v-slide-group multiple show-arrows center-active dark>
-           <MusicaCard
+          <!--  <MusicaCard
               v-for="tracks in gPesquisaResult.tracks.items"
               v-bind:key="tracks.id"
               v-bind:selemusica="tracks"
-            />
+            /> -->
           </v-slide-group>
         </v-sheet>
       </section>
@@ -43,10 +46,8 @@ export default {
   name: "ResultadoPesquisa",
   computed: {
     ...mapState(['qualquerCois']),
-    ...mapGetters(['getMaisTocadasArr','getPesquisaResult']),
-    getMusicasMaisTocadas(){
-      return this.getMaisTocadasArr
-    },
+    ...mapGetters(['getPesquisaResult']),
+     
     gPesquisaResult(){
       return this.getPesquisaResult
     }
