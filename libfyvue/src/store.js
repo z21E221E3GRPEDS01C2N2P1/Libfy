@@ -21,9 +21,11 @@ const store = new Vuex.Store({
         loggedIn: false
       },
       maisTocadasArray: [],
+      pesquisaDoUsuario:'',
       resultadoPesquisa: [],
       libfy_token_acesso: 'nd',
-      libfy_novo_refresh: ''
+      libfy_novo_refresh: '',
+      deve_recarregar_api:false
     }
 
   },
@@ -50,6 +52,9 @@ const store = new Vuex.Store({
     SET_LOGGED_IN(state, value) {
       state.user.loggedIn = value;
     },
+    ALTERNA_RECARREGAR(state){
+      state.deve_recarregar_api = !state.deve_recarregar_api
+    },
     SET_USER(state, data) {
       state.user.data = data;
     },
@@ -64,6 +69,9 @@ const store = new Vuex.Store({
     },
     SET_PESQUISA_RESULTADO(state, data) {
       state.resultadoPesquisa = data
+    },
+    SET_PESQUISAQUERY(state,data){
+      state.pesquisaDoUsuario=data
     }
 
   },
@@ -101,44 +109,24 @@ const store = new Vuex.Store({
           commit('SET_MUSICAS_MAIS_TOCADAS', data)
         }
         ).catch((meLasquei) => {
-
           let data = {
             grant_type: 'client_credentials'
           }
-
-
-          axios.post(
-            post_GETTOKENURL,
-            qs.stringify(data),
-            headers
-          )
-
-            .then(databruto => {
-              console.log('meLasquei, mas peguei access token   ')
-              
-              commit('SET_LIBFY_TOKENACESS', {
-                access: databruto.data.access_token,
-                refresh: LIBFY_REFRESHH_TOKEN
-              })
-            })
-              .then(_=>{
-                axios.get("https://api.spotify.com/v1/browse/new-releases?country=BR&limit=10&offset=5",
-                {
-                  headers: {
-                    Authorization: `Bearer ${state.libfy_token_acesso}`,
-          
-                    Accept: 'application/json',
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                  }
-                }).then(({ data }) => {
-                  let albums = data.albums
-                  commit('SET_MUSICAS_MAIS_TOCADAS', albums)
-              
-              })
-            })
-
-            
-            .catch(lascouMuito => console.log('lascou mt' + lascouMuito))
+            axios.post(
+              post_GETTOKENURL,
+              qs.stringify(data),
+              headers
+            ).then(databruto => {
+                console.log('meLasquei, mas peguei access token '+meLasquei)
+                
+                commit('SET_LIBFY_TOKENACESS', {
+                  access: databruto.data.access_token,
+                  refresh: LIBFY_REFRESHH_TOKEN
+                })
+            }).then(_=>{ 
+                commit('ALTERNA_RECARREGAR')                 
+          })         
+          .catch(lascouMuito => console.log('lascou mt' + lascouMuito))
         })
     },
     async carregarUsuario({ commit }, user) {
@@ -152,8 +140,8 @@ const store = new Vuex.Store({
         commit("SET_USER", null);
       }
     },
-    async pesquisaMusica({ commit, state }, nome) {
-     
+    async pesquisaMusica({ commit, state }) {
+     let nome = state.pesquisaDoUsuario
 
       if(!nome)  return;
 
@@ -167,7 +155,7 @@ const store = new Vuex.Store({
             'Content-Type': 'application/x-www-form-urlencoded',
           }
         }
-      ).then(databrut => { 
+      ).then(databrut => {  
         commit('SET_PESQUISA_RESULTADO', databrut.data)
       })
     },

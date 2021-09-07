@@ -16,6 +16,9 @@ export default {
   components: { 
     Navbar, 
     ResultadoPesquisa
+  },
+  mounted(){
+     this.$store.dispatch('pesquisaMusica')
   }
 }
 </script>

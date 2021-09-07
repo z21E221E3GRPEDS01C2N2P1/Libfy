@@ -12,7 +12,7 @@ import {busmitter} from './plugins/mitt'
 
 export default {
   name:'App',
-  
+    
 }
 
 </script>

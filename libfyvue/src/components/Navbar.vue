@@ -69,7 +69,7 @@ export default {
   },
   methods: {
     pesquisarMusica(e){ 
-      this.$store.dispatch('pesquisaMusica',this.pesquisatex)
+      this.$store.commit('SET_PESQUISAQUERY',this.pesquisatex)
        
       this.$router.push({name:'Pesquisa'})
     }
