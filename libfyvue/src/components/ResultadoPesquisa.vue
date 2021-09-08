@@ -17,6 +17,7 @@
               v-for="artist in gPesquisaResult.artists.items"
               v-bind:key="artist.id" 
               v-bind:seleartista="artist" 
+              v-on:toggle="tst"
             />
 
           </v-slide-group> 
@@ -74,7 +75,12 @@ export default {
   methods:{ 
     JustOpenThread(artis){
       console.log('artis')
+    },
+    tst(){
+
+      console.log('aa')
     }
+  
   },
   created(){
      this.$store.dispatch('pesquisaMusica')

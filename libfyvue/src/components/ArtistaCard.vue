@@ -3,13 +3,15 @@
     <v-card
       :color="active ? 'primary' : 'grey lighten-1'"
       class="  cardmusica"
-      @click="toggle"
+      @click="mytoggle(toggle)" 
     >
       <v-img
-        lazy-src="../assets/logo.png"
+        lazy-src="@/assets/logo.png"
         contain
         v-bind:src="artista.image"
         max-width="250"
+        max-height="250"
+        contains
         class="imagemmusica"
       ></v-img>
       <v-container>
@@ -37,6 +39,13 @@ export default {
   },
   data: () => {
     return {};
+  },
+  methods:{
+    mytoggle(vuetiFyToggle){
+
+      console.log('aa')
+      vuetiFyToggle()
+    }
   },
   components: {}
 };

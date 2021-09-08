@@ -71,7 +71,7 @@ const store = new Vuex.Store({
        
       data.artists.items = data.artists.items.sort((artA,artB)=>
         artB.followers.total - artA.followers.total)
-        
+         
       state.resultadoPesquisa = data
     },
     SET_PESQUISAQUERY(state, data) {
@@ -149,12 +149,12 @@ const store = new Vuex.Store({
       console.log(nome)
 
       if (!nome) {
-        let ultimaPesquisaFeita = "poze"
+        let ultimaPesquisaFeita = "sempiternal"
         nome = ultimaPesquisaFeita        
       }
 
 
-      const tempQuery = `?q=${nome}&market=BR&type=track%2Cartist&limit=10&offset=5&include_external=audio`
+      const tempQuery = `?q=${nome}&type=track%2Cartist&limit=10&offset=5&include_external=audio`
  
       axios.get(`https://api.spotify.com/v1/search${tempQuery}`,
         {
