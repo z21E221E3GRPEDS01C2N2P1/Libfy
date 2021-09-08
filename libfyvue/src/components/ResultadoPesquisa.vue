@@ -3,8 +3,11 @@
     <h1 class="titulofileira"> Artists </h1>
     <div class="musicas ">
       <section class="" >
-        <v-sheet class="mx-auto " dark >
-          <v-slide-group
+        
+          <v-row class="flex-child">
+          <v-col>
+        <v-sheet class=" metade" dark >
+            <v-slide-group
             multiple
             show-arrows
             center-active
@@ -17,7 +20,16 @@
             />
 
           </v-slide-group> 
+                    
         </v-sheet>
+          </v-col>
+        <v-col>
+            <div>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus expedita, magnam molestiae assumenda itaque repellat dolores ea natus saepe, sapiente ipsam libero! Vero, et? Quae repellat optio quos facilis tempora.
+            </div>
+          </v-col>
+        </v-row>
+        
       </section> 
       <h1 class="titulofileira">Recentemente Tocadas</h1>
       <section  >
@@ -59,12 +71,15 @@ export default {
   },
   methods:{ 
   },
-  mounted(){ 
+  created(){
+     this.$store.dispatch('pesquisaMusica')
   }
+  
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 @import "ListaMusicas.css";
+ 
 </style>

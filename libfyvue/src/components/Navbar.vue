@@ -70,6 +70,13 @@ export default {
   methods: {
     pesquisarMusica(e){ 
       this.$store.commit('SET_PESQUISAQUERY',this.pesquisatex)
+       console.log(`${this.$route.name}`)
+       
+       if(this.$route.name === 'Pesquisa'){
+         
+         this.$store.dispatch('pesquisaMusica')
+         return
+       } 
        
       this.$router.push({name:'Pesquisa'})
     }
