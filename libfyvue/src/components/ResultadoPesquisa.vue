@@ -16,8 +16,7 @@
             <ArtistaCard 
               v-for="artist in gPesquisaResult.artists.items"
               v-bind:key="artist.id" 
-              v-bind:seleartista="artist"
-              v-on:click="JustOpenThread(artist)"
+              v-bind:seleartista="artist" 
             />
 
           </v-slide-group> 
@@ -25,7 +24,8 @@
         </v-sheet>
           </v-col>
         <v-col cols="12" md="5" >
-            <div>
+            <div 
+              >
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus expedita, magnam molestiae assumenda itaque repellat dolores ea natus saepe, sapiente ipsam libero! Vero, et? Quae repellat optio quos facilis tempora.
             </div>
           </v-col>
@@ -60,7 +60,7 @@ export default {
     ...mapState(['qualquerCois']),
     ...mapGetters(['getPesquisaResult']),
      
-    gPesquisaResult(){
+    gPesquisaResult(){ 
       return this.getPesquisaResult
     }
  
@@ -73,7 +73,7 @@ export default {
   },
   methods:{ 
     JustOpenThread(artis){
-      console.log(artis)
+      console.log('artis')
     }
   },
   created(){

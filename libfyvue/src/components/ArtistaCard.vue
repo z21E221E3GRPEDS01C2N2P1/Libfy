@@ -1,5 +1,5 @@
 <template>
-  <v-slide-item v-if="seleartista.images" v-slot="{ active, toggle }">
+  <v-slide-item v-if="seleartista.images" v-slot="{ active , toggle }">
     <v-card
       :color="active ? 'primary' : 'grey lighten-1'"
       class="  cardmusica"
