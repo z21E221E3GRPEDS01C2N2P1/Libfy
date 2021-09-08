@@ -72,10 +72,7 @@ export default {
         this.artistaSelecionado = artis;
 
         let fdatabase = this.$firebase
-        .firestore();
-        
-        let dl='132'
-
+        .firestore();        
 
         fdatabase
           .collection("mensagens")
