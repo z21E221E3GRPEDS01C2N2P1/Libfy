@@ -149,7 +149,7 @@ const store = new Vuex.Store({
       console.log(nome)
 
       if (!nome) {
-        let ultimaPesquisaFeita = "sempiternal"
+        let ultimaPesquisaFeita = "po"
         nome = ultimaPesquisaFeita        
       }
 

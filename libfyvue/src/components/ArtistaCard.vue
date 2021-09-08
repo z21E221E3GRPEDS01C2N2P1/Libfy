@@ -1,9 +1,9 @@
 <template>
-  <v-slide-item v-if="seleartista.images" v-slot="{ active , toggle }">
+  <v-slide-item v-if="vforartista.images" v-slot="{ active , toggle }">
     <v-card
       :color="active ? 'primary' : 'grey lighten-1'"
       class="  cardmusica"
-      @click="mytoggle(toggle)" 
+      @click="mytoggle(vforartista,toggle)" 
     >
       <v-img
         lazy-src="@/assets/logo.png"
@@ -27,13 +27,13 @@
 // @ is an alias to /sr
 export default {
   name: "ArtistaCard",
-  props: ["seleartista"],
+  props: ["vforartista"],
   computed: {
     artista() {
       return {
-        image: this.seleartista.images[1]?.url? this.seleartista.images[1].url || "@/assets/logo.png" : '@/assets/logo.png',
-        seguidores: `${this.seleartista.followers.total}` || "Many",
-        nome: `${this.seleartista.name}` || ""
+        image: this.vforartista?.images[1]?.url? this.vforartista.images[1].url || "@/assets/logo.png" : '@/assets/logo.png',
+        seguidores: `${this.vforartista.followers.total}` || "Many",
+        nome: `${this.vforartista.name}` || ""
       };
     }
   },
@@ -41,9 +41,8 @@ export default {
     return {};
   },
   methods:{
-    mytoggle(vuetiFyToggle){
-
-      console.log('aa')
+    mytoggle(vforartista,vuetiFyToggle){       
+      this.$emit('selecaoART',vforartista)
       vuetiFyToggle()
     }
   },

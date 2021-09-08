@@ -1,43 +1,36 @@
 <template>
-  <main  class="main">
-    <h1 class="titulofileira"> Artists </h1>
+  <main class="main">
+    <h1 class="titulofileira">Artists</h1>
     <div class="musicas ">
-      <section class="" >
-        
-          <v-row class="flex-child">
+      <section class="">
+        <v-row class="flex-child">
           <v-col cols="12" :md="tamanhoSlideArtist">
-        <v-sheet class=" metade" dark >
-            <v-slide-group
-            multiple
-            show-arrows
-            center-active
-            dark 
-          >
-            <ArtistaCard 
-              v-for="artist in gPesquisaResult.artists.items"
-              v-bind:key="artist.id" 
-              v-bind:seleartista="artist" 
-              v-on:toggle="tst"
-            />
-
-          </v-slide-group> 
-                    
-        </v-sheet>
+            <v-sheet class=" metade" dark>
+              <v-slide-group  show-arrows center-active >
+                <ArtistaCard
+                  v-for="artist in gPesquisaResult.artists.items"
+                  v-bind:key="artist.id"
+                  v-bind:vforartista="artist"
+                  v-on:selecaoART="JustOpenThread"
+                />
+              </v-slide-group>
+            </v-sheet>
           </v-col>
-        <v-col cols="12" md="5" >
-            <div 
-              >
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus expedita, magnam molestiae assumenda itaque repellat dolores ea natus saepe, sapiente ipsam libero! Vero, et? Quae repellat optio quos facilis tempora.
+          <v-col cols="12" md="5">
+            <div>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus
+              expedita, magnam molestiae assumenda itaque repellat dolores ea
+              natus saepe, sapiente ipsam libero! Vero, et? Quae repellat optio
+              quos facilis tempora.
             </div>
           </v-col>
         </v-row>
-        
-      </section> 
+      </section>
       <h1 class="titulofileira">Recentemente Tocadas</h1>
-      <section  >
+      <section>
         <v-sheet class="mx-auto" dark>
           <v-slide-group multiple show-arrows center-active dark>
-          <!--  <MusicaCard
+            <!--  <MusicaCard
               v-for="tracks in gPesquisaResult.tracks.items"
               v-bind:key="tracks.id"
               v-bind:selemusica="tracks"
@@ -51,46 +44,45 @@
 
 <script>
 import MusicaCard from "./MusicaCard.vue";
-import {mapGetters, mapState} from 'vuex'
-import ArtistaCard from './ArtistaCard.vue';
- 
+import { mapGetters, mapState } from "vuex";
+import ArtistaCard from "./ArtistaCard.vue";
+
 export default {
   components: { MusicaCard, ArtistaCard },
   name: "ResultadoPesquisa",
   computed: {
-    ...mapState(['qualquerCois']),
-    ...mapGetters(['getPesquisaResult']),
-     
-    gPesquisaResult(){ 
-      return this.getPesquisaResult
+    ...mapState(["qualquerCois"]),
+    ...mapGetters(["getPesquisaResult"]),
+
+    gPesquisaResult() {
+      return this.getPesquisaResult;
     }
- 
   },
   data: () => {
     return {
-      s_musica: null, 
-      tamanhoSlideArtist:12
+      artistaSelecionado: null,
+      tamanhoSlideArtist: 12
     };
   },
-  methods:{ 
-    JustOpenThread(artis){
-      console.log('artis')
-    },
-    tst(){
-
-      console.log('aa')
+  methods: {
+    JustOpenThread(artis) { 
+      
+      if (this.artistaSelecionado) {
+        this.tamanhoSlideArtist = 12;
+        this.artistaSelecionado = null;
+      }else{
+        this.tamanhoSlideArtist = 6;
+      this.artistaSelecionado = artis;
+      }
     }
-  
   },
-  created(){
-     this.$store.dispatch('pesquisaMusica')
+  created() {
+    this.$store.dispatch("pesquisaMusica");
   }
-  
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 @import "ListaMusicas.css";
- 
 </style>
