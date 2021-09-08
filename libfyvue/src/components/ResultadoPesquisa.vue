@@ -18,10 +18,7 @@
           </v-col>
           <v-col cols="12" md="5">
             <div>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus
-              expedita, magnam molestiae assumenda itaque repellat dolores ea
-              natus saepe, sapiente ipsam libero! Vero, et? Quae repellat optio
-              quos facilis tempora.
+              <ChatQuick></ChatQuick>
             </div>
           </v-col>
         </v-row>
@@ -46,9 +43,10 @@
 import MusicaCard from "./MusicaCard.vue";
 import { mapGetters, mapState } from "vuex";
 import ArtistaCard from "./ArtistaCard.vue";
+import ChatQuick from './ChatQuick.vue';
 
 export default {
-  components: { MusicaCard, ArtistaCard },
+  components: { MusicaCard, ArtistaCard, ChatQuick },
   name: "ResultadoPesquisa",
   computed: {
     ...mapState(["qualquerCois"]),

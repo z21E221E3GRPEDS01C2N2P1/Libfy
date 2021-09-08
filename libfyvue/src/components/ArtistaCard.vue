@@ -1,9 +1,10 @@
 <template>
-  <v-slide-item v-if="vforartista.images" v-slot="{ active , toggle }">
+  <v-slide-item v-if="vforartista.images" v-slot="{ active, toggle }">
     <v-card
-      :color="active ? 'primary' : 'grey lighten-1'"
-      class="  cardmusica"
-      @click="mytoggle(vforartista,toggle)" 
+      :color="active ? 'primary' : 'grey darken-4'"
+      class="cardmusica "
+      @click="mytoggle(vforartista, toggle)"
+      dark
     >
       <v-img
         lazy-src="@/assets/logo.png"
@@ -17,7 +18,9 @@
       <v-container>
         <p></p>
         <h6>{{ artista.nome }}</h6>
-        <p>{{ artista.seguidores }} followers</p>
+        <p :class="active ? 'white--text' : 'purple--text'">
+          {{ artista.seguidores }} followers
+        </p>
       </v-container>
     </v-card>
   </v-slide-item>
@@ -31,7 +34,9 @@ export default {
   computed: {
     artista() {
       return {
-        image: this.vforartista?.images[1]?.url? this.vforartista.images[1].url || "@/assets/logo.png" : '@/assets/logo.png',
+        image: this.vforartista?.images[1]?.url
+          ? this.vforartista.images[1].url || "@/assets/logo.png"
+          : "@/assets/logo.png",
         seguidores: `${this.vforartista.followers.total}` || "Many",
         nome: `${this.vforartista.name}` || ""
       };
@@ -40,10 +45,10 @@ export default {
   data: () => {
     return {};
   },
-  methods:{
-    mytoggle(vforartista,vuetiFyToggle){       
-      this.$emit('selecaoART',vforartista)
-      vuetiFyToggle()
+  methods: {
+    mytoggle(vforartista, vuetiFyToggle) {
+      this.$emit("selecaoART", vforartista);
+      vuetiFyToggle();
     }
   },
   components: {}
