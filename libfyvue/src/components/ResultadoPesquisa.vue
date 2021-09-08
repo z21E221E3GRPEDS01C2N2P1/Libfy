@@ -5,7 +5,7 @@
       <section class="" >
         
           <v-row class="flex-child">
-          <v-col>
+          <v-col cols="12" md="6">
         <v-sheet class=" metade" dark >
             <v-slide-group
             multiple
@@ -23,7 +23,7 @@
                     
         </v-sheet>
           </v-col>
-        <v-col>
+        <v-col cols="12" md="5g">
             <div>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus expedita, magnam molestiae assumenda itaque repellat dolores ea natus saepe, sapiente ipsam libero! Vero, et? Quae repellat optio quos facilis tempora.
             </div>
