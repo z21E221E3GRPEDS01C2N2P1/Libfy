@@ -5,7 +5,7 @@
       <section class="" >
         
           <v-row class="flex-child">
-          <v-col cols="12" md="6">
+          <v-col cols="12" :md="tamanhoSlideArtist">
         <v-sheet class=" metade" dark >
             <v-slide-group
             multiple
@@ -17,13 +17,14 @@
               v-for="artist in gPesquisaResult.artists.items"
               v-bind:key="artist.id" 
               v-bind:seleartista="artist"
+              v-on:click="JustOpenThread(artist)"
             />
 
           </v-slide-group> 
                     
         </v-sheet>
           </v-col>
-        <v-col cols="12" md="5g">
+        <v-col cols="12" md="5" >
             <div>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus expedita, magnam molestiae assumenda itaque repellat dolores ea natus saepe, sapiente ipsam libero! Vero, et? Quae repellat optio quos facilis tempora.
             </div>
@@ -67,9 +68,13 @@ export default {
   data: () => {
     return {
       s_musica: null, 
+      tamanhoSlideArtist:12
     };
   },
   methods:{ 
+    JustOpenThread(artis){
+      console.log(artis)
+    }
   },
   created(){
      this.$store.dispatch('pesquisaMusica')
