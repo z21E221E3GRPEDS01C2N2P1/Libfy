@@ -108,7 +108,6 @@
 </template>
 
 <script>
-import firebase from "../plugins/firebase";
 
 export default {
   name: "TelaLogin",
@@ -128,7 +127,7 @@ export default {
   methods: {
     cadastrarLogin(e) {
       e.preventDefault();
-      firebase
+      this.$firebase
         .auth()
         .createUserWithEmailAndPassword(this.emailu, this.senha)
         .then(credenciais => {
@@ -142,7 +141,7 @@ export default {
         });
     },
     logarLogin(e) {
-      firebase
+      this.$firebase
         .auth()
         .signInWithEmailAndPassword(this.emailu, this.senha)
         .then(credenciais => {
@@ -153,7 +152,7 @@ export default {
   },
   mounted() {
     /* function initFireStore() {
-      this.firestore = firebase.firestore();
+      this.firestore = this.$firebase.firestore();
     }
     initFireStore();
     const collection = this.firestore.collection("musicas");

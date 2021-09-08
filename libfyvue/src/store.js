@@ -21,11 +21,11 @@ const store = new Vuex.Store({
         loggedIn: false
       },
       maisTocadasArray: [],
-      pesquisaDoUsuario:'',
+      pesquisaDoUsuario: '',
       resultadoPesquisa: [],
       libfy_token_acesso: 'nd',
       libfy_novo_refresh: '',
-      deve_recarregar_api:false
+      deve_recarregar_api: false
     }
 
   },
@@ -35,15 +35,15 @@ const store = new Vuex.Store({
       return state.user;
     },
     getNomeUsuario(state) {
-      return state.user.data?.displayName || 
-      state.user.data?.email ||
-      'Guest1234'
+      return state.user.data?.displayName ||
+        state.user.data?.email ||
+        'Guest1234'
     },
     getMaisTocadasArr(state) { return state.maisTocadasArray },
     getQualquerCois(state) {
       return state.qualquerCois;
     },
-    getPesquisaResult(state){
+    getPesquisaResult(state) {
       return state.resultadoPesquisa
     }
 
@@ -52,7 +52,7 @@ const store = new Vuex.Store({
     SET_LOGGED_IN(state, value) {
       state.user.loggedIn = value;
     },
-    ALTERNA_RECARREGAR(state){
+    ALTERNA_RECARREGAR(state) {
       state.deve_recarregar_api = !state.deve_recarregar_api
     },
     SET_USER(state, data) {
@@ -68,10 +68,14 @@ const store = new Vuex.Store({
       state.libfy_novo_refresh = refresh
     },
     SET_PESQUISA_RESULTADO(state, data) {
+       
+      data.artists.items = data.artists.items.sort((artA,artB)=>
+        artB.followers.total - artA.followers.total)
+         
       state.resultadoPesquisa = data
     },
-    SET_PESQUISAQUERY(state,data){
-      state.pesquisaDoUsuario=data
+    SET_PESQUISAQUERY(state, data) {
+      state.pesquisaDoUsuario = data
     }
 
   },
@@ -85,7 +89,7 @@ const store = new Vuex.Store({
       }
       commit('SET_MUSICAS_MAIS_TOCADAS', apiD_musicas.amostra_dados_spotify_famosos)
 
-       
+
       const headers = {
         headers: {
           Accept: 'application/json',
@@ -97,11 +101,11 @@ const store = new Vuex.Store({
         }
       }
 
-       axios.get("https://api.spotify.com/v1/browse/new-releases?country=BR&limit=10&offset=5",
+      axios.get("https://api.spotify.com/v1/browse/new-releases?country=BR&limit=10&offset=5",
         {
           headers: {
             Authorization: `Bearer ${state.libfy_token_acesso}`,
-  
+
             Accept: 'application/json',
             'Content-Type': 'application/x-www-form-urlencoded',
           }
@@ -112,21 +116,21 @@ const store = new Vuex.Store({
           let data = {
             grant_type: 'client_credentials'
           }
-            axios.post(
-              post_GETTOKENURL,
-              qs.stringify(data),
-              headers
-            ).then(databruto => {
-                console.log('meLasquei, mas peguei access token '+meLasquei)
-                
-                commit('SET_LIBFY_TOKENACESS', {
-                  access: databruto.data.access_token,
-                  refresh: LIBFY_REFRESHH_TOKEN
-                })
-            }).then(_=>{ 
-                commit('ALTERNA_RECARREGAR')                 
-          })         
-          .catch(lascouMuito => console.log('lascou mt' + lascouMuito))
+          axios.post(
+            post_GETTOKENURL,
+            qs.stringify(data),
+            headers
+          ).then(databruto => {
+            console.log('meLasquei, mas peguei access token ' + meLasquei)
+
+            commit('SET_LIBFY_TOKENACESS', {
+              access: databruto.data.access_token,
+              refresh: LIBFY_REFRESHH_TOKEN
+            })
+          }).then(_ => {
+            commit('ALTERNA_RECARREGAR')
+          })
+            .catch(lascouMuito => console.log('lascou mt' + lascouMuito))
         })
     },
     async carregarUsuario({ commit }, user) {
@@ -141,22 +145,30 @@ const store = new Vuex.Store({
       }
     },
     async pesquisaMusica({ commit, state }) {
-     let nome = state.pesquisaDoUsuario
+      let nome = state.pesquisaDoUsuario.replaceAll(' ', '-')
+      console.log(nome)
 
-      if(!nome)  return;
+      if (!nome) {
+        let ultimaPesquisaFeita = "po"
+        nome = ultimaPesquisaFeita        
+      }
 
-      const tempQuery = `?q=${nome}&type=track%2Cartist&limit=10&offset=5`
+
+      const tempQuery = `?q=${nome}&type=track%2Cartist&limit=10&offset=5&include_external=audio`
  
       axios.get(`https://api.spotify.com/v1/search${tempQuery}`,
         {
           headers: {
-            Authorization: `Bearer ${state.libfy_token_acesso}`, 
+            Authorization: `Bearer ${state.libfy_token_acesso}`,
             Accept: 'application/json',
             'Content-Type': 'application/x-www-form-urlencoded',
           }
         }
-      ).then(databrut => {  
+      ).then(databrut => {
+        
         commit('SET_PESQUISA_RESULTADO', databrut.data)
+      }).catch(sh => {
+        console.log('sh')
       })
     },
 
