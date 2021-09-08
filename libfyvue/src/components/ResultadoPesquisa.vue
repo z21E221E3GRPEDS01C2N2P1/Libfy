@@ -82,7 +82,7 @@ export default {
               this.dataraw = documento.data();
             });
           });
-        let testzao = { texto: "Mets", enviadoPor: "Marlindo" };
+        let testzao = { texto: "Gets", enviadoPor: "Tarlindo" };
         fdatabase
           .collection("mensagens")
           .add(testzao)
