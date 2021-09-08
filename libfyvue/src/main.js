@@ -12,10 +12,14 @@ import '@fortawesome/fontawesome-free/css/all.css'
 import '@fortawesome/fontawesome-free/js/all.js'
 
 import store from './store'
- 
+
 firebase.auth().onAuthStateChanged(usuario=>{
   store.dispatch("carregarUsuario",usuario)
 })
+
+
+Vue.prototype.$firebase = firebase
+
 Vue.config.productionTip = false
 
 new Vue({

@@ -31,8 +31,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-import firebase from '../plugins/firebase'
+import { mapGetters } from "vuex"; 
 // @ is an alias to /src
 import Navbar from "../components/Navbar.vue";
 
@@ -48,7 +47,7 @@ export default {
 
   methods: {
     deslogar() {
-      firebase
+      this.$firebase
         .auth()
         .signOut()
         .then(() => {

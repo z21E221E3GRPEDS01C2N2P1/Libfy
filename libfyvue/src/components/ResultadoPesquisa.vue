@@ -60,19 +60,20 @@ export default {
   },
   data: () => {
     return {
-      artistaSelecionado: null,
+      artistaSelecionado: {id:99},
       tamanhoSlideArtist: 12
     };
   },
   methods: {
     JustOpenThread(artis) { 
       
-      if (this.artistaSelecionado) {
-        this.tamanhoSlideArtist = 12;
-        this.artistaSelecionado = null;
-      }else{
+      if (this.artistaSelecionado.id!==artis.id) {
         this.tamanhoSlideArtist = 6;
-      this.artistaSelecionado = artis;
+        this.artistaSelecionado = artis;  
+      }else{
+        this.tamanhoSlideArtist = 12;
+        this.artistaSelecionado = {id:99};
+      
       }
     }
   },
