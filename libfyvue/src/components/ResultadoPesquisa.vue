@@ -6,7 +6,7 @@
         <v-row class="flex-child">
           <v-col cols="12" :md="tamanhoSlideArtist">
             <v-sheet class=" metade" dark>
-              <v-slide-group  show-arrows center-active >
+              <v-slide-group show-arrows center-active>
                 <ArtistaCard
                   v-for="artist in gPesquisaResult.artists.items"
                   v-bind:key="artist.id"
@@ -60,20 +60,39 @@ export default {
   },
   data: () => {
     return {
-      artistaSelecionado: {id:99},
-      tamanhoSlideArtist: 12
+      artistaSelecionado: { id: 99 },
+      tamanhoSlideArtist: 12,
+      dataraw: ""
     };
   },
   methods: {
-    JustOpenThread(artis) { 
-      
-      if (this.artistaSelecionado.id!==artis.id) {
+    JustOpenThread(artis) {
+      if (this.artistaSelecionado.id !== artis.id) {
         this.tamanhoSlideArtist = 6;
-        this.artistaSelecionado = artis;  
-      }else{
+        this.artistaSelecionado = artis;
+
+        let fdatabase = this.$firebase.firestore();
+
+        fdatabase
+          .collection("mensagens")
+          .get()
+          .then(querySnapshot => {
+            querySnapshot.forEach(documento => {
+              console.log(documento.id);
+              this.dataraw = documento.data();
+            });
+          });
+        let testzao = { texto: "Mets", enviadoPor: "Marlindo" };
+        fdatabase
+          .collection("mensagens")
+          .add(testzao)
+          .then(dcmnt => {
+            dcmnt.id;
+          })
+          
+      } else {
         this.tamanhoSlideArtist = 12;
-        this.artistaSelecionado = {id:99};
-      
+        this.artistaSelecionado = { id: 99 };
       }
     }
   },
