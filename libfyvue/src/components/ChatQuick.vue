@@ -144,22 +144,22 @@ export default {
         .then(doc => {
           if (doc.exists) {
             console.log("Document data:", doc.data().partcps);
-
+            let usuarioAgora = this.usuarioatual.data
             let particpantes = doc.data().partcps;
-            if (!this.usuarioatual.data || !this.usuarioatual.data.email) {
+            if (!usuarioAgora || !usuarioAgora.email) {
               this.$router.push({ name: "Home" });
               return;
             }
 
-            let participantesSemEuMesmo = particpantes.filter((participante) => {
-              participante.email !== this.usuarioatual.data.email;
-            });
+            let participantesSemEuMesmo = particpantes.filter((participante) => 
+              participante.email !== usuarioAgora.email  )
 
-            let euMesmo = particpantes.filter((participante) => {
-              participante.email === this.usuarioatual.data.email;
-            })[0];
-              debugger;
-            
+            let euMesmo = particpantes.filter((participante) => 
+              participante.email === usuarioAgora.email  )[0]
+
+              this.participants = participantesSemEuMesmo
+              
+              this.myself = euMesmo            
 
 
           } else {
