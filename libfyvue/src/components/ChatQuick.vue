@@ -149,6 +149,7 @@ export default {
             console.log("Document data:", doc.data().partcps);
             let usuarioAgora = this.usuarioatual.data
             let particpantes = doc.data().partcps;
+
             if (!usuarioAgora || !usuarioAgora.email) {
               this.$router.push({ name: "Home" });
               return;
@@ -160,8 +161,7 @@ export default {
             let euMesmo = particpantes.filter((participante) => 
               participante.email === usuarioAgora.email  )[0]
 
-              this.participants = participantesSemEuMesmo
-              
+              this.participants = participantesSemEuMesmo 
               this.myself = euMesmo            
 
 
@@ -177,6 +177,7 @@ export default {
 
     onMessageSubmit:function(message) {
       console.log('pos') 
+      console.log(this.messages)
       
       /*
        * example simulating an upload callback.
