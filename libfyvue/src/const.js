@@ -1,5 +1,6 @@
 import Home from './views/Home.vue'
 import apiD_musicas from './assets/apiDev_musicas.json'
+import apiD_chat from './assets/apiDev_chat.json'
 
 const LIBFY_FIRST_ACCESSTOKEN = 'BQDG0bjU57QVQEhmbn7K62AgPMFguoVRycDmWepA5-R4yLE4dXe1vqbjdC3VscOOS1Gf_gfSYtxOmzxcoQNzJ2N0FA4qjQ2ue2vY8RkneHJVpYBdcnfv8mHKXuAtQrrnVJypZWiEZwzsYpNnleyGw95e73nAdyFY9m8HuxONqr5Xywty7_fM-0ekqP6jwrfxHqr-ROIWpzWNDryJEJkaPg'
 let LIBFY_REFRESHH_TOKEN = 'AQAVmK4y7krTMEKYVXB6Yk8rmnntu2UvJ6aqxHmMxXMuzBnUThHDFV9pZsissXfNCWtSAtEKzTKC7nItlCf3oOHm9v7Ag7Jdj-jHavM0ZUqXm6LkQ5Buvjz-6EY1UnGd7X8'
@@ -50,7 +51,7 @@ const baseUrlApi = {
 }
 
 export {
-  rotasmain, apiD_musicas, LIBFY_REFRESHH_TOKEN,
+  rotasmain, apiD_musicas,apiD_chat, LIBFY_REFRESHH_TOKEN,
   LIBFY_CLIENT_ID, LIBFY_FIRST_ACCESSTOKEN, LIBFY_CLIENT_SECRET,
   post_GETTOKENURL
 };
