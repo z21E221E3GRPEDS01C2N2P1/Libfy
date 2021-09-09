@@ -6,7 +6,7 @@
       :myself="myself"
       :messages="messages"
       :onType="onType"
-      :onMessageSubmit="onMessageSubmit"
+      @onMessageSubmit="onMessageSubmit"
       :chatTitle="chatTitle"
       :placeholder="placeholder"
       :colors="colors"
@@ -14,6 +14,7 @@
       :hideCloseButton="hideCloseButton"
       :closeButtonIconSize="closeButtonIconSize"
       :submitIconSize="submitIconSize"
+      
     />
   </div>
 </template>
@@ -84,10 +85,12 @@ export default {
   },
   methods: {
     onType: function(event) {
+      debugger
       //here you can set any behavior
     },
     loadMoreMessages(resolve) {
       setTimeout(() => {
+        debugger
         resolve(this.toLoad); //We end the loading state and add the messages
         //Make sure the loaded messages are also added to our local messages copy or they will be lost
         this.messages.unshift(...this.toLoad);
@@ -172,33 +175,23 @@ export default {
         });
     },
 
-    onMessageSubmit: function(message) {
-      let fdatabase = this.$firebase.firestore();
-
-      fdatabase
-        .collection("themidnight")
-        .doc("ultimoid")
-        .get();
+    onMessageSubmit:function(message) {
+      console.log('pos') 
+      
       /*
        * example simulating an upload callback.
        * It's important to notice that even when your message wasn't send
        * yet to the server you have to add the message into the array
        */
-      this.messages.push(message);
+     // this.messages.push(message);
 
-      /*
-       * you can update message state after the server response
-       */
-      // timeout simulating the request
-      setTimeout(() => {
-        message.uploaded = true;
-      }, 2000);
+      
     }
   },
   mounted() {
     this.carregaFakeDados();
 
-    this.carregaParticipantesChat();
+    //this.carregaParticipantesChat();
   }
 };
 </script>
