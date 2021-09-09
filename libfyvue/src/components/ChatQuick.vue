@@ -21,13 +21,17 @@
 import { Chat } from "vue-quick-chat";
 import estiloChat from "./ChatQuick.css";
 import { apiD_chat } from "../const";
+import { mapGetters } from 'vuex';
 export default {
   components: {
     Chat
   },
   props: ["propmensagns"],
   computed: {
-    usuarioatual() {}
+    ...mapGetters(['getUser']),
+    usuarioatual() {
+      return this.getUser
+    }
   },
   data() {
     return {
@@ -90,22 +94,6 @@ export default {
         this.toLoad = [];
       }, 1000);
     },
-    onMessageSubmit: function(message) {
-      /*
-       * example simulating an upload callback.
-       * It's important to notice that even when your message wasn't send
-       * yet to the server you have to add the message into the array
-       */
-      this.messages.push(message);
-
-      /*
-       * you can update message state after the server response
-       */
-      // timeout simulating the request
-      setTimeout(() => {
-        message.uploaded = true;
-      }, 2000);
-    },
     onClose() {
       this.visible = false;
     },
@@ -134,6 +122,18 @@ export default {
        */
       console.log("Image clicked", message.src);
     },
+    carregaFakeDados() {
+      let {
+        participants,
+        myself,
+        messages,
+        toLoad
+      } = apiD_chat.chatplaceholder;
+      this.participants = participants;
+      this.myself = myself;
+      this.messages = messages;
+      this.toLoad = toLoad;
+    },
     carregaParticipantesChat() {
       let fdatabase = this.$firebase.firestore();
 
@@ -143,9 +143,22 @@ export default {
         .get()
         .then(doc => {
           if (doc.exists) {
-            console.log("Document data:", doc.data().partcps);
-            debugger;
-            this.participants = doc.data().partcps;
+            console.log("Document data:", doc.data().partcps); 
+            debugger
+            
+            let particpantes = doc.data().partcps;
+            if(!this.usuarioatual.data ||
+            !this.usuarioatual.data.email){
+              this.$router.push({name:'Home'})
+            }
+            let participantesSemEuMesmo = this.participants.filter(
+              ()=>{
+                participante.email!==email
+              }
+            )
+
+
+
           } else {
             // doc.data() will be undefined in this case
             console.log("No such document!");
@@ -154,14 +167,34 @@ export default {
         .catch(error => {
           console.log("Error getting document:", error);
         });
-    }
+    },
+
+    onMessageSubmit: function(message) {
+      let fdatabase = this.$firebase.firestore();
+
+      fdatabase
+        .collection("themidnight").doc("ultimoid")
+        .get()
+      /*
+       * example simulating an upload callback.
+       * It's important to notice that even when your message wasn't send
+       * yet to the server you have to add the message into the array
+       */
+      this.messages.push(message);
+
+      /*
+       * you can update message state after the server response
+       */
+      // timeout simulating the request
+      setTimeout(() => {
+        message.uploaded = true;
+      }, 2000);
+    },
   },
   mounted() {
-    let {participants,myself,messages,toLoad} =  apiD_chat.chatplaceholder
-    this.participants = participants
-    this.myself = myself
-    this.messages = messages
-    this.toLoad = toLoad 
+    this.carregaFakeDados();
+
+    this.carregaParticipantesChat();
   }
 };
 </script>

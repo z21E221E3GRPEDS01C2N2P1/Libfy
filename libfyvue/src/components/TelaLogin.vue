@@ -166,12 +166,6 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-@import "TelaLogin.css";
-@import "btnspotify.css";
-@media (min-width: 1200px) {
-  .lesswidth {
-    width: 50%;
-  }
-}
+<style lang="scss" scoped>
+ @import 'TelaLogin.scss';
 </style>
