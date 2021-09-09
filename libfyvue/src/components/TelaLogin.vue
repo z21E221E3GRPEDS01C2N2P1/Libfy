@@ -149,19 +149,7 @@ export default {
         })
         .catch(e => console.log(e));
     }
-  },
-  mounted() {
-    /* function initFireStore() {
-      this.firestore = this.$firebase.firestore();
-    }
-    initFireStore();
-    const collection = this.firestore.collection("musicas");
-    collection.add({
-      nome: "Elvis",
-      tocou: 234.34,
-      cod: "230485",
-    }); */
-  }
+  }, 
 };
 </script>
 

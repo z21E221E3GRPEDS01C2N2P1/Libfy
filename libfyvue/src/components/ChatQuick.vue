@@ -21,16 +21,16 @@
 import { Chat } from "vue-quick-chat";
 import estiloChat from "./ChatQuick.css";
 import { apiD_chat } from "../const";
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
 export default {
   components: {
     Chat
   },
   props: ["propmensagns"],
   computed: {
-    ...mapGetters(['getUser']),
+    ...mapGetters(["getUser"]),
     usuarioatual() {
-      return this.getUser
+      return this.getUser;
     }
   },
   data() {
@@ -143,20 +143,23 @@ export default {
         .get()
         .then(doc => {
           if (doc.exists) {
-            console.log("Document data:", doc.data().partcps); 
-            debugger
-            
-            let particpantes = doc.data().partcps;
-            if(!this.usuarioatual.data ||
-            !this.usuarioatual.data.email){
-              this.$router.push({name:'Home'})
-            }
-            let participantesSemEuMesmo = this.participants.filter(
-              ()=>{
-                participante.email!==email
-              }
-            )
+            console.log("Document data:", doc.data().partcps);
 
+            let particpantes = doc.data().partcps;
+            if (!this.usuarioatual.data || !this.usuarioatual.data.email) {
+              this.$router.push({ name: "Home" });
+              return;
+            }
+
+            let participantesSemEuMesmo = particpantes.filter((participante) => {
+              participante.email !== this.usuarioatual.data.email;
+            });
+
+            let euMesmo = particpantes.filter((participante) => {
+              participante.email === this.usuarioatual.data.email;
+            })[0];
+              debugger;
+            
 
 
           } else {
@@ -173,8 +176,9 @@ export default {
       let fdatabase = this.$firebase.firestore();
 
       fdatabase
-        .collection("themidnight").doc("ultimoid")
-        .get()
+        .collection("themidnight")
+        .doc("ultimoid")
+        .get();
       /*
        * example simulating an upload callback.
        * It's important to notice that even when your message wasn't send
@@ -189,7 +193,7 @@ export default {
       setTimeout(() => {
         message.uploaded = true;
       }, 2000);
-    },
+    }
   },
   mounted() {
     this.carregaFakeDados();
