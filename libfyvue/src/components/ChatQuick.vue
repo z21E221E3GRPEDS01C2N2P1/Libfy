@@ -88,8 +88,7 @@ export default {
       //here you can set any behavior
     },
     loadMoreMessages(resolve) {
-
-        debugger;
+      debugger;
       setTimeout(() => {
         debugger;
         resolve(this.toLoad); //We end the loading state and add the messages
@@ -138,7 +137,15 @@ export default {
       this.messages = messages;
       this.toLoad = toLoad;
     },
+
+    carregaMensagensChat() {
+      let mensagensArrRef = this.$firebase
+        .firestore()
+        .collection("themidnight")
+        .doc("mensags");
+    },
     carregaParticipantesChat() {
+      this.carregaFakeDados();
       let fdatabase = this.$firebase.firestore();
 
       fdatabase
@@ -163,42 +170,38 @@ export default {
             let euMesmo = particpantes.filter(
               participante => participante.email === usuarioAgora.email
             )[0];
-
-            this.participants = participantesSemEuMesmo;
             this.myself = euMesmo;
+            try {
+              this.participants =  participantesSemEuMesmo 
+            } catch (error) {
+              console.log("error" + error);
+            }
           } else {
             // doc.data() will be undefined in this case
             console.log("No such document!");
           }
         })
+        .then()
         .catch(error => {
           console.log("Error getting document:", error);
         });
     },
     enviaMensagensChat(message) {
-      var mensagensRef = this.$firebase.firestore()
-      .collection("themidnight").doc("msgs");
+      let mensagensArrRef = this.$firebase
+        .firestore()
+        .collection("themidnight")
+        .doc("msgs");
+      let msgSerializada = {...message};
+      msgSerializada.timestamp = msgSerializada.timestamp.toISO();
+      console.log(message);
       debugger;
       // Atomically add a new region to the "regions" array field.
-      mensagensRef.update({
-        msgs: firebase.firestore.FieldValue.arrayUnion({
-          
-              content: "bom diadia",
-              participantId: 3,
-              timestamp: "2021-09-09T19:17:35.956-03:00",
-
-              createdAt:this.$firebase.database.ServerValue.TIMESTAMP,
-              uploaded: false,
-              viewed: false,
-              type: "text",
-              myself: false
-            
-        })
+      mensagensArrRef.update({
+        mensags: this.$firebase.firestore.FieldValue.arrayUnion(msgSerializada)
       });
     },
     onMessageSubmit: function(message) {
-      debugger;
-      this.carregaMensagensChat(message)
+      this.enviaMensagensChat(message);
 
       //fdatabase.collection("themidnight").doc("msgs");
 
@@ -212,7 +215,7 @@ export default {
     }
   },
   mounted() {
-    this.carregaFakeDados();
+    
 
     this.carregaParticipantesChat();
   }

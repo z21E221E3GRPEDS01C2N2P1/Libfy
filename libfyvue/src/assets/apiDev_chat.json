@@ -22,8 +22,8 @@
           },
           "messages": [
             {
-              "content": "received messages",
-              "myself": false,
+              "content": "1 messages",
+              "myself": true,
               "participantId": 1,
               "timestamp": {
                 "year": 2019,
@@ -37,8 +37,8 @@
               "type": "text"
             },
             {
-              "content": "sent messages",
-              "myself": true,
+              "content": "2 messages",
+              "myself": false,
               "participantId": 3,
               "timestamp": {
                 "year": 2019,
@@ -52,7 +52,7 @@
               "type": "text"
             },
             {
-              "content": "other received messages",
+              "content": "3 received messages",
               "myself": false,
               "participantId": 2,
               "timestamp": {
@@ -87,7 +87,7 @@
             },
             {
               "content": "Hey, Adam! I'm feeling really fine this evening.",
-              "myself": true,
+              "myself": false,
               "participantId": 3,
               "timestamp": {
                 "year": 2010,
