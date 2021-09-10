@@ -113,6 +113,7 @@ export default {
               content: "v",
               participantId: 3,
               timestamp: "2021-09-09T19:16:35.956-03:00",
+              createdAt:this.$firebase.database.ServerValue.TIMESTAMP,
               uploaded: false,
               viewed: false,
               type: "text",

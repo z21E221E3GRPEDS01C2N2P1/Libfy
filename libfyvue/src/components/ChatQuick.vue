@@ -88,6 +88,8 @@ export default {
       //here you can set any behavior
     },
     loadMoreMessages(resolve) {
+
+        debugger;
       setTimeout(() => {
         debugger;
         resolve(this.toLoad); //We end the loading state and add the messages
@@ -173,10 +175,10 @@ export default {
           console.log("Error getting document:", error);
         });
     },
-    carregaMensagensChat() {
+    enviaMensagensChat(message) {
       var mensagensRef = this.$firebase.firestore()
       .collection("themidnight").doc("msgs");
-
+      debugger;
       // Atomically add a new region to the "regions" array field.
       mensagensRef.update({
         msgs: firebase.firestore.FieldValue.arrayUnion({
@@ -184,6 +186,8 @@ export default {
               content: "bom diadia",
               participantId: 3,
               timestamp: "2021-09-09T19:17:35.956-03:00",
+
+              createdAt:this.$firebase.database.ServerValue.TIMESTAMP,
               uploaded: false,
               viewed: false,
               type: "text",
@@ -194,8 +198,7 @@ export default {
     },
     onMessageSubmit: function(message) {
       debugger;
-
-      let fdatabase = this.$firebase.firestore();
+      this.carregaMensagensChat(message)
 
       //fdatabase.collection("themidnight").doc("msgs");
 

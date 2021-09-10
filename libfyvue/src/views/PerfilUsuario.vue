@@ -1,32 +1,7 @@
 <template>
   <div class="home">
     <Navbar v-bind:esconderSideBar="true"></Navbar>
-    <v-container>
-      <v-row>
-        <div class="flex-column">
-          <i class="fas fa-user grande" color="white"></i>
-          {{ nomeUsuario ? nomeUsuario : '' }}
-        </div>
-      </v-row>
-
-      <v-btn
-        fixed
-        right
-        bottom
-        rounded
-        dark
-        large
-        color="purple"
-        class="mx-2 botaomobile"
-        v-on:click="deslogar"
-      >
-        <v-icon dark> Log out </v-icon>
-      </v-btn>
-
-      <h1>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit dolor
-        aperiam hi </h1>
-    </v-container>
+    <Perfil></Perfil>
   </div>
 </template>
 
@@ -34,31 +9,13 @@
 import { mapGetters } from "vuex"; 
 // @ is an alias to /src
 import Navbar from "../components/Navbar.vue";
+import Perfil from '../components/Perfil.vue';
 
 export default {
   name: "PerfilUsuario",
-  computed: {
-    ...mapGetters(["getUser","getNomeUsuario"]),
-     
-    nomeUsuario() {
-      return this.getNomeUsuario || ''
-    },
-  },
-
-  methods: {
-    deslogar() {
-      this.$firebase
-        .auth()
-        .signOut()
-        .then(() => {
-          this.$router.replace({
-            name: "Home",
-          });
-        });
-    },
-  },
+   
   components: {
-    Navbar,
+    Navbar,Perfil
   },
 };
 </script>
