@@ -100,7 +100,7 @@ export default {
           }else{
             mensagem.myself=false
           }
-        }debugger
+        }
         
         return msgsComMyself
     },
@@ -110,32 +110,7 @@ export default {
     }, 
     onClose() {
       this.visible = false;
-    },
-    onImageSelected(files, message) {
-      let src =
-        "https://149364066.v2.pressablecdn.com/wp-content/uploads/2017/03/vue.jpg";
-      this.messages.push(message);
-      /**
-       * This timeout simulates a requisition that uploads the image file to the server.
-       * It's up to you implement the request and deal with the response in order to
-       * update the message status and the message URL
-       */
-      setTimeout(
-        res => {
-          message.uploaded = true;
-          message.src = res.src;
-        },
-        3000,
-        { src }
-      );
-    },
-    onImageClicked(message) {
-      /**
-       * This is the callback function that is going to be executed when some image is clicked.
-       * You can add your code here to do whatever you need with the image clicked. A common situation is to display the image clicked in full screen.
-       */
-      console.log("Image clicked", message.src);
-    },
+    }, 
     carregaFakeDados() {
       let {
         participants,
@@ -152,8 +127,8 @@ export default {
         .firestore()
         .collection("themidnight")
         .doc("msgs").get().then(doc=>{
-          this.messages=doc.data().mensags
-          debugger
+          this.messages=this.converteMsgsFirebase(doc.data().mensags)
+          
           console.log('carreguei msgs')
 
         }).catch(er=>console.log(er));
@@ -185,6 +160,7 @@ export default {
               participante => participante.email === usuarioAgora.email
             )[0];
             this.myself = euMesmo;
+            
             try {
               let participantsSemUndefined = participantesSemEuMesmo.filter(
                 participante=>participante.name
@@ -244,7 +220,8 @@ export default {
     .collection("themidnight").doc("msgs")
     .onSnapshot((doc) => {
         console.log("Current data: ", doc.data());
-        let msgsComMyself=converteMsgsFirebase(doc.data().mensags)
+
+        let msgsComMyself=this.converteMsgsFirebase(doc.data().mensags)
 
         this.messages=msgsComMyself
     });
