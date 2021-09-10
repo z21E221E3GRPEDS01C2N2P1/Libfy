@@ -55,5 +55,5 @@ export default {
 };
 </script>
 <style scoped>
-@import "MusicaCard.css";
+@import "css/MusicaCard.css";
 </style>

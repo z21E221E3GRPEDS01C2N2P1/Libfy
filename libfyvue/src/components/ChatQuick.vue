@@ -19,7 +19,7 @@
 </template>
 <script>
 import { Chat } from "vue-quick-chat";
-import estiloChat from "./ChatQuick.css";
+import estiloChat from "./css/ChatQuick.css";
 import { apiD_chat } from "../const";
 import { mapGetters } from "vuex";
 export default {
@@ -222,7 +222,7 @@ export default {
 };
 </script>
 <style scoped>
-@import "ChatQuickNpm.css";
+@import "css/ChatQuickNpm.css";
 .material-design-icon,
 .image-icon {
   border: 1px solid red;

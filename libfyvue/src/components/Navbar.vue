@@ -85,5 +85,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-@import "Navbar.css";
+@import "css/Navbar.css";
 </style>
