@@ -133,7 +133,7 @@ export default {
 
         }).catch(er=>console.log(er));
     },
-    carregaParticipantesChat() {
+    carregaParticipantesEmensagens() {
       //this.carregaFakeDados();
       let fdatabase = this.$firebase.firestore();
 
@@ -174,7 +174,9 @@ export default {
             console.log("No such document!");
           }
         })
-        .then()
+        .then(_=>{
+          this.carregaMensagensChat();
+        })
         .catch(error => {
           console.log("Error getting document:", error);
         });
@@ -213,8 +215,8 @@ export default {
     
   },
   mounted() { 
-    this.carregaParticipantesChat();
-    this.carregaMensagensChat();
+    this.carregaParticipantesEmensagens();
+    
 
     this.unsubscribeMsgNovas = this.$firebase.firestore()
     .collection("themidnight").doc("msgs")
@@ -228,6 +230,9 @@ export default {
   },
   unmounted(){
     this.unsubscribeMsgNovas()
+    this.participants = [];
+      this.myself = [];
+      this.messages = []; 
   }
 };
 </script>
