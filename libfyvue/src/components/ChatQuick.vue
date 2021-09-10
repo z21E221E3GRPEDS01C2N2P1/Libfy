@@ -11,8 +11,7 @@
         :border-style="borderStyle"
         :hide-close-button="hideCloseButton" 
         :submit-icon-size="submitIconSize"
-        :submit-image-icon-size="submitImageIconSize"
-        :load-more-messages="toLoad.length > 0 ? loadMoreMessages : null"
+        :submit-image-icon-size="submitImageIconSize" 
         :async-mode="asyncMode"
         :scroll-bottom="scrollBottom"
         :display-header="false"
@@ -49,8 +48,7 @@ export default {
       visible: true,
       participants: [],
       myself: {},
-      messages: [],
-      toLoad: [],
+      messages: [], 
 
       // there are other options, you can check them here
       // https://soapbox.github.io/linkifyjs/docs/options.html
@@ -93,20 +91,23 @@ export default {
     };
   },
   methods: {
+    converteMsgsFirebase(docDataMensags){
+      let msgsComMyself=docDataMensags
+
+        for (const mensagem of msgsComMyself) {
+          if(mensagem.participantId===this.myself.id){
+            mensagem.myself= true
+          }else{
+            mensagem.myself=false
+          }
+        }debugger
+        
+        return msgsComMyself
+    },
     onType: function(event) {
-      debugger;
+      
       //here you can set any behavior
-    },
-    loadMoreMessages(resolve) {
-      debugger;
-      setTimeout(() => {
-        debugger;
-        resolve(this.toLoad); //We end the loading state and add the messages
-        //Make sure the loaded messages are also added to our local messages copy or they will be lost
-        this.messages.unshift(...this.toLoad);
-        this.toLoad = [];
-      }, 1000);
-    },
+    }, 
     onClose() {
       this.visible = false;
     },
@@ -139,26 +140,26 @@ export default {
       let {
         participants,
         myself,
-        messages,
-        toLoad
+        messages, 
       } = apiD_chat.chatplaceholder;
       this.participants = participants;
       this.myself = myself;
-      this.messages = messages;
-      this.toLoad = toLoad;
+      this.messages = messages; 
     },
 
     carregaMensagensChat() {
-      let mensagensArrRef = this.$firebase
+      this.$firebase
         .firestore()
         .collection("themidnight")
         .doc("msgs").get().then(doc=>{
           this.messages=doc.data().mensags
+          debugger
           console.log('carreguei msgs')
+
         }).catch(er=>console.log(er));
     },
     carregaParticipantesChat() {
-      this.carregaFakeDados();
+      //this.carregaFakeDados();
       let fdatabase = this.$firebase.firestore();
 
       fdatabase
@@ -185,7 +186,10 @@ export default {
             )[0];
             this.myself = euMesmo;
             try {
-              this.participants =  participantesSemEuMesmo 
+              let participantsSemUndefined = participantesSemEuMesmo.filter(
+                participante=>participante.name
+              )
+              this.participants =  [...participantsSemUndefined]
             } catch (error) {
               console.log("error" + error);
             }
@@ -205,9 +209,12 @@ export default {
         .collection("themidnight")
         .doc("msgs");
       let msgSerializada = {...message};
+      if(msgSerializada.myself){
+        delete msgSerializada.myself
+      }
       msgSerializada.timestamp = msgSerializada.timestamp.toISO();
       console.log(message);
-      debugger;
+      
       // Atomically add a new region to the "regions" array field.
       mensagensArrRef.update({
         mensags: this.$firebase.firestore.FieldValue.arrayUnion(msgSerializada)
@@ -226,7 +233,8 @@ export default {
        *
        */
       // this.messages.push(message);
-    }
+    },
+    
   },
   mounted() { 
     this.carregaParticipantesChat();
@@ -236,7 +244,9 @@ export default {
     .collection("themidnight").doc("msgs")
     .onSnapshot((doc) => {
         console.log("Current data: ", doc.data());
-        this.messages=doc.data().mensags
+        let msgsComMyself=converteMsgsFirebase(doc.data().mensags)
+
+        this.messages=msgsComMyself
     });
   },
   unmounted(){
