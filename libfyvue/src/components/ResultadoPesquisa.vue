@@ -130,8 +130,9 @@ export default {
       if (this.artistaSelecionado.id !== artis.id) {
         this.tamanhoSlideArtist = 6;
         this.artistaSelecionado = artis;
-        this.chatThreadAberto = true
+        this.chatThreadAberto = true  
 
+        
 
       } else {
         this.tamanhoSlideArtist = 12;
