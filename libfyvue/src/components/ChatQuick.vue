@@ -14,7 +14,6 @@
       :hideCloseButton="hideCloseButton"
       :closeButtonIconSize="closeButtonIconSize"
       :submitIconSize="submitIconSize"
-      
     />
   </div>
 </template>
@@ -85,12 +84,12 @@ export default {
   },
   methods: {
     onType: function(event) {
-      debugger
+      debugger;
       //here you can set any behavior
     },
     loadMoreMessages(resolve) {
       setTimeout(() => {
-        debugger
+        debugger;
         resolve(this.toLoad); //We end the loading state and add the messages
         //Make sure the loaded messages are also added to our local messages copy or they will be lost
         this.messages.unshift(...this.toLoad);
@@ -147,7 +146,7 @@ export default {
         .then(doc => {
           if (doc.exists) {
             console.log("Document data:", doc.data().partcps);
-            let usuarioAgora = this.usuarioatual.data
+            let usuarioAgora = this.usuarioatual.data;
             let particpantes = doc.data().partcps;
 
             if (!usuarioAgora || !usuarioAgora.email) {
@@ -155,16 +154,16 @@ export default {
               return;
             }
 
-            let participantesSemEuMesmo = particpantes.filter((participante) => 
-              participante.email !== usuarioAgora.email  )
+            let participantesSemEuMesmo = particpantes.filter(
+              participante => participante.email !== usuarioAgora.email
+            );
 
-            let euMesmo = particpantes.filter((participante) => 
-              participante.email === usuarioAgora.email  )[0]
+            let euMesmo = particpantes.filter(
+              participante => participante.email === usuarioAgora.email
+            )[0];
 
-              this.participants = participantesSemEuMesmo 
-              this.myself = euMesmo            
-
-
+            this.participants = participantesSemEuMesmo;
+            this.myself = euMesmo;
           } else {
             // doc.data() will be undefined in this case
             console.log("No such document!");
@@ -174,25 +173,45 @@ export default {
           console.log("Error getting document:", error);
         });
     },
+    carregaMensagensChat() {
+      var mensagensRef = this.$firebase.firestore()
+      .collection("themidnight").doc("msgs");
 
-    onMessageSubmit:function(message) {
-      console.log('pos') 
-      console.log(this.messages)
-      
+      // Atomically add a new region to the "regions" array field.
+      mensagensRef.update({
+        msgs: firebase.firestore.FieldValue.arrayUnion({
+          
+              content: "bom diadia",
+              participantId: 3,
+              timestamp: "2021-09-09T19:17:35.956-03:00",
+              uploaded: false,
+              viewed: false,
+              type: "text",
+              myself: false
+            
+        })
+      });
+    },
+    onMessageSubmit: function(message) {
+      debugger;
+
+      let fdatabase = this.$firebase.firestore();
+
+      //fdatabase.collection("themidnight").doc("msgs");
+
       /*
        * example simulating an upload callback.
        * It's important to notice that even when your message wasn't send
        * yet to the server you have to add the message into the array
+       *
        */
-     // this.messages.push(message);
-
-      
+      // this.messages.push(message);
     }
   },
   mounted() {
     this.carregaFakeDados();
 
-    //this.carregaParticipantesChat();
+    this.carregaParticipantesChat();
   }
 };
 </script>

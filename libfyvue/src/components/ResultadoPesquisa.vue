@@ -103,6 +103,26 @@ export default {
           });
 
     },
+    fbCriaMatrizArrDeMsgs(){
+      fdatabase.collection("themidnight")
+        .doc("msgs")
+        .set({ 
+          mensags: [
+            {
+              content: "v",
+              participantId: 3,
+              timestamp: "2021-09-09T19:16:35.956-03:00",
+              uploaded: false,
+              viewed: false,
+              type: "text",
+              myself: true
+            }
+          ]}
+          ).then(function() {
+          console.log("Frankta2 created");
+        }).catch(er=>console.log(er));
+        
+    },
     abrirChatThread(artis) { 
 
       if (this.artistaSelecionado.id !== artis.id) {
