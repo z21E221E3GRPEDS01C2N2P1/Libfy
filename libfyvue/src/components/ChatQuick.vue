@@ -3,18 +3,28 @@
   <div>
     <Chat
       :participants="participants"
-      :myself="myself"
-      :messages="messages"
-      :onType="onType"
-      @onMessageSubmit="onMessageSubmit"
-      :chatTitle="chatTitle"
-      :placeholder="placeholder"
-      :colors="colors"
-      :borderStyle="borderStyle"
-      :hideCloseButton="hideCloseButton"
-      :closeButtonIconSize="closeButtonIconSize"
-      :submitIconSize="submitIconSize"
-    />
+        :myself="myself"
+        :messages="messages"
+        :chat-title="chatTitle"
+        :placeholder="placeholder"
+        :colors="colors"
+        :border-style="borderStyle"
+        :hide-close-button="hideCloseButton" 
+        :submit-icon-size="submitIconSize"
+        :submit-image-icon-size="submitImageIconSize"
+        :load-more-messages="toLoad.length > 0 ? loadMoreMessages : null"
+        :async-mode="asyncMode"
+        :scroll-bottom="scrollBottom"
+        :display-header="false"
+        :send-images="false"
+        :profile-picture-config="profilePictureConfig"
+        :timestamp-config="timestampConfig"
+        :link-options="linkOptions"
+        :accept-image-types="'.png, .jpeg'" 
+        @onMessageSubmit="onMessageSubmit"
+        @onType="onType"
+        @onClose="onClose"/>
+    
   </div>
 </template>
 <script>
@@ -142,7 +152,10 @@ export default {
       let mensagensArrRef = this.$firebase
         .firestore()
         .collection("themidnight")
-        .doc("mensags");
+        .doc("msgs").get().then(doc=>{
+          this.messages=doc.data().mensags
+          console.log('carreguei msgs')
+        }).catch(er=>console.log(er));
     },
     carregaParticipantesChat() {
       this.carregaFakeDados();
@@ -200,6 +213,7 @@ export default {
         mensags: this.$firebase.firestore.FieldValue.arrayUnion(msgSerializada)
       });
     },
+    unsubscribeMsgNovas:()=>{},
     onMessageSubmit: function(message) {
       this.enviaMensagensChat(message);
 
@@ -214,10 +228,19 @@ export default {
       // this.messages.push(message);
     }
   },
-  mounted() {
-    
-
+  mounted() { 
     this.carregaParticipantesChat();
+    this.carregaMensagensChat();
+
+    this.unsubscribeMsgNovas = this.$firebase.firestore()
+    .collection("themidnight").doc("msgs")
+    .onSnapshot((doc) => {
+        console.log("Current data: ", doc.data());
+        this.messages=doc.data().mensags
+    });
+  },
+  unmounted(){
+    this.unsubscribeMsgNovas()
   }
 };
 </script>
