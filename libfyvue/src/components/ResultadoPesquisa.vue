@@ -16,7 +16,7 @@
               </v-slide-group>
             </v-sheet>
           </v-col>
-          <v-col cols="12" md="5" v-if="true">
+          <v-col cols="12" md="5" v-if="chatThreadAberto">
             <div>
               <ChatQuick></ChatQuick>
             </div>
@@ -60,7 +60,8 @@ export default {
     return {
       artistaSelecionado: { id: 99 },
       tamanhoSlideArtist: 12,
-      dataraw: []
+      dataraw: [],
+      chatThreadAberto:false
     };
   },
   methods: {
@@ -128,11 +129,13 @@ export default {
       if (this.artistaSelecionado.id !== artis.id) {
         this.tamanhoSlideArtist = 6;
         this.artistaSelecionado = artis;
+        this.chatThreadAberto = true
 
 
       } else {
         this.tamanhoSlideArtist = 12;
         this.artistaSelecionado = { id: 99 };
+        this.chatThreadAberto = false
       }
     }
   },
