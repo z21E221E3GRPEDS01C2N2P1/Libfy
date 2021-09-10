@@ -73,5 +73,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-@import "css/ListaMusicas.css";
+@import "css/ListaMusicas.scss";
 </style>

@@ -222,7 +222,7 @@ export default {
 };
 </script>
 <style scoped>
-@import "css/ChatQuickNpm.css";
+@import "css/ChatQuickNpm.scss";
 .material-design-icon,
 .image-icon {
   border: 1px solid red;
