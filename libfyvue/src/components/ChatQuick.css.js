@@ -37,8 +37,8 @@ const estiloChat = {
     },
     displayHeader:true,
     profilePictureConfig: {
-        others: true,
-        myself: true,
+        others: false,
+        myself: false,
         styles: {
             width: '30px',
             height: '30px',

@@ -3,18 +3,27 @@
   <div>
     <Chat
       :participants="participants"
-      :myself="myself"
-      :messages="messages"
-      :onType="onType"
-      @onMessageSubmit="onMessageSubmit"
-      :chatTitle="chatTitle"
-      :placeholder="placeholder"
-      :colors="colors"
-      :borderStyle="borderStyle"
-      :hideCloseButton="hideCloseButton"
-      :closeButtonIconSize="closeButtonIconSize"
-      :submitIconSize="submitIconSize"
-    />
+        :myself="myself"
+        :messages="messages"
+        :chat-title="chatTitle"
+        :placeholder="placeholder"
+        :colors="colors"
+        :border-style="borderStyle"
+        :hide-close-button="hideCloseButton" 
+        :submit-icon-size="submitIconSize"
+        :submit-image-icon-size="submitImageIconSize" 
+        :async-mode="asyncMode"
+        :scroll-bottom="scrollBottom"
+        :display-header="false"
+        :send-images="false"
+        :profile-picture-config="profilePictureConfig"
+        :timestamp-config="timestampConfig"
+        :link-options="linkOptions"
+        :accept-image-types="'.png, .jpeg'" 
+        @onMessageSubmit="onMessageSubmit"
+        @onType="onType"
+        @onClose="onClose"/>
+    
   </div>
 </template>
 <script>
@@ -39,8 +48,7 @@ export default {
       visible: true,
       participants: [],
       myself: {},
-      messages: [],
-      toLoad: [],
+      messages: [], 
 
       // there are other options, you can check them here
       // https://soapbox.github.io/linkifyjs/docs/options.html
@@ -83,69 +91,50 @@ export default {
     };
   },
   methods: {
+    converteMsgsFirebase(docDataMensags){
+      let msgsComMyself=docDataMensags
+
+        for (const mensagem of msgsComMyself) {
+          if(mensagem.participantId===this.myself.id){
+            mensagem.myself= true
+          }else{
+            mensagem.myself=false
+          }
+        }
+        
+        return msgsComMyself
+    },
     onType: function(event) {
-      debugger;
+      
       //here you can set any behavior
-    },
-    loadMoreMessages(resolve) {
-      debugger;
-      setTimeout(() => {
-        debugger;
-        resolve(this.toLoad); //We end the loading state and add the messages
-        //Make sure the loaded messages are also added to our local messages copy or they will be lost
-        this.messages.unshift(...this.toLoad);
-        this.toLoad = [];
-      }, 1000);
-    },
+    }, 
     onClose() {
       this.visible = false;
-    },
-    onImageSelected(files, message) {
-      let src =
-        "https://149364066.v2.pressablecdn.com/wp-content/uploads/2017/03/vue.jpg";
-      this.messages.push(message);
-      /**
-       * This timeout simulates a requisition that uploads the image file to the server.
-       * It's up to you implement the request and deal with the response in order to
-       * update the message status and the message URL
-       */
-      setTimeout(
-        res => {
-          message.uploaded = true;
-          message.src = res.src;
-        },
-        3000,
-        { src }
-      );
-    },
-    onImageClicked(message) {
-      /**
-       * This is the callback function that is going to be executed when some image is clicked.
-       * You can add your code here to do whatever you need with the image clicked. A common situation is to display the image clicked in full screen.
-       */
-      console.log("Image clicked", message.src);
-    },
+    }, 
     carregaFakeDados() {
       let {
         participants,
         myself,
-        messages,
-        toLoad
+        messages, 
       } = apiD_chat.chatplaceholder;
       this.participants = participants;
       this.myself = myself;
-      this.messages = messages;
-      this.toLoad = toLoad;
+      this.messages = messages; 
     },
 
     carregaMensagensChat() {
-      let mensagensArrRef = this.$firebase
+      this.$firebase
         .firestore()
         .collection("themidnight")
-        .doc("mensags");
+        .doc("msgs").get().then(doc=>{
+          this.messages=this.converteMsgsFirebase(doc.data().mensags)
+          
+          console.log('carreguei msgs')
+
+        }).catch(er=>console.log(er));
     },
     carregaParticipantesChat() {
-      this.carregaFakeDados();
+      //this.carregaFakeDados();
       let fdatabase = this.$firebase.firestore();
 
       fdatabase
@@ -171,8 +160,12 @@ export default {
               participante => participante.email === usuarioAgora.email
             )[0];
             this.myself = euMesmo;
+            
             try {
-              this.participants =  participantesSemEuMesmo 
+              let participantsSemUndefined = participantesSemEuMesmo.filter(
+                participante=>participante.name
+              )
+              this.participants =  [...participantsSemUndefined]
             } catch (error) {
               console.log("error" + error);
             }
@@ -192,14 +185,18 @@ export default {
         .collection("themidnight")
         .doc("msgs");
       let msgSerializada = {...message};
+      if(msgSerializada.myself){
+        delete msgSerializada.myself
+      }
       msgSerializada.timestamp = msgSerializada.timestamp.toISO();
       console.log(message);
-      debugger;
+      
       // Atomically add a new region to the "regions" array field.
       mensagensArrRef.update({
         mensags: this.$firebase.firestore.FieldValue.arrayUnion(msgSerializada)
       });
     },
+    unsubscribeMsgNovas:()=>{},
     onMessageSubmit: function(message) {
       this.enviaMensagensChat(message);
 
@@ -212,12 +209,25 @@ export default {
        *
        */
       // this.messages.push(message);
-    }
-  },
-  mounted() {
+    },
     
-
+  },
+  mounted() { 
     this.carregaParticipantesChat();
+    this.carregaMensagensChat();
+
+    this.unsubscribeMsgNovas = this.$firebase.firestore()
+    .collection("themidnight").doc("msgs")
+    .onSnapshot((doc) => {
+        console.log("Current data: ", doc.data());
+
+        let msgsComMyself=this.converteMsgsFirebase(doc.data().mensags)
+
+        this.messages=msgsComMyself
+    });
+  },
+  unmounted(){
+    this.unsubscribeMsgNovas()
   }
 };
 </script>
