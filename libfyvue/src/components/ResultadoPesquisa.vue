@@ -11,17 +11,14 @@
                   v-for="artist in gPesquisaResult.artists.items"
                   v-bind:key="artist.id"
                   v-bind:vforartista="artist"
-                  v-on:selecaoART="JustOpenThread"
+                  v-on:selecaoART="abrirChatThread"
                 />
               </v-slide-group>
             </v-sheet>
           </v-col>
-          <v-col cols="12" md="5">
+          <v-col cols="12" md="5" v-if="true">
             <div>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus
-              expedita, magnam molestiae assumenda itaque repellat dolores ea
-              natus saepe, sapiente ipsam libero! Vero, et? Quae repellat optio
-              quos facilis tempora.
+              <ChatQuick></ChatQuick>
             </div>
           </v-col>
         </v-row>
@@ -46,9 +43,10 @@
 import MusicaCard from "./MusicaCard.vue";
 import { mapGetters, mapState } from "vuex";
 import ArtistaCard from "./ArtistaCard.vue";
+import ChatQuick from "./ChatQuick.vue";
 
 export default {
-  components: { MusicaCard, ArtistaCard },
+  components: { MusicaCard, ArtistaCard, ChatQuick },
   name: "ResultadoPesquisa",
   computed: {
     ...mapState(["qualquerCois"]),
@@ -62,18 +60,14 @@ export default {
     return {
       artistaSelecionado: { id: 99 },
       tamanhoSlideArtist: 12,
-      dataraw: ""
+      dataraw: []
     };
   },
   methods: {
-    JustOpenThread(artis) {
-      if (this.artistaSelecionado.id !== artis.id) {
-        this.tamanhoSlideArtist = 6;
-        this.artistaSelecionado = artis;
+    fbUseful(){
 
-        let fdatabase = this.$firebase
-        .firestore();        
-
+        let fdatabase = this.$firebase.firestore();
+        
         fdatabase
           .collection("mensagens")
           .get()
@@ -89,8 +83,53 @@ export default {
           .add(testzao)
           .then(dcmnt => {
             dcmnt.id;
+          });
+
+        var docRef = fdatabase
+          .collection("mensagens").doc("1uo7KfD0HT6It8JgizFQ");
+
+        docRef
+          .get()
+          .then(doc => {
+            if (doc.exists) {
+              console.log("Document data:", doc.data());
+            } else {
+              // doc.data() will be undefined in this case
+              console.log("No such document!");
+            }
           })
-          
+          .catch(error => {
+            console.log("Error getting document:", error);
+          });
+
+    },
+    fbCriaMatrizArrDeMsgs(){
+      fdatabase.collection("themidnight")
+        .doc("msgs")
+        .set({ 
+          mensags: [
+            {
+              content: "v",
+              participantId: 3,
+              timestamp: "2021-09-09T19:16:35.956-03:00",
+              uploaded: false,
+              viewed: false,
+              type: "text",
+              myself: true
+            }
+          ]}
+          ).then(function() {
+          console.log("Frankta2 created");
+        }).catch(er=>console.log(er));
+        
+    },
+    abrirChatThread(artis) { 
+
+      if (this.artistaSelecionado.id !== artis.id) {
+        this.tamanhoSlideArtist = 6;
+        this.artistaSelecionado = artis;
+
+
       } else {
         this.tamanhoSlideArtist = 12;
         this.artistaSelecionado = { id: 99 };

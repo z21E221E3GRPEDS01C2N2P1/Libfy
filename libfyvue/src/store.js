@@ -152,9 +152,13 @@ const store = new Vuex.Store({
         let ultimaPesquisaFeita = "po"
         nome = ultimaPesquisaFeita        
       }
+      
+      let dadosPreLoad = apiD_musicas.amostra_dados_spotify_tracks_artists
+      
+      commit('SET_PESQUISA_RESULTADO', dadosPreLoad)
+      
 
-
-      const tempQuery = `?q=${nome}&type=track%2Cartist&limit=10&offset=5&include_external=audio`
+      const tempQuery = `?q=${nome}&type=track%2Cartist&limit=10&offset=0&include_external=audio`
  
       axios.get(`https://api.spotify.com/v1/search${tempQuery}`,
         {
@@ -164,11 +168,11 @@ const store = new Vuex.Store({
             'Content-Type': 'application/x-www-form-urlencoded',
           }
         }
-      ).then(databrut => {
-        
+      ).then(databrut => { 
+        console.log('att2')
         commit('SET_PESQUISA_RESULTADO', databrut.data)
-      }).catch(sh => {
-        console.log('sh')
+      }).catch(err => {
+        console.log('err'+err)
       })
     },
 

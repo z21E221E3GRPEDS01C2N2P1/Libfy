@@ -149,29 +149,11 @@ export default {
         })
         .catch(e => console.log(e));
     }
-  },
-  mounted() {
-    /* function initFireStore() {
-      this.firestore = this.$firebase.firestore();
-    }
-    initFireStore();
-    const collection = this.firestore.collection("musicas");
-    collection.add({
-      nome: "Elvis",
-      tocou: 234.34,
-      cod: "230485",
-    }); */
-  }
+  }, 
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-@import "TelaLogin.css";
-@import "btnspotify.css";
-@media (min-width: 1200px) {
-  .lesswidth {
-    width: 50%;
-  }
-}
+<style lang="scss" scoped>
+ @import 'TelaLogin.scss';
 </style>
