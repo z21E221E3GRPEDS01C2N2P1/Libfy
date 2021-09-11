@@ -35,7 +35,7 @@ export default {
   components: {
     Chat
   },
-  props: ["propmensagns"],
+  props: ["artistaThreadSelecionado"],
   computed: {
     ...mapGetters(["getUser"]),
     usuarioatual() {
@@ -111,6 +111,44 @@ export default {
     onClose() {
       this.visible = false;
     },
+    
+
+    adicionaUltimoIdNovo() {
+      this.ultimoIdUsr = 1
+      let objadd = { ultimoid:{
+                  idfinal:1
+                } };
+                fdatabase
+                  .collection(this.artistaThreadSelecionado)
+                  .add(objadd)                   
+    },
+    adicionaParticipanteNovo() {
+      let participantesPresentes = this.participants;
+      participantesPresentes.push(this.myself)
+
+      let fdatabase = this.$firebase.firestore();
+
+      fdatabase
+        .collection(this.artistaThreadSelecionado)
+        .doc("participnts")
+        .update(doc => {
+          partcps: participantesPresentes;
+        }).then(_=>{
+          this.adicionaUltimoIdNovo()
+        });
+    },
+    adicionaNovoArrayParticipantes(){
+       let particps = { participnts:{
+                  partcps:[]
+                } };
+                fdatabase
+                  .collection(this.artistaThreadSelecionado)
+                  .add(particps)
+                  
+    },
+    setupInicialEstruturaDadosChatArtista(){
+      this.adicionaNovoArrayParticipantes()
+    },
     carregaFakeDados() {
       let { participants, myself, messages } = apiD_chat.chatplaceholder;
       this.participants = participants;
@@ -136,21 +174,26 @@ export default {
       let fdatabase = this.$firebase.firestore();
 
       fdatabase
-        .collection("themidnight")
+        .collection(this.artistaThreadSelecionado)
         .doc("ultimoid")
         .get(doc => (this.ultimoIdUsr = doc.data().idfinal))
+        .catch(naoExisteUltimoId=>{
+          this.adicionaUltimoIdNovo()})
         .then(_ => {
           fdatabase
-            .collection("themidnight")
+            .collection(this.artistaThreadSelecionado)
             .doc("participnts")
             .get()
-            .then(doc => {
+            .then(doc => 
+            {
               if (doc.exists) {
                 console.log("Document data:", doc.data().partcps);
                 let usuarioAgora = this.usuarioatual.data;
                 let particpantes = doc.data().partcps;
 
-                if (!usuarioAgora || !usuarioAgora.email) {
+                let usuarioNaoLogado = !usuarioAgora || !usuarioAgora.email
+
+                if (usuarioNaoLogado) {
                   this.$router.push({ name: "Home" });
                   return;
                 }
@@ -171,27 +214,17 @@ export default {
                     id: this.ultimoIdUsr
                   };
                 } else {
-                  this.myself = euMesmo;
-                }
+                  this.myself = euMesmo;     }
 
-                try {
-                  let participantsSemUndefined = participantesSemEuMesmo.filter(
-                    participante => participante.name
-                  );
-                  this.participants = [...participantsSemUndefined];
-                } catch (error) {
-                  console.log("error" + error);
-                }
+                this.participants= participantesSemEuMesmo
+ 
               } else {
                 // doc.data() will be undefined in this case
-                console.log("vc eh first nesse artista!");
-                let particps = { participnts:{
-                  partcps:[]
-                } };
-                fdatabase.collection("themidnight2")
-                  .add(particps)
+                console.log("vc eh first nesse artista!");               
                    
               }
+            }).catch(naoExisteParticipnts=>{
+                this.setupInicialEstruturaDadosChatArtista()
             })
             .then(_ => {
               this.carregaMensagensChat();
@@ -201,22 +234,10 @@ export default {
             });
         });
     },
-    adicionaParticipanteNovo() {
-      let participantesPresentes = this.participants;
-
-      let fdatabase = this.$firebase.firestore();
-
-      fdatabase
-        .collection("themidnight")
-        .doc("participnts")
-        .update(doc => {
-          partcps: [];
-        });
-    },
     enviaMensagensChat(message) {
       let mensagensArrRef = this.$firebase
         .firestore()
-        .collection("themidnight")
+        .collection(this.artistaThreadSelecionado)
         .doc("msgs");
       let msgSerializada = { ...message };
       if (msgSerializada.myself) {
