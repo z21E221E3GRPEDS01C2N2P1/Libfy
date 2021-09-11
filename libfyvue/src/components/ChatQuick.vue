@@ -162,7 +162,7 @@ export default {
                 let euMesmo = particpantes.filter(
                   participante => participante.email === usuarioAgora.email
                 )[0];
-                debugger;
+
                 if (!euMesmo) {
                   this.myself = {
                     profilePicture: "",
@@ -184,7 +184,13 @@ export default {
                 }
               } else {
                 // doc.data() will be undefined in this case
-                console.log("No such document!");
+                console.log("vc eh first nesse artista!");
+                let particps = { participnts:{
+                  partcps:[]
+                } };
+                fdatabase.collection("themidnight2")
+                  .add(particps)
+                   
               }
             })
             .then(_ => {
@@ -196,12 +202,16 @@ export default {
         });
     },
     adicionaParticipanteNovo() {
+      let participantesPresentes = this.participants;
+
       let fdatabase = this.$firebase.firestore();
 
       fdatabase
         .collection("themidnight")
         .doc("participnts")
-        .update(doc => {});
+        .update(doc => {
+          partcps: [];
+        });
     },
     enviaMensagensChat(message) {
       let mensagensArrRef = this.$firebase
@@ -226,7 +236,6 @@ export default {
     }
   },
   mounted() {
-    debugger;
     this.carregaParticipantesEmensagens();
 
     this.unsubscribeMsgNovas = this.$firebase
@@ -235,7 +244,8 @@ export default {
       .doc("msgs")
       .onSnapshot(doc => {
         this.$firebase
-          .firestore().collection("themidnight")
+          .firestore()
+          .collection("themidnight")
           .doc("ultimoid")
           .get(doc => (this.ultimoIdUsr = doc.data().idfinal))
           .then(_ => {
