@@ -49,7 +49,7 @@ export default {
       participants: [],
       myself: {},
       messages: [],
-      ultimoIdUsr: 9,
+      ultimoIdUsr: 1,
 
       // there are other options, you can check them here
       // https://soapbox.github.io/linkifyjs/docs/options.html
@@ -306,10 +306,7 @@ export default {
   }
 };
 </script>
-<style lang="scss" scoped>
+<style  scoped>
 @import "css/ChatQuickNpm.scss";
-.material-design-icon,
-.image-icon {
-  border: 1px solid red;
-}
+
 </style>

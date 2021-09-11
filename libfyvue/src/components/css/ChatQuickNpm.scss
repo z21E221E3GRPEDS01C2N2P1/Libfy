@@ -388,14 +388,17 @@
     display: -ms-flexbox;
     display: flex;
     width: 100%;
-    max-height: 520px;
-    background: #f0eeee;
+    height:400px;
+    max-height: 400px;
+    background: #311919;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
     flex-direction: column;
     -webkit-box-align: stretch;
     -ms-flex-align: stretch;
-    align-items: stretch;
-    overflow: hidden;
+    align-items: stretch; 
 }
+.container-message-display{
+    background: #191414 !important;
+  }

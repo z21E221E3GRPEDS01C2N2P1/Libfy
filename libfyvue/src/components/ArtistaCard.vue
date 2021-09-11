@@ -16,8 +16,8 @@
         class="imagemmusica"
       ></v-img>
       <v-container>
-        <p></p>
         <h6>{{ artista.nome }}</h6>
+        <p>............</p>
         <p :class="active ? 'white--text' : 'purple--text'">
           {{ artista.seguidores }} followers
         </p>
