@@ -2,7 +2,7 @@
   <v-slide-item v-slot="{ active, toggle }" dark>
 
     <v-card
-      :color="active ? 'secondary' : 'purple darken-5'"
+      :color="active ? 'purple darken-5' : 'black lighten-2'"
       class="cardmusica" 
       @click="toggle"
       dark
@@ -13,11 +13,14 @@
         class="imagemmusica"
       />
       
-      <p>{{selemusica.artists[0].name?
+      <v-container>
+        <p>{{selemusica.artists[0].name?
         selemusica.artists[0].name
         :
         selemusica.followers.total}}</p>
+        <div>.............</div>
       <p>{{selemusica.name}}</p> 
+      </v-container>
     </v-card>
   </v-slide-item>
 </template>
