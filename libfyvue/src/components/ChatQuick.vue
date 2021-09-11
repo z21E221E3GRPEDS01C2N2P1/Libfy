@@ -193,13 +193,13 @@ export default {
     carregaParticipantesEmensagens() {
       //this.carregaFakeDados();
       let fdatabase = this.$firebase.firestore();
-      debugger
+      
       fdatabase
         .collection(this.artistaThreadSelecionado)
         .doc("ultimoid")
         .get(doc => (this.ultimoIdUsr = doc.data().idfinal))
         .catch(naoExisteUltimoId => {
-          debugger
+          
           this.adicionaUltimoIdNovo();
         })
         .then(_ => {
@@ -209,7 +209,7 @@ export default {
             .get()
             .then(doc => {
               if (doc.exists) {
-                console.log("Document data:", doc.data().partcps);
+                
                 let usuarioAgora = this.usuarioatual.data;
                 let particpantes = doc.data().partcps;
 

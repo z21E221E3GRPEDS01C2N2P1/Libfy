@@ -146,7 +146,7 @@ const store = new Vuex.Store({
     },
     async pesquisaMusica({ commit, state }) {
       let nome = state.pesquisaDoUsuario.replaceAll(' ', '-')
-      console.log(nome)
+      
 
       if (!nome) {
         let ultimaPesquisaFeita = "po"
@@ -169,7 +169,7 @@ const store = new Vuex.Store({
           }
         }
       ).then(databrut => { 
-        console.log('att2')
+        
         commit('SET_PESQUISA_RESULTADO', databrut.data)
       }).catch(err => {
         console.log('err'+err)

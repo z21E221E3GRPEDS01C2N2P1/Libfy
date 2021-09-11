@@ -65,68 +65,7 @@ export default {
       nomeArtistaEmIdChatThread:"themidnight"
     };
   },
-  methods: {
-    fbUseful() {
-      let fdatabase = this.$firebase.firestore();
-
-      fdatabase
-        .collection("mensagens")
-        .get()
-        .then(querySnapshot => {
-          querySnapshot.forEach(documento => {
-            console.log(documento.id);
-            this.dataraw = documento.data();
-          });
-        });
-      let testzao = { texto: "Gets", enviadoPor: "Tarlindo" };
-      fdatabase
-        .collection("mensagens")
-        .add(testzao)
-        .then(dcmnt => {
-          dcmnt.id;
-        });
-
-      var docRef = fdatabase
-        .collection("mensagens")
-        .doc("1uo7KfD0HT6It8JgizFQ");
-
-      docRef
-        .get()
-        .then(doc => {
-          if (doc.exists) {
-            console.log("Document data:", doc.data());
-          } else {
-            // doc.data() will be undefined in this case
-            console.log("No such document!");
-          }
-        })
-        .catch(error => {
-          console.log("Error getting document:", error);
-        });
-    },
-    fbCriaMatrizArrDeMsgs() {
-      fdatabase
-        .collection("themidnight")
-        .doc("msgs")
-        .set({
-          mensags: [
-            {
-              content: "v",
-              participantId: 3,
-              timestamp: "2021-09-09T19:16:35.956-03:00",
-              createdAt: this.$firebase.database.ServerValue.TIMESTAMP,
-              uploaded: false,
-              viewed: false,
-              type: "text",
-              myself: true
-            }
-          ]
-        })
-        .then(function() {
-          console.log("Frankta2 created");
-        })
-        .catch(er => console.log(er));
-    },
+  methods: { 
     TransformaNomeEmIdChatThread(label) {
       if(!label) return;
 
@@ -145,7 +84,7 @@ export default {
         this.tamanhoSlideArtist = 6;
         this.artistaSelecionado = artis;
         this.nomeArtistaEmIdChatThread=(this.TransformaNomeEmIdChatThread(artis.name))
-        debugger;
+        
         this.chatThreadAberto = true;
       } else {
         this.tamanhoSlideArtist = 12;
