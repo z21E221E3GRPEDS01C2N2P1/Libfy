@@ -74,7 +74,7 @@
     margin-left: 10px;
 }
 .container-message-display .myself-message-body .message-timestamp {
-    padding: 2px 7px;
+    
     border-radius: 15px;
     margin: 0;
     max-width: 50%;
@@ -92,13 +92,13 @@
 }
 .container-message-display .myself-message-body .message-text {
     background: #fff;
-    padding: 6px 10px;
-    line-height: 14px;
+    padding: 3px 11px;
+    line-height: 12px;
     border-radius: 15px;
     margin: 5px 0 5px 0;
-    max-width: 70%;
+    max-width: 110%;
     overflow-wrap: break-word;
-    text-align: left;
+    text-align: right;
     white-space: pre-wrap;
     border-bottom-right-radius: 0;
     word-break: break-word;
@@ -249,6 +249,7 @@
 .quick-chat-container .container-message-display .message-username {
     font-size: 10px;
     font-weight: 700;
+    color: #de94fe;
 }
 .quick-chat-container .container-message-display .icon-sent {
     padding-left: 5px;
@@ -378,6 +379,8 @@
     transition: 0.3s;
     border-radius: 11px;
     padding: 8px;
+
+    color: wheat;
 }
 .quick-chat-container .container-message-manager .icon-send-message:hover {
     opacity: 1;
@@ -401,4 +404,7 @@
 }
 .container-message-display{
     background: #191414 !important;
+  }
+  ::-webkit-scrollbar-track {
+    background: #222;
   }

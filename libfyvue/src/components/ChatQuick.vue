@@ -100,8 +100,7 @@ export default {
           mensagem.myself = true;
         } else {
           mensagem.myself = false;
-        }
-      }
+        }                                   }
 
       return msgsComMyself;
     },
@@ -112,22 +111,7 @@ export default {
       this.visible = false;
     },
 
-    adicionaParticipanteNovo() {
-      let participantesPresentes = this.participants;
-      participantesPresentes.push(this.myself);
-
-      let fdatabase = this.$firebase.firestore();
-
-      fdatabase
-        .collection(this.artistaThreadSelecionado)
-        .doc("participnts")
-        .update(doc => {
-          partcps: participantesPresentes;
-        })
-        .then(_ => {
-          this.adicionaUltimoIdNovo();
-        });
-    },
+    
     adicionaArrayParticipantesNovo() {
 
       let fdatabase = this.$firebase.firestore();
@@ -167,6 +151,23 @@ export default {
     },
     setupInicialEstruturaDadosChatArtista() {
       this.adicionaArrayParticipantesNovo();
+    },
+    atualizaUltimoId(){},
+    adicionaParticipante() {
+      let participantesPresentes = this.participants;
+      participantesPresentes.push(this.myself);
+
+      let fdatabase = this.$firebase.firestore();
+
+      fdatabase
+        .collection(this.artistaThreadSelecionado)
+        .doc("participnts")
+        .update(doc => {
+          partcps: participantesPresentes;
+        })
+        .then(_ => {
+          this.adicionaUltimoIdNovo();
+        });
     },
     carregaFakeDados() {
       let { participants, myself, messages } = apiD_chat.chatplaceholder;
@@ -233,7 +234,7 @@ export default {
                     profilePicture: "",
                     name: usuarioAgora.email,
                     email: usuarioAgora.email,
-                    id: this.ultimoIdUsr
+                    id: this.ultimoIdUsr+1
                   };
                 } else {
                   this.myself = euMesmo;
@@ -259,6 +260,8 @@ export default {
             });
         });
     },
+    
+    atualizaUltimoId(){},
     enviaMensagensChat(message) {
       let mensagensArrRef = this.$firebase
         .firestore()
