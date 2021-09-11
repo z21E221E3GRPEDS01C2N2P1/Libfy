@@ -137,6 +137,9 @@ export default {
         .toLowerCase();
       return label
     },
+    criaChatArtistaThread(){
+      
+    },
     abrirChatThread(artis) {
       if (this.artistaSelecionado.id !== artis.id) {
         this.tamanhoSlideArtist = 6;

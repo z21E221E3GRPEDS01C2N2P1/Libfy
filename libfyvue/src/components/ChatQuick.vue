@@ -111,20 +111,10 @@ export default {
     onClose() {
       this.visible = false;
     },
-    
 
-    adicionaUltimoIdNovo() {
-      this.ultimoIdUsr = 1
-      let objadd = { ultimoid:{
-                  idfinal:1
-                } };
-                fdatabase
-                  .collection(this.artistaThreadSelecionado)
-                  .add(objadd)                   
-    },
     adicionaParticipanteNovo() {
       let participantesPresentes = this.participants;
-      participantesPresentes.push(this.myself)
+      participantesPresentes.push(this.myself);
 
       let fdatabase = this.$firebase.firestore();
 
@@ -133,21 +123,50 @@ export default {
         .doc("participnts")
         .update(doc => {
           partcps: participantesPresentes;
-        }).then(_=>{
-          this.adicionaUltimoIdNovo()
+        })
+        .then(_ => {
+          this.adicionaUltimoIdNovo();
         });
     },
-    adicionaNovoArrayParticipantes(){
-       let particps = { participnts:{
-                  partcps:[]
-                } };
-                fdatabase
-                  .collection(this.artistaThreadSelecionado)
-                  .add(particps)
-                  
+    adicionaArrayParticipantesNovo() {
+
+      let fdatabase = this.$firebase.firestore();
+
+      let participnts = {        
+          partcps: []        
+      };
+      let msgs = { 
+          mensags:[]        
+      }
+      fdatabase
+        .collection(this.artistaThreadSelecionado).doc("participnts")
+        .set(participnts)
+        .then(_ => {
+          fdatabase.collection(this.artistaThreadSelecionado)
+          .doc("msgs").set(msgs);
+        });
     },
-    setupInicialEstruturaDadosChatArtista(){
-      this.adicionaNovoArrayParticipantes()
+
+    adicionaUltimoIdNovo() {
+
+      let fdatabase = this.$firebase.firestore();
+      
+      this.ultimoIdUsr = 1;
+      let objDocumento = {        
+          idfinal: 1        
+      };
+      fdatabase.collection(this.artistaThreadSelecionado).doc("ultimoid")
+      .set(objDocumento)
+      .catch(err=>{
+        
+        console.log(err)
+      }).then(_=>{
+        this.adicionaArrayParticipantesNovo()
+      })
+      ;
+    },
+    setupInicialEstruturaDadosChatArtista() {
+      this.adicionaArrayParticipantesNovo();
     },
     carregaFakeDados() {
       let { participants, myself, messages } = apiD_chat.chatplaceholder;
@@ -159,7 +178,7 @@ export default {
     carregaMensagensChat() {
       this.$firebase
         .firestore()
-        .collection("themidnight")
+        .collection(this.artistaThreadSelecionado)
         .doc("msgs")
         .get()
         .then(doc => {
@@ -167,31 +186,34 @@ export default {
 
           console.log("carreguei msgs");
         })
-        .catch(er => console.log(er));
+        .catch(er => {console.log(er+"nao existe msgs ainda")
+          this.messages = []
+        });
     },
     carregaParticipantesEmensagens() {
       //this.carregaFakeDados();
       let fdatabase = this.$firebase.firestore();
-
+      debugger
       fdatabase
         .collection(this.artistaThreadSelecionado)
         .doc("ultimoid")
         .get(doc => (this.ultimoIdUsr = doc.data().idfinal))
-        .catch(naoExisteUltimoId=>{
-          this.adicionaUltimoIdNovo()})
+        .catch(naoExisteUltimoId => {
+          debugger
+          this.adicionaUltimoIdNovo();
+        })
         .then(_ => {
           fdatabase
             .collection(this.artistaThreadSelecionado)
             .doc("participnts")
             .get()
-            .then(doc => 
-            {
+            .then(doc => {
               if (doc.exists) {
                 console.log("Document data:", doc.data().partcps);
                 let usuarioAgora = this.usuarioatual.data;
                 let particpantes = doc.data().partcps;
 
-                let usuarioNaoLogado = !usuarioAgora || !usuarioAgora.email
+                let usuarioNaoLogado = !usuarioAgora || !usuarioAgora.email;
 
                 if (usuarioNaoLogado) {
                   this.$router.push({ name: "Home" });
@@ -214,17 +236,20 @@ export default {
                     id: this.ultimoIdUsr
                   };
                 } else {
-                  this.myself = euMesmo;     }
+                  this.myself = euMesmo;
+                }
 
-                this.participants= participantesSemEuMesmo
- 
+                this.participants = participantesSemEuMesmo;
               } else {
                 // doc.data() will be undefined in this case
-                console.log("vc eh first nesse artista!");               
-                   
+                console.log("vc eh first nesse artista!");
+
+              this.adicionaUltimoIdNovo();
               }
-            }).catch(naoExisteParticipnts=>{
-                this.setupInicialEstruturaDadosChatArtista()
+            })
+            .catch(naoExisteParticipnts => {
+              console.log("Error getting document:", naoExisteParticipnts);
+              this.setupInicialEstruturaDadosChatArtista();
             })
             .then(_ => {
               this.carregaMensagensChat();
@@ -244,9 +269,8 @@ export default {
         delete msgSerializada.myself;
       }
       msgSerializada.timestamp = msgSerializada.timestamp.toISO();
-      console.log(message);
-
-      // Atomically add a new region to the "regions" array field.
+       
+      // Atomically add
       mensagensArrRef.update({
         mensags: this.$firebase.firestore.FieldValue.arrayUnion(msgSerializada)
       });
@@ -261,12 +285,12 @@ export default {
 
     this.unsubscribeMsgNovas = this.$firebase
       .firestore()
-      .collection("themidnight")
+      .collection(this.artistaThreadSelecionado)
       .doc("msgs")
       .onSnapshot(doc => {
         this.$firebase
           .firestore()
-          .collection("themidnight")
+          .collection(this.artistaThreadSelecionado)
           .doc("ultimoid")
           .get(doc => (this.ultimoIdUsr = doc.data().idfinal))
           .then(_ => {
