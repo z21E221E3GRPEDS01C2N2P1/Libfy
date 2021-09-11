@@ -54,6 +54,6 @@ export default {
   components: {}
 };
 </script>
-<style scoped>
+<style lang="scss" scoped>
 @import "css/MusicaCard.scss";
 </style>

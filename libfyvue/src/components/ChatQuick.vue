@@ -306,7 +306,7 @@ export default {
   }
 };
 </script>
-<style scoped>
+<style lang="scss" scoped>
 @import "css/ChatQuickNpm.scss";
 .material-design-icon,
 .image-icon {
