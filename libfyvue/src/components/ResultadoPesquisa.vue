@@ -5,7 +5,7 @@
       <section class="">
         <v-row class="flex-child">
           <v-col cols="12" :md="tamanhoSlideArtist">
-            <v-sheet class=" metade" dark>
+            <v-sheet class=" " dark>
               <v-slide-group show-arrows center-active>
                 <ArtistaCard
                   v-for="artist in gPesquisaResult.artists.items"
@@ -23,15 +23,17 @@
           </v-col>
         </v-row>
       </section>
-      <h1 class="titulofileira">Recentemente Tocadas</h1>
+      <h1 class="titulofileira">Songs</h1>
       <section>
-        <v-sheet class="mx-auto" dark>
-          <v-slide-group multiple show-arrows center-active dark>
-            <!--  <MusicaCard
-              v-for="tracks in gPesquisaResult.tracks.items"
-              v-bind:key="tracks.id"
-              v-bind:selemusica="tracks"
-            /> -->
+         <v-sheet class="mx-auto bg--purple-4" dark  >
+          <v-slide-group
+            show-arrows center-active
+          >
+            <MusicaCard
+              v-for="album in gPesquisaResult.tracks.items"
+              v-bind:key="album.id"
+              v-bind:selemusica="album"
+            />
           </v-slide-group>
         </v-sheet>
       </section>

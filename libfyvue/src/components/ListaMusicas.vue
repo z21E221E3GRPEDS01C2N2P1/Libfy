@@ -8,7 +8,7 @@
             multiple
             show-arrows
             center-active
-            dark 
+            dark  
           >
             <MusicaCard
               v-for="album in getMusicasMaisTocadas"
@@ -72,6 +72,6 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="scss" scoped>
+<style lang="scss" >
 @import "css/ListaMusicas.scss";
 </style>

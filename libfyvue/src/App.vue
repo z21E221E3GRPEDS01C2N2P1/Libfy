@@ -19,7 +19,7 @@ export default {
 <style >
 :root{
   --cor-fundo:#191414;
-  --cor-fundo-escura:#121212;
+  --cor-fundo-escura:#fff;
   --cor-selecao:#49347b;
   --cor-primary:#8257e6;
 }
@@ -47,4 +47,5 @@ export default {
     margin-left:1vh;
     }
 }
+
 </style>
