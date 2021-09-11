@@ -18,7 +18,7 @@
           </v-col>
           <v-col cols="12" md="5" v-if="chatThreadAberto">
             <div>
-              <ChatQuick></ChatQuick>
+              <ChatQuick v-bind:artistaThreadSelecionado="nomeArtistaEmIdChatThread"></ChatQuick>
             </div>
           </v-col>
         </v-row>
@@ -61,82 +61,96 @@ export default {
       artistaSelecionado: { id: 99 },
       tamanhoSlideArtist: 12,
       dataraw: [],
-      chatThreadAberto:false
+      chatThreadAberto: false,
+      nomeArtistaEmIdChatThread:"themidnight"
     };
   },
   methods: {
-    fbUseful(){
+    fbUseful() {
+      let fdatabase = this.$firebase.firestore();
 
-        let fdatabase = this.$firebase.firestore();
-        
-        fdatabase
-          .collection("mensagens")
-          .get()
-          .then(querySnapshot => {
-            querySnapshot.forEach(documento => {
-              console.log(documento.id);
-              this.dataraw = documento.data();
-            });
+      fdatabase
+        .collection("mensagens")
+        .get()
+        .then(querySnapshot => {
+          querySnapshot.forEach(documento => {
+            console.log(documento.id);
+            this.dataraw = documento.data();
           });
-        let testzao = { texto: "Gets", enviadoPor: "Tarlindo" };
-        fdatabase
-          .collection("mensagens")
-          .add(testzao)
-          .then(dcmnt => {
-            dcmnt.id;
-          });
+        });
+      let testzao = { texto: "Gets", enviadoPor: "Tarlindo" };
+      fdatabase
+        .collection("mensagens")
+        .add(testzao)
+        .then(dcmnt => {
+          dcmnt.id;
+        });
 
-        var docRef = fdatabase
-          .collection("mensagens").doc("1uo7KfD0HT6It8JgizFQ");
+      var docRef = fdatabase
+        .collection("mensagens")
+        .doc("1uo7KfD0HT6It8JgizFQ");
 
-        docRef
-          .get()
-          .then(doc => {
-            if (doc.exists) {
-              console.log("Document data:", doc.data());
-            } else {
-              // doc.data() will be undefined in this case
-              console.log("No such document!");
-            }
-          })
-          .catch(error => {
-            console.log("Error getting document:", error);
-          });
-
+      docRef
+        .get()
+        .then(doc => {
+          if (doc.exists) {
+            console.log("Document data:", doc.data());
+          } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+          }
+        })
+        .catch(error => {
+          console.log("Error getting document:", error);
+        });
     },
-    fbCriaMatrizArrDeMsgs(){
-      fdatabase.collection("themidnight")
+    fbCriaMatrizArrDeMsgs() {
+      fdatabase
+        .collection("themidnight")
         .doc("msgs")
-        .set({ 
+        .set({
           mensags: [
             {
               content: "v",
               participantId: 3,
               timestamp: "2021-09-09T19:16:35.956-03:00",
-              createdAt:this.$firebase.database.ServerValue.TIMESTAMP,
+              createdAt: this.$firebase.database.ServerValue.TIMESTAMP,
               uploaded: false,
               viewed: false,
               type: "text",
               myself: true
             }
-          ]}
-          ).then(function() {
+          ]
+        })
+        .then(function() {
           console.log("Frankta2 created");
-        }).catch(er=>console.log(er));
-        
+        })
+        .catch(er => console.log(er));
     },
-    abrirChatThread(artis) { 
+    TransformaNomeEmIdChatThread(label) {
+      if(!label) return;
 
+      label = label
+        .replace(/[^a-z0-9\s-]/gi, "")
+        .trim()
+        .replace(/\s+/g, "")
+        .toLowerCase();
+      return label
+    },
+    criaChatArtistaThread(){
+      
+    },
+    abrirChatThread(artis) {
       if (this.artistaSelecionado.id !== artis.id) {
         this.tamanhoSlideArtist = 6;
         this.artistaSelecionado = artis;
-        this.chatThreadAberto = true
-
-
+        this.nomeArtistaEmIdChatThread=(this.TransformaNomeEmIdChatThread(artis.name))
+        debugger;
+        this.chatThreadAberto = true;
       } else {
         this.tamanhoSlideArtist = 12;
         this.artistaSelecionado = { id: 99 };
-        this.chatThreadAberto = false
+        this.chatThreadAberto = false;
       }
     }
   },

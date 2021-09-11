@@ -3,27 +3,27 @@
   <div>
     <Chat
       :participants="participants"
-        :myself="myself"
-        :messages="messages"
-        :chat-title="chatTitle"
-        :placeholder="placeholder"
-        :colors="colors"
-        :border-style="borderStyle"
-        :hide-close-button="hideCloseButton" 
-        :submit-icon-size="submitIconSize"
-        :submit-image-icon-size="submitImageIconSize" 
-        :async-mode="asyncMode"
-        :scroll-bottom="scrollBottom"
-        :display-header="false"
-        :send-images="false"
-        :profile-picture-config="profilePictureConfig"
-        :timestamp-config="timestampConfig"
-        :link-options="linkOptions"
-        :accept-image-types="'.png, .jpeg'" 
-        @onMessageSubmit="onMessageSubmit"
-        @onType="onType"
-        @onClose="onClose"/>
-    
+      :myself="myself"
+      :messages="messages"
+      :chat-title="chatTitle"
+      :placeholder="placeholder"
+      :colors="colors"
+      :border-style="borderStyle"
+      :hide-close-button="hideCloseButton"
+      :submit-icon-size="submitIconSize"
+      :submit-image-icon-size="submitImageIconSize"
+      :async-mode="asyncMode"
+      :scroll-bottom="scrollBottom"
+      :display-header="false"
+      :send-images="false"
+      :profile-picture-config="profilePictureConfig"
+      :timestamp-config="timestampConfig"
+      :link-options="linkOptions"
+      :accept-image-types="'.png, .jpeg'"
+      @onMessageSubmit="onMessageSubmit"
+      @onType="onType"
+      @onClose="onClose"
+    />
   </div>
 </template>
 <script>
@@ -35,7 +35,7 @@ export default {
   components: {
     Chat
   },
-  props: ["propmensagns"],
+  props: ["artistaThreadSelecionado"],
   computed: {
     ...mapGetters(["getUser"]),
     usuarioatual() {
@@ -48,7 +48,8 @@ export default {
       visible: true,
       participants: [],
       myself: {},
-      messages: [], 
+      messages: [],
+      ultimoIdUsr: 9,
 
       // there are other options, you can check them here
       // https://soapbox.github.io/linkifyjs/docs/options.html
@@ -91,143 +92,217 @@ export default {
     };
   },
   methods: {
-    converteMsgsFirebase(docDataMensags){
-      let msgsComMyself=docDataMensags
+    converteMsgsFirebase(docDataMensags) {
+      let msgsComMyself = docDataMensags;
 
-        for (const mensagem of msgsComMyself) {
-          if(mensagem.participantId===this.myself.id){
-            mensagem.myself= true
-          }else{
-            mensagem.myself=false
-          }
+      for (const mensagem of msgsComMyself) {
+        if (mensagem.participantId === this.myself.id) {
+          mensagem.myself = true;
+        } else {
+          mensagem.myself = false;
         }
-        
-        return msgsComMyself
+      }
+
+      return msgsComMyself;
     },
     onType: function(event) {
-      
       //here you can set any behavior
-    }, 
+    },
     onClose() {
       this.visible = false;
-    }, 
+    },
+
+    adicionaParticipanteNovo() {
+      let participantesPresentes = this.participants;
+      participantesPresentes.push(this.myself);
+
+      let fdatabase = this.$firebase.firestore();
+
+      fdatabase
+        .collection(this.artistaThreadSelecionado)
+        .doc("participnts")
+        .update(doc => {
+          partcps: participantesPresentes;
+        })
+        .then(_ => {
+          this.adicionaUltimoIdNovo();
+        });
+    },
+    adicionaArrayParticipantesNovo() {
+
+      let fdatabase = this.$firebase.firestore();
+
+      let participnts = {        
+          partcps: []        
+      };
+      let msgs = { 
+          mensags:[]        
+      }
+      fdatabase
+        .collection(this.artistaThreadSelecionado).doc("participnts")
+        .set(participnts)
+        .then(_ => {
+          fdatabase.collection(this.artistaThreadSelecionado)
+          .doc("msgs").set(msgs);
+        });
+    },
+
+    adicionaUltimoIdNovo() {
+
+      let fdatabase = this.$firebase.firestore();
+      
+      this.ultimoIdUsr = 1;
+      let objDocumento = {        
+          idfinal: 1        
+      };
+      fdatabase.collection(this.artistaThreadSelecionado).doc("ultimoid")
+      .set(objDocumento)
+      .catch(err=>{
+        
+        console.log(err)
+      }).then(_=>{
+        this.adicionaArrayParticipantesNovo()
+      })
+      ;
+    },
+    setupInicialEstruturaDadosChatArtista() {
+      this.adicionaArrayParticipantesNovo();
+    },
     carregaFakeDados() {
-      let {
-        participants,
-        myself,
-        messages, 
-      } = apiD_chat.chatplaceholder;
+      let { participants, myself, messages } = apiD_chat.chatplaceholder;
       this.participants = participants;
       this.myself = myself;
-      this.messages = messages; 
+      this.messages = messages;
     },
 
     carregaMensagensChat() {
       this.$firebase
         .firestore()
-        .collection("themidnight")
-        .doc("msgs").get().then(doc=>{
-          this.messages=this.converteMsgsFirebase(doc.data().mensags)
-          
-          console.log('carreguei msgs')
-
-        }).catch(er=>console.log(er));
-    },
-    carregaParticipantesChat() {
-      //this.carregaFakeDados();
-      let fdatabase = this.$firebase.firestore();
-
-      fdatabase
-        .collection("themidnight")
-        .doc("participnts")
+        .collection(this.artistaThreadSelecionado)
+        .doc("msgs")
         .get()
         .then(doc => {
-          if (doc.exists) {
-            console.log("Document data:", doc.data().partcps);
-            let usuarioAgora = this.usuarioatual.data;
-            let particpantes = doc.data().partcps;
+          this.messages = this.converteMsgsFirebase(doc.data().mensags);
 
-            if (!usuarioAgora || !usuarioAgora.email) {
-              this.$router.push({ name: "Home" });
-              return;
-            }
-
-            let participantesSemEuMesmo = particpantes.filter(
-              participante => participante.email !== usuarioAgora.email
-            );
-
-            let euMesmo = particpantes.filter(
-              participante => participante.email === usuarioAgora.email
-            )[0];
-            this.myself = euMesmo;
-            
-            try {
-              let participantsSemUndefined = participantesSemEuMesmo.filter(
-                participante=>participante.name
-              )
-              this.participants =  [...participantsSemUndefined]
-            } catch (error) {
-              console.log("error" + error);
-            }
-          } else {
-            // doc.data() will be undefined in this case
-            console.log("No such document!");
-          }
+          console.log("carreguei msgs");
         })
-        .then()
-        .catch(error => {
-          console.log("Error getting document:", error);
+        .catch(er => {console.log(er+"nao existe msgs ainda")
+          this.messages = []
+        });
+    },
+    carregaParticipantesEmensagens() {
+      //this.carregaFakeDados();
+      let fdatabase = this.$firebase.firestore();
+      debugger
+      fdatabase
+        .collection(this.artistaThreadSelecionado)
+        .doc("ultimoid")
+        .get(doc => (this.ultimoIdUsr = doc.data().idfinal))
+        .catch(naoExisteUltimoId => {
+          debugger
+          this.adicionaUltimoIdNovo();
+        })
+        .then(_ => {
+          fdatabase
+            .collection(this.artistaThreadSelecionado)
+            .doc("participnts")
+            .get()
+            .then(doc => {
+              if (doc.exists) {
+                console.log("Document data:", doc.data().partcps);
+                let usuarioAgora = this.usuarioatual.data;
+                let particpantes = doc.data().partcps;
+
+                let usuarioNaoLogado = !usuarioAgora || !usuarioAgora.email;
+
+                if (usuarioNaoLogado) {
+                  this.$router.push({ name: "Home" });
+                  return;
+                }
+
+                let participantesSemEuMesmo = particpantes.filter(
+                  participante => participante.email !== usuarioAgora.email
+                );
+
+                let euMesmo = particpantes.filter(
+                  participante => participante.email === usuarioAgora.email
+                )[0];
+
+                if (!euMesmo) {
+                  this.myself = {
+                    profilePicture: "",
+                    name: usuarioAgora.email,
+                    email: usuarioAgora.email,
+                    id: this.ultimoIdUsr
+                  };
+                } else {
+                  this.myself = euMesmo;
+                }
+
+                this.participants = participantesSemEuMesmo;
+              } else {
+                // doc.data() will be undefined in this case
+                console.log("vc eh first nesse artista!");
+
+              this.adicionaUltimoIdNovo();
+              }
+            })
+            .catch(naoExisteParticipnts => {
+              console.log("Error getting document:", naoExisteParticipnts);
+              this.setupInicialEstruturaDadosChatArtista();
+            })
+            .then(_ => {
+              this.carregaMensagensChat();
+            })
+            .catch(error => {
+              console.log("Error getting document:", error);
+            });
         });
     },
     enviaMensagensChat(message) {
       let mensagensArrRef = this.$firebase
         .firestore()
-        .collection("themidnight")
+        .collection(this.artistaThreadSelecionado)
         .doc("msgs");
-      let msgSerializada = {...message};
-      if(msgSerializada.myself){
-        delete msgSerializada.myself
+      let msgSerializada = { ...message };
+      if (msgSerializada.myself) {
+        delete msgSerializada.myself;
       }
       msgSerializada.timestamp = msgSerializada.timestamp.toISO();
-      console.log(message);
-      
-      // Atomically add a new region to the "regions" array field.
+       
+      // Atomically add
       mensagensArrRef.update({
         mensags: this.$firebase.firestore.FieldValue.arrayUnion(msgSerializada)
       });
     },
-    unsubscribeMsgNovas:()=>{},
+    unsubscribeMsgNovas: () => {},
     onMessageSubmit: function(message) {
       this.enviaMensagensChat(message);
-
-      //fdatabase.collection("themidnight").doc("msgs");
-
-      /*
-       * example simulating an upload callback.
-       * It's important to notice that even when your message wasn't send
-       * yet to the server you have to add the message into the array
-       *
-       */
-      // this.messages.push(message);
-    },
-    
+    }
   },
-  mounted() { 
-    this.carregaParticipantesChat();
-    this.carregaMensagensChat();
+  mounted() {
+    this.carregaParticipantesEmensagens();
 
-    this.unsubscribeMsgNovas = this.$firebase.firestore()
-    .collection("themidnight").doc("msgs")
-    .onSnapshot((doc) => {
-        console.log("Current data: ", doc.data());
-
-        let msgsComMyself=this.converteMsgsFirebase(doc.data().mensags)
-
-        this.messages=msgsComMyself
-    });
+    this.unsubscribeMsgNovas = this.$firebase
+      .firestore()
+      .collection(this.artistaThreadSelecionado)
+      .doc("msgs")
+      .onSnapshot(doc => {
+        this.$firebase
+          .firestore()
+          .collection(this.artistaThreadSelecionado)
+          .doc("ultimoid")
+          .get(doc => (this.ultimoIdUsr = doc.data().idfinal))
+          .then(_ => {
+            this.carregaParticipantesEmensagens();
+          });
+      });
   },
-  unmounted(){
-    this.unsubscribeMsgNovas()
+  unmounted() {
+    this.unsubscribeMsgNovas();
+    this.participants = [];
+    this.myself = [];
+    this.messages = [];
   }
 };
 </script>
