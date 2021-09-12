@@ -2,12 +2,20 @@
 <template>
   <div class="navbb">
     <div class="sidenav" :class="esconderSideBar ? 'd-none' : ''">
-      <router-link to="/" class="purple white--text">
+      <router-link to="/" :class="
+      atualRota === 'Home' ?
+      'purple white--text'  : '' ">
         <span class="fa fa-home"></span> Home
+      </router-link>
+      <router-link to="/" :class="
+      atualRota === 'Pesquisa' ?
+      'purple white--text'  : '' ">
+        <span class="fa fa-search"></span> Pesquisa
       </router-link>
 
       <section v-if="user.loggedIn">
-        <div v-if="false"> <!-- to do -->
+        <div v-if="false">
+          <!-- to do -->
           <router-link to="/login">
             <span class="fas fa-music"></span>
             <p>Playlists</p>
@@ -16,10 +24,12 @@
             <span class="fas fa-heart"></span>
             <p>Notícias</p>
           </a>
+        </div>
+        <v-container>
           <h6>Your Library</h6>
           <p>Favoritas</p>
           <p>Favoritas</p>
-        </div>
+        </v-container>
       </section>
     </div>
     <section class="topofixo d-flex flex-row justify-start align-center">
@@ -60,6 +70,9 @@ export default {
     };
   },
   computed: {
+    atualRota() {
+      return this.$route.name;
+    },
     ...mapGetters({
       user: "getUser",
       getQualquerCois: "getQualquerCois",
