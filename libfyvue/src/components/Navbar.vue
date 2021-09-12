@@ -7,7 +7,7 @@
       'purple white--text'  : '' ">
         <span class="fa fa-home"></span> Home
       </router-link>
-      <router-link to="/" :class="
+      <router-link to="/pesquisa" :class="
       atualRota === 'Pesquisa' ?
       'purple white--text'  : '' ">
         <span class="fa fa-search"></span> Pesquisa
