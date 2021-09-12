@@ -1,7 +1,7 @@
 <template>
   <main class="main">
-    <h1 class="titulofileira">Mais tocadas </h1>
     <div class="musicas ">
+    <h1 class="titulofileira">Mais tocadas </h1>
       <section class="" >
         <v-sheet class="mx-auto bg--purple-4" dark  >
           <v-slide-group
@@ -72,6 +72,6 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="scss" >
+<style lang="scss" scoped>
 @import "css/ListaMusicas.scss";
 </style>

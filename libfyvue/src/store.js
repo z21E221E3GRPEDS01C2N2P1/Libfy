@@ -9,7 +9,7 @@ import { apiD_musicas } from "./const";
 Vue.use(Vuex)
 
 const meuDataStore = createPersistedState({
-  paths: ["qualquerCois", "libfy_novo_refresh", "libfy_token_acesso"]
+  paths: ["qualquerCois"]
 })
 
 const store = new Vuex.Store({

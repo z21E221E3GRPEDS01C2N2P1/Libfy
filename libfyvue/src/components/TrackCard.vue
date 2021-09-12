@@ -6,12 +6,19 @@
       @click="mytoggle(vfortrack, toggle)"
       dark
     >
-
- 
+      <v-img
+        lazy-src="@/assets/logo.png"
+        contain
+        v-bind:src="track.image"
+        max-width="250"
+        max-height="250"
+        contains
+        class="imagemmusica"
+      ></v-img>
       <v-container>
         <h6>{{ track.nome }}</h6>
         <p>............</p>
-         
+        <p v-text="track.cantor"></p>
       </v-container>
     </v-card>
   </v-slide-item>
@@ -24,8 +31,15 @@ export default {
   props: ["vfortrack"],
   computed: {
     track() {
+      
       return {
-        nome: `${this.vfortrack.name}` || ""
+        nome: `${this.vfortrack.name}` || "",
+        cantor: `${this.vfortrack.artists[0].name}` || "",
+
+        image: this.vfortrack?.album?.images[1]?.url
+          ? this.vfortrack?.album?.images[1].url
+          || "@/assets/logo.png"
+          : "@/assets/logo.png"
       };
     }
   },

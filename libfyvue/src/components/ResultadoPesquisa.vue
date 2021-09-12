@@ -16,6 +16,8 @@
               </v-slide-group>
             </v-sheet>
           </v-col>
+            <v-expand-transition>
+              
           <v-col cols="12" md="5" v-if="chatThreadAberto">
             <div>
               <ChatQuick
@@ -23,6 +25,7 @@
               ></ChatQuick>
             </div>
           </v-col>
+            </v-expand-transition>
         </v-row>
       </section>
       <h1 class="titulofileira">Songs</h1>
@@ -59,10 +62,7 @@ export default {
       return this.getPesquisaResult;
     },
     existeArtistasNaPesquisa() {
-      let reslt =  
-      this.gPesquisaResult.artists.items.length > 1
-      debugger
-      return reslt;
+       return this.gPesquisaResult.artists.items.length > 1
     }
   },
   data: () => {
