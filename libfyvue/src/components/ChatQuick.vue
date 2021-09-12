@@ -26,15 +26,14 @@
       
     >
       <template v-slot:header>
-        <p
-          v-text="'sobre ' + artistaThreadSelecionado"
-          class="text-capitalize text-center white--text"
-        ></p>
-        <div>
+        <div class="pa-0 ma-0 flex-row"> 
+        <p 
+          class="text-capitalize  white--text text-lg-h6"
+        >{{'sobre ' + artistaThreadSelecionado}}</p>
           <p
             v-for="(participant, index) in participants"
             :key="index"
-            class="custom-title"
+            class="text-sm-body-2"
           >
             {{ participant.name }}
           </p>

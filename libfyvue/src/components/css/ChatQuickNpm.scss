@@ -6,11 +6,10 @@
     --fundo-chat:#4D357C;
   }
 .quick-chat-container .header-container {
-    height: 70px;
+     
     display: -webkit-box;
     display: -ms-flexbox;
-    display: flex;
-    padding: 0 20px 0 10px;
+    display: flex; 
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
@@ -19,7 +18,7 @@
     z-index: 5;
 }
 .quick-chat-container .header-container .header-title {
-    padding: 10px;
+    padding: 1px;
     -webkit-box-flex: 1;
     -ms-flex: 1;
     flex: 1;
@@ -31,7 +30,7 @@
 .quick-chat-container .header-container .header-paticipants-text {
     color: #e4e4e4;
     font-size: 12px;
-    margin-top: 5px;
+    margin: 2px;
     max-height: 30px;
     overflow: hidden;
 }
@@ -402,7 +401,7 @@
     display: flex;
     width: 100%;
     height:400px;
-    max-height: 400px; 
+    max-height: 600px; 
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
