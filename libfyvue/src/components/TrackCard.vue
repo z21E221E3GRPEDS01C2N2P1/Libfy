@@ -1,7 +1,7 @@
 <template>
   <v-slide-item v-if="vfortrack.images" v-slot="{ active, toggle }">
     <v-card
-      :color="active ? 'primary' : 'grey darken-4'"
+      :color="active ? 'secondary' : 'grey darken-2'"
       class="cardmusica "
       @click="mytoggle(vfortrack, toggle)"
       dark
@@ -33,6 +33,7 @@ export default {
   props: ["vfortrack"],
   computed: {
     track() {
+      debugger;
       return {
         image: this.vfortrack?.images[1]?.url
           ? this.vfortrack.images[1].url || "@/assets/logo.png"

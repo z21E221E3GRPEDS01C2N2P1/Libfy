@@ -225,6 +225,8 @@ export default {
         })
         .then(doc => {
           this.ultimoIdUsr = doc.data().idfinal;
+        }).catch(naoExisteUltimoId => {
+          this.setupInicialEstruturaDadosChatArtista();
         })
         .then(_ => {
           fdatabase

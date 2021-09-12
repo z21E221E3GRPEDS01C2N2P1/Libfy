@@ -29,11 +29,11 @@
           <v-slide-group
             show-arrows center-active
           >
-            <MusicaCard
-              v-for="album in gPesquisaResult.tracks.items"
-              v-bind:key="album.id"
-              v-bind:selemusica="album"
-            />
+           <TrackCard
+                  v-for="track in gPesquisaResult.tracks.items"
+                  v-bind:key="track.id"
+                  v-bind:vfortrack="track"
+                />
           </v-slide-group>
         </v-sheet>
       </section>
@@ -46,9 +46,10 @@ import MusicaCard from "./MusicaCard.vue";
 import { mapGetters, mapState } from "vuex";
 import ArtistaCard from "./ArtistaCard.vue";
 import ChatQuick from "./ChatQuick.vue";
+import TrackCard from './TrackCard.vue';
 
 export default {
-  components: { MusicaCard, ArtistaCard, ChatQuick },
+  components: { MusicaCard, ArtistaCard, ChatQuick, TrackCard },
   name: "ResultadoPesquisa",
   computed: {
     ...mapState(["qualquerCois"]),
