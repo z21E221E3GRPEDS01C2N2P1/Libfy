@@ -2,7 +2,7 @@
   <v-slide-item v-slot="{ active, toggle }" dark>
 
     <v-card
-      :color="active ? 'purple darken-5' : 'grey darken-5'"
+      :color="active ? 'purple darken-5' : 'grey darken-4'"
       class="cardmusica" 
       @click="toggle"
       dark

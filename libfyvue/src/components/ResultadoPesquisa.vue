@@ -1,8 +1,8 @@
 <template>
   <main class="main">
-    <h1 class="titulofileira">Artists</h1>
     <div class="musicas ">
-      <section class="">
+      <section class="" v-if="existeArtistasNaPesquisa">
+    <h1 class="titulofileira">Artists</h1>
         <v-row class="flex-child">
           <v-col cols="12" :md="tamanhoSlideArtist">
             <v-sheet class=" " dark>
@@ -18,22 +18,22 @@
           </v-col>
           <v-col cols="12" md="5" v-if="chatThreadAberto">
             <div>
-              <ChatQuick v-bind:artistaThreadSelecionado="nomeArtistaEmIdChatThread"></ChatQuick>
+              <ChatQuick
+                v-bind:artistaThreadSelecionado="nomeArtistaEmIdChatThread"
+              ></ChatQuick>
             </div>
           </v-col>
         </v-row>
       </section>
       <h1 class="titulofileira">Songs</h1>
       <section>
-         <v-sheet class="mx-auto bg--purple-4" dark  >
-          <v-slide-group
-            show-arrows center-active
-          >
-           <TrackCard
-                  v-for="track in gPesquisaResult.tracks.items"
-                  v-bind:key="track.id"
-                  v-bind:vfortrack="track"
-                />
+        <v-sheet class="mx-auto bg--purple-4" dark>
+          <v-slide-group show-arrows center-active>
+            <TrackCard
+              v-for="track in gPesquisaResult.tracks.items"
+              v-bind:key="track.id"
+              v-bind:vfortrack="track"
+            />
           </v-slide-group>
         </v-sheet>
       </section>
@@ -46,7 +46,7 @@ import MusicaCard from "./MusicaCard.vue";
 import { mapGetters, mapState } from "vuex";
 import ArtistaCard from "./ArtistaCard.vue";
 import ChatQuick from "./ChatQuick.vue";
-import TrackCard from './TrackCard.vue';
+import TrackCard from "./TrackCard.vue";
 
 export default {
   components: { MusicaCard, ArtistaCard, ChatQuick, TrackCard },
@@ -57,6 +57,12 @@ export default {
 
     gPesquisaResult() {
       return this.getPesquisaResult;
+    },
+    existeArtistasNaPesquisa() {
+      let reslt =  
+      this.gPesquisaResult.artists.items.length > 1
+      debugger
+      return reslt;
     }
   },
   data: () => {
@@ -65,29 +71,29 @@ export default {
       tamanhoSlideArtist: 12,
       dataraw: [],
       chatThreadAberto: false,
-      nomeArtistaEmIdChatThread:"themidnight"
+      nomeArtistaEmIdChatThread: "themidnight"
     };
   },
-  methods: { 
+  methods: {
     TransformaNomeEmIdChatThread(label) {
-      if(!label) return;
+      if (!label) return;
 
       label = label
         .replace(/[^a-z0-9\s-]/gi, "")
         .trim()
         .replace(/\s+/g, "")
         .toLowerCase();
-      return label
+      return label;
     },
-    criaChatArtistaThread(){
-      
-    },
+    criaChatArtistaThread() {},
     abrirChatThread(artis) {
       if (this.artistaSelecionado.id !== artis.id) {
         this.tamanhoSlideArtist = 6;
         this.artistaSelecionado = artis;
-        this.nomeArtistaEmIdChatThread=(this.TransformaNomeEmIdChatThread(artis.name))
-        
+        this.nomeArtistaEmIdChatThread = this.TransformaNomeEmIdChatThread(
+          artis.name
+        );
+
         this.chatThreadAberto = true;
       } else {
         this.tamanhoSlideArtist = 12;
