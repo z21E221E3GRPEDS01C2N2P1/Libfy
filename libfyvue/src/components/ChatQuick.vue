@@ -14,7 +14,7 @@
       :submit-image-icon-size="submitImageIconSize"
       :async-mode="asyncMode"
       :scroll-bottom="scrollBottom"
-      :display-header="false"
+      :display-header="true"
       :send-images="false"
       :profile-picture-config="profilePictureConfig"
       :timestamp-config="timestampConfig"
@@ -23,7 +23,24 @@
       @onMessageSubmit="onMessageSubmit"
       @onType="onType"
       @onClose="onClose"
-    />
+      
+    >
+      <template v-slot:header>
+        <p
+          v-text="'sobre ' + artistaThreadSelecionado"
+          class="text-capitalize text-center white--text"
+        ></p>
+        <div>
+          <p
+            v-for="(participant, index) in participants"
+            :key="index"
+            class="custom-title"
+          >
+            {{ participant.name }}
+          </p>
+        </div>
+      </template>
+    </Chat>
   </div>
 </template>
 <script>
@@ -147,7 +164,6 @@ export default {
           console.log(err);
         })
         .then(_ => {
-          
           if (arrayParticipantesJaCriado) return;
 
           this.adicionaArrayParticipantesNovo();
@@ -225,7 +241,8 @@ export default {
         })
         .then(doc => {
           this.ultimoIdUsr = doc.data().idfinal;
-        }).catch(naoExisteUltimoId => {
+        })
+        .catch(naoExisteUltimoId => {
           this.setupInicialEstruturaDadosChatArtista();
         })
         .then(_ => {
@@ -258,7 +275,7 @@ export default {
                     profilePicture: "",
                     name: usuarioAgora.email,
                     email: usuarioAgora.email,
-                    id: this.ultimoIdUsr 
+                    id: this.ultimoIdUsr
                   };
                 } else {
                   this.myself = euMesmo;
@@ -310,11 +327,11 @@ export default {
 
       if (
         !participanteNaoCadastrado ||
-        participanteNaoCadastrado.length === 0) {
+        participanteNaoCadastrado.length === 0
+      ) {
         this.adicionaAtualizaParticipante(true);
       }
 
-      
       //aaa
       // Atomically add
       mensagensArrRef.update({

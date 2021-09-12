@@ -4,16 +4,16 @@ const estiloChat = {
     submitIconSize:21,
     colors: {
         header: {
-            bg: '#555',
-            text: '#49347b'
+            bg: 'var(--fundo-chat)',
+            text: '#fff'
         },
         message: {
             myself: {
-                bg: '#49347b',
+                bg: '#3D3132',
                 text: '#fff'
             },
             others: {
-                bg: '#535',
+                bg: '#111',
                 text: '#fff'
             },
             messagesDisplay: {
