@@ -3,17 +3,15 @@
     <v-container class="main pa-16 ma-auto lesswidth">
       <section>
         <div class="login">
-         <v-container>  
-           
+          <v-container>
             <v-img
-            lazy-src="@/assets/logo.png"
-            contain
-            class="ml-15"
-            max-width="40%"
-            src="@/assets/logo.png"
-          ></v-img>
-         
-         </v-container>
+              lazy-src="@/assets/logo.png"
+              contain
+              class="ml-15"
+              max-width="40%"
+              src="@/assets/logo.png"
+            ></v-img>
+          </v-container>
 
           <div class="loginalternativ">
             <v-btn rounded to="/cadastrar" class="btn" block
@@ -44,7 +42,6 @@
 
           <main>
             <form action="">
-              <h6 class="alerta">{{ this.msgErro }}</h6>
               <section class="label">
                 <div>
                   <label for="loginE">Email</label>
@@ -69,13 +66,17 @@
               </section>
 
               <div v-if="cadastrando">
-                <v-btn rounded v-on:click="cadastrarLogin" class="btn mb-10 mt-10" block
+                <v-btn
+                  rounded
+                  v-on:click="cadastrarLogin"
+                  class="btn mb-10 mt-10"
+                  block
                   >Cadastrar</v-btn
                 >
               </div>
               <div v-else>
                 <section class="label">
-                  <a href>Esqueceu sua senha?</a>
+                  <a href="/">Esqueceu sua senha?</a>
                   <div>
                     <input
                       type="checkbox"
@@ -86,7 +87,11 @@
                     <label for="lembrarLogin">Lembrar de mim</label>
                   </div>
                 </section>
-                <v-btn rounded class="btn mb-10 mt-10" block v-on:click="logarLogin"
+                <v-btn
+                  rounded
+                  class="btn mb-10 mt-10"
+                  block
+                  v-on:click="logarLogin"
                   >Entrar</v-btn
                 >
               </div>
@@ -102,13 +107,31 @@
             </v-container>
           </main>
         </div>
+        <v-snackbar
+          color="warning"
+          v-model="msgErro.deveAparecer"
+          transition="scale-transition"
+          :vertical="false"
+        >
+          <template v-slot:action="{ attrs }">
+            <v-alert
+              v-bind="attrs"
+              @click="msgErro.deveAparecer = false"
+              :value="msgErro.deveAparecer"
+              color="warning"
+              border="top"
+              icon="mdi-home"
+            >
+              {{ msgErro.msg }}
+            </v-alert>
+          </template>
+        </v-snackbar>
       </section>
     </v-container>
   </main>
 </template>
 
 <script>
-
 export default {
   name: "TelaLogin",
   props: {
@@ -119,7 +142,7 @@ export default {
     return {
       emailu: "",
       senha: "",
-      msgErro: "",
+      msgErro: { deveAparecer: false, msg: "" },
       vers: "nome musfica elvis",
       logando: true
     };
@@ -137,7 +160,9 @@ export default {
           let usuario = credenciais.user;
         })
         .catch(erro => {
-          this.msgErro = `${erro.code} ${erro.message}`;
+          console.log(erro.message);
+          this.msgErro.deveAparecer = true;
+          this.msgErro.msg = `${erro.code} ${erro.message}`;
         });
     },
     logarLogin(e) {
@@ -149,11 +174,11 @@ export default {
         })
         .catch(e => console.log(e));
     }
-  }, 
+  }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
- @import 'css/TelaLogin';
+@import "css/TelaLogin";
 </style>
