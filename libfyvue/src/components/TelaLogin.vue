@@ -162,7 +162,7 @@ export default {
         .catch(erro => {
           console.log(erro.message);
           this.msgErro.deveAparecer = true;
-          this.msgErro.msg = `${erro.code} ${erro.message}`;
+          this.msgErro.msg = `${erro.message}`;
         });
     },
     logarLogin(e) {
@@ -172,7 +172,10 @@ export default {
         .then(credenciais => {
           this.$router.push({ name: "Home" });
         })
-        .catch(e => console.log(e));
+        .catch(erro => {
+           this.msgErro.deveAparecer = true;
+          this.msgErro.msg = `${erro.message}`;
+        });
     }
   }
 };
