@@ -4,7 +4,7 @@
       <section class="" v-if="existeArtistasNaPesquisa">
     <h1 class="titulofileira">Artists</h1>
         <v-row class="flex-child">
-          <v-col cols="12" :md="'12'">
+          <v-col cols="12" :md="tamanhoSlideArtist">
             <v-sheet class=" " dark>
               <v-slide-group show-arrows center-active>
                 <ArtistaCard
@@ -15,6 +15,7 @@
                 />
               </v-slide-group>
             </v-sheet>
+            
           </v-col>
             <v-expand-transition>
               

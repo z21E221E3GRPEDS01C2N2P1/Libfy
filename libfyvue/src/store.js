@@ -237,6 +237,9 @@ const store = new Vuex.Store({
           _ => dispatch('getDadosPesquisa', tempQuery))
       })
     },
+    async pesquisaNoticiaArtista(){
+      // to do
+    }
 
 
   },
