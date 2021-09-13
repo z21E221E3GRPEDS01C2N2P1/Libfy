@@ -17,17 +17,6 @@ body {
   color: white;
 }
 
-@media (max-width: 600px)
-{
-  .sidenav
-   {
-     display: none;
-   }
-   .topofixo{
-    left: 0; 
-  }
-  
-  }
 .sidenav a,p {
   padding: 6px 8px 6px 16px;
   text-decoration: none;
@@ -72,4 +61,18 @@ input{
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
+}
+@media (max-width: 600px)
+{
+  .sidenav
+   {
+     display: none;
+   }
+   .topofixo{
+    left: 0;  
+  }
+  .v-btn__content{
+    max-width: 2px;
+  }
+  
 }

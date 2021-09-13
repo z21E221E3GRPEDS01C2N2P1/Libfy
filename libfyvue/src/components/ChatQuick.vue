@@ -30,13 +30,15 @@
         <p 
           class="text-capitalize  white--text text-lg-h6"
         >{{'sobre ' + artistaThreadSelecionado}}</p>
+        
           <p
             v-for="(participant, index) in participants"
             :key="index"
-            class="text-sm-body-2"
+            class="text-caption"
           >
             {{ participant.name }}
           </p>
+        
         </div>
       </template>
     </Chat>

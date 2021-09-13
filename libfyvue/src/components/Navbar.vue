@@ -44,14 +44,16 @@
       </div>
       <div :class="esconderSideBar ? 'd-none' : ''">
         <main v-if="user.loggedIn" class="d-flex flex-row transparent">
-          <v-btn rounded dark to="/perfilusuario"> {{ gNomeUsuario }} </v-btn>
+          <v-btn rounded dark to="/perfilusuario" >
+          <div class="reduzbotao">{{ gNomeUsuario }}</div>  </v-btn>
         </main>
 
         <main v-else class="d-flex flex-row transparent">
-          <v-btn rounded color="primary" dark to="/cadastrar">
+          <v-btn rounded color="primary" dark to="/cadastrar" 
+          class="reduzbotao">
             Cadastrar
           </v-btn>
-          <v-btn rounded to="/login"> Log in </v-btn>
+          <v-btn rounded to="/login" class="reduzbotao"> Log in </v-btn>
         </main>
       </div>
     </section>

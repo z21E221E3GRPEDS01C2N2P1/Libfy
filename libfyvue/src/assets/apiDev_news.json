@@ -1,0 +1,65 @@
+{
+    "totalArticles": 5,
+    "articles": [
+        {
+            "title": "Post Malone, Melanie Martinez, more",
+            "description": "Get tickets for Post Malone at Chase Center in San Francisco, Melanie Martinez at Fox Theater in Oakland, Ana Gabriel at Oakland Arena, more concerts.",
+            "content": "Here are the top concerts of the week (March 19-25):\nPost Malone\nHe’s one of the hottest artists in the entire music business, having topped the overall Billboard 200 with his last two albums – 2018’s “Beerbongs and Bentleys” and 2019’s “Hollywood’s ... [1874 chars]",
+            "url": "https://www.mercurynews.com/2021/03/12/jim-the-critics-top-bay-area-concerts-of-the-week-march-19-25/",
+            "image": "https://www.mercurynews.com/wp-content/uploads/2018/06/SJM-L-MALONE-0626-01.jpg?w=1024&h=695",
+            "publishedAt": "2021-03-12T16:00:40Z",
+            "source": {
+                "name": "The Mercury News",
+                "url": "https://www.mercurynews.com"
+            }
+        },
+        {
+            "title": "Christian Domínguez",
+            "description": "Domínguez tiene otra hija con su exesposa Melanie Martínez y además un hijo que tuvo con Karla Tarazona",
+            "content": "La hija mayor de Christian Domínguez se mostró emocionada por la llegada de su hermanita, María Cataleya, quien nació este 4 de marzo en una clínica local. Como se sabe, con la llegada de la bebé, el cumbiambero se convierte en padres de tres menores... [667 chars]",
+            "url": "https://ojo.pe/ojo-show/hija-mayor-de-christian-dominguez-le-dedica-emotivo-mensaje-a-su-nueva-hermana-foto-web-ojo-farandula-noticia/",
+            "image": "https://ojo.pe/resizer/0pLT4Cy4h36cAe60hISSEjbyIWk=/980x528/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/V3PX3YVJDBCHLHN7KN6JZUT4HI.jpg",
+            "publishedAt": "2021-03-04T16:11:42Z",
+            "source": {
+                "name": "Diario Ojo",
+                "url": "https://ojo.pe"
+            }
+        },
+        {
+            "title": "20 Questions With Melanie Martinez: Her ‘After School’ EP, Love for Fiona Apple & What Fans Can Expect Next",
+            "description": "Melanie Martinez answered 20 Questions about the beginnings of her artistry, how she looks back on K-12 one year after its release, and more.",
+            "content": "1. What’s the first piece of music that you bought for yourself, and what was the medium? When I was 16, I bought a record player and a bunch of vinyl with my own money. Some of those records were by CocoRosie, Neutral Milk Hotel, Patsy Cline and Fle... [6811 chars]",
+            "url": "https://www.billboard.com/articles/columns/pop/9464647/20-questions-with-melanie-martinez-after-school/",
+            "image": "https://static.billboard.com/files/2020/10/Melanie-Martinez-cr-Jacqueline-Molina-2020-billboard-1548-1602533096-1024x677.jpg",
+            "publishedAt": "2020-10-13T04:00:00Z",
+            "source": {
+                "name": "Billboard",
+                "url": "https://www.billboard.com"
+            }
+        },
+        {
+            "title": "Travis Scott, Jennifer Lopez and More Top Songs of the Week",
+            "description": "Travis Scott with Young Thug, Jennifer Lopez with Maluma, Melanie Martinez and more are in our \"Fri 5\" Top Songs of the Week.",
+            "content": "On a week like this, with a crushing onslaught of strong contenders for the coveted Fri 5, your faithful reviewer feels like an “American Idol” judge, with a whole load of self-imposed rules about what constitutes a great single (as opposed to a grea... [2945 chars]",
+            "url": "https://variety.com/2020/music/news/travis-scott-melanie-martinez-jennifer-lopez-top-songs-of-the-week-1234784353/",
+            "image": "https://pmcvariety.files.wordpress.com/2020/09/fri-five-travis-scott-jennifer-lopez-maluma.jpg?w=1000",
+            "publishedAt": "2020-09-25T19:27:16Z",
+            "source": {
+                "name": "Variety",
+                "url": "https://variety.com"
+            }
+        },
+        {
+            "title": "Melanie Martinez lança EP de inéditas e videoclipe do single 'The Bakery'",
+            "description": "Com sete faixas, 'After School' chegou às plataformas digitais nesta sexta (25) e acabou com a ansiedade dos fãs; leia mais",
+            "content": "Melanie Martinez lança EP de inéditas e videoclipe do single 'The Bakery'\nCom sete faixas, 'After School' chegou às plataformas digitais nesta sexta (25) e acabou com a ansiedade dos fãs\nA atriz, cantora e compositora norte-americana Melaine Martinez... [565 chars]",
+            "url": "https://www.otempo.com.br/diversao/melanie-martinez-lanca-ep-de-ineditas-e-videoclipe-do-single-the-bakery-1.2390429",
+            "image": "https://www.otempo.com.br/image/contentid/policy:1.2390430:1601063946/Captura%20de%20Tela%202020-09-25%20%C3%A0s%2016.58.51.png?f=3x2&w=620&$p$f$w=9c005da",
+            "publishedAt": "2020-09-25T17:01:41Z",
+            "source": {
+                "name": "O Tempo",
+                "url": "https://www.otempo.com.br"
+            }
+        }
+    ]
+}

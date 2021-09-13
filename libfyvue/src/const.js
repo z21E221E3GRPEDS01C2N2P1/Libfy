@@ -1,10 +1,12 @@
 import Home from './views/Home.vue'
 import apiD_musicas from './assets/apiDev_musicas.json'
 import apiD_chat from './assets/apiDev_chat.json'
-
+import apiD_news from './assets/apiDev_news.json'
 const LIBFY_FIRST_ACCESSTOKEN = 'BQDG0bjU57QVQEhmbn7K62AgPMFguoVRycDmWepA5-R4yLE4dXe1vqbjdC3VscOOS1Gf_gfSYtxOmzxcoQNzJ2N0FA4qjQ2ue2vY8RkneHJVpYBdcnfv8mHKXuAtQrrnVJypZWiEZwzsYpNnleyGw95e73nAdyFY9m8HuxONqr5Xywty7_fM-0ekqP6jwrfxHqr-ROIWpzWNDryJEJkaPg'
 let LIBFY_REFRESHH_TOKEN = 'AQAVmK4y7krTMEKYVXB6Yk8rmnntu2UvJ6aqxHmMxXMuzBnUThHDFV9pZsissXfNCWtSAtEKzTKC7nItlCf3oOHm9v7Ag7Jdj-jHavM0ZUqXm6LkQ5Buvjz-6EY1UnGd7X8'
-
+const LIBFY_APIKEY_NEWSAPIORG = '7694899e2cb94ee297b98afda861260a'
+const gnewspass = 'libfyinfnet'
+const LIBFY_APIKEY_GNEWS = '2b86b17108ae7829bd53e9cb1badf173'
 const LIBFY_CLIENT_ID = '10fb72562a3f45969296b336205c3e4a'
 const LIBFY_CLIENT_SECRET = 'cf283f7f71cc4896827331b94d330714'
 
@@ -50,8 +52,8 @@ const baseUrlApi = {
   apimusicas: './assets/apiDev_musicas.json'
 }
 
-export {
+export {apiD_news,
   rotasmain, apiD_musicas,apiD_chat, LIBFY_REFRESHH_TOKEN,
   LIBFY_CLIENT_ID, LIBFY_FIRST_ACCESSTOKEN, LIBFY_CLIENT_SECRET,
-  post_GETTOKENURL
+  post_GETTOKENURL,LIBFY_APIKEY_NEWSAPIORG,LIBFY_APIKEY_GNEWS
 };

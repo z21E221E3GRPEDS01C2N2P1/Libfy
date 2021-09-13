@@ -4,7 +4,7 @@
       <section class="" v-if="existeArtistasNaPesquisa">
     <h1 class="titulofileira">Artists</h1>
         <v-row class="flex-child">
-          <v-col cols="12" :md="tamanhoSlideArtist">
+          <v-col cols="12" :md="'12'">
             <v-sheet class=" " dark>
               <v-slide-group show-arrows center-active>
                 <ArtistaCard
@@ -18,7 +18,7 @@
           </v-col>
             <v-expand-transition>
               
-          <v-col cols="12" md="5" v-if="chatThreadAberto">
+          <v-col cols="12" md="6" v-if="chatThreadAberto">
             <div>
               <ChatQuick
                 v-bind:artistaThreadSelecionado="nomeArtistaEmIdChatThread"
