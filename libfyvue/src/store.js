@@ -89,9 +89,9 @@ const store = new Vuex.Store({
 
   },
   // equivalente ao methods de um componente
-  actions: { 
-    async renovarAccessToken({commit}) {
-      debugger
+  actions: {
+    async renovarAccessToken({ commit }) {
+      
       const headers = {
         headers: {
           Accept: 'application/json',
@@ -109,7 +109,7 @@ const store = new Vuex.Store({
       return await axios.post(post_GETTOKENURL,
         qs.stringify(data),
         headers).then(databruto => {
-          
+
           console.log('meLasquei, mas peguei access token ')
 
           commit('SET_LIBFY_TOKENACESS', {
@@ -119,7 +119,7 @@ const store = new Vuex.Store({
         })
 
     },
-    async carregaDadosPaginaInicial({state}) {
+    async carregaDadosPaginaInicial({ state }) {
       return await axios.get("https://api.spotify.com/v1/browse/new-releases?country=BR&limit=10&offset=5",
         {
           headers: {
@@ -143,160 +143,103 @@ const store = new Vuex.Store({
       try {
         dispatch('carregaDadosPaginaInicial')
           .then(({ data }) => { commit('SET_MUSICAS_MAIS_TOCADAS', data) })
-          .catch(erro=>dispatch('renovarAccessToken'))
+          .catch(erro => dispatch('renovarAccessToken'))
       } catch (err) {
         dispatch('renovarAccessToken')
-      }finally{
+      } finally {
         commit('ALTERNA_RECARREGAR')
       }
-        
-         
-  },
-  async carregar3({ commit, state }) {
-    if (state.libfy_novo_refresh === '') {
-      commit('SET_LIBFY_TOKENACESS', {
-        access: LIBFY_FIRST_ACCESSTOKEN,
-        refresh: LIBFY_REFRESHH_TOKEN
-      })
-    }
-    commit('SET_MUSICAS_MAIS_TOCADAS', apiD_musicas.amostra_dados_spotify_famosos)
 
 
-    const headers = {
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      auth: {
-        username: LIBFY_CLIENT_ID,
-        password: LIBFY_CLIENT_SECRET
-      }
-    }
-    function newspiOK() {
-      let headers = {
-        headers: {
-          Authorization: `Bearer ${LIBFY_APIKEY_NEWSAPIORG}`,
-          Accept: 'application/json',
-          'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    later() {
+
+      function newspiOK() {
+        let headers = {
+          headers: {
+            Authorization: `Bearer ${LIBFY_APIKEY_NEWSAPIORG}`,
+            Accept: 'application/json',
+            'Content-Type': 'application/x-www-form-urlencoded',
+          }
         }
-      }
-      let urlnewsapi = `https://newsapi.org/v2/everything`
-      let queryparams = `?q=melanie+martinez&sortBy=popularity`
-      axios.get(`${urlnewsapi}${queryparams}`, headers)
-        .then(data => {
-          debugger
-          console.log(data)
-        }).catch(err => {
-          debugger
-        })
-    }
-    function gnewsApi() {
-
-      commit('SET_NEWS_RELACIONADA', apiD_news)
-
-      return;
-
-      let urlnewsapi = `https://gnews.io/api/v4/search`
-      let queryparams = `?q=melanie+martinez&token=${LIBFY_APIKEY_GNEWS}`
-
-      axios.get(`${urlnewsapi}${queryparams}`)
-        .then(data => {
-          debugger
-          console.log(data)
-        }).catch(err => {
-          debugger
-        })
-    } gnewsApi()
-    function vagalomeApi() {
-      //https://api.vagalume.com.br/search.php?apikey=660a4395f992ff67786584e238f501aa&art=Madonna&mus=Holiday
-      let urlnewsapi = `https://newsapi.org/v2/everything`
-      let queryparams = `?q=melanie+martinez&sortBy=popularity`
-      axios.get(`${urlnewsapi}${queryparams}`, headers)
-        .then(data => {
-          debugger
-          console.log(data)
-        }).catch(err => {
-          debugger
-        })
-    }
-
-    axios.get("https://api.spotify.com/v1/browse/new-releases?country=BR&limit=10&offset=5",
-      {
-        headers: {
-          Authorization: `Bearer ${state.libfy_token_acesso}`,
-
-          Accept: 'application/json',
-          'Content-Type': 'application/x-www-form-urlencoded',
-        }
-      }).then(({ data }) => {
-        commit('SET_MUSICAS_MAIS_TOCADAS', data)
-      }
-      ).catch((meLasquei) => {
-        let data = {
-          grant_type: 'client_credentials'
-        }
-        axios.post(
-          post_GETTOKENURL,
-          qs.stringify(data),
-          headers
-        ).then(databruto => {
-          console.log('meLasquei, mas peguei access token ' + meLasquei)
-
-          commit('SET_LIBFY_TOKENACESS', {
-            access: databruto.data.access_token,
-            refresh: LIBFY_REFRESHH_TOKEN
+        let urlnewsapi = `https://newsapi.org/v2/everything`
+        let queryparams = `?q=melanie+martinez&sortBy=popularity`
+        axios.get(`${urlnewsapi}${queryparams}`, headers)
+          .then(data => {
+            debugger
+            console.log(data)
+          }).catch(err => {
+            debugger
           })
-        }).then(_ => {
-          commit('ALTERNA_RECARREGAR')
-        })
-          .catch(lascouMuito => console.log('lascou mt' + lascouMuito))
-      })
-  },
-  async carregarUsuario({ commit }, user) {
-    commit("SET_LOGGED_IN", user !== null);
-    if (user) {
-      commit("SET_USER", {
-        displayName: user.displayName,
-        email: user.email
-      });
-    } else {
-      commit("SET_USER", null);
-    }
-  },
-  async pesquisaMusica({ commit, state }) {
-    let nome = state.pesquisaDoUsuario.replaceAll(' ', '-')
-
-
-    if (!nome) {
-      let ultimaPesquisaFeita = "po"
-      nome = ultimaPesquisaFeita
-    }
-
-    let dadosPreLoad = apiD_musicas.amostra_dados_spotify_tracks_artists
-
-    commit('SET_PESQUISA_RESULTADO', dadosPreLoad)
-
-
-    const tempQuery = `?q=${nome}&type=track%2Cartist&limit=10&offset=0&include_external=audio`
-
-    axios.get(`https://api.spotify.com/v1/search${tempQuery}`,
-      {
-        headers: {
-          Authorization: `Bearer ${state.libfy_token_acesso}`,
-          Accept: 'application/json',
-          'Content-Type': 'application/x-www-form-urlencoded',
-        }
       }
-    ).then(databrut => {
+      function gnewsApi() {
 
-      commit('SET_PESQUISA_RESULTADO', databrut.data)
-    }).catch(err => {
-      console.log('err' + err)
-    })
+        commit('SET_NEWS_RELACIONADA', apiD_news)
+
+        return;
+
+        let urlnewsapi = `https://gnews.io/api/v4/search`
+        let queryparams = `?q=melanie+martinez&token=${LIBFY_APIKEY_GNEWS}`
+
+        axios.get(`${urlnewsapi}${queryparams}`)
+          .then(data => {
+            debugger
+            console.log(data)
+          }).catch(err => {
+            debugger
+          })
+      } gnewsApi()
+    },
+    async carregarUsuario({ commit }, user) {
+      commit("SET_LOGGED_IN", user !== null);
+      if (user) {
+        commit("SET_USER", {
+          displayName: user.displayName,
+          email: user.email
+        });
+      } else {
+        commit("SET_USER", null);
+      }
+    },
+    async getDadosPesquisa({ commit,state }, tempQuery) {
+      return await axios.get(`https://api.spotify.com/v1/search${tempQuery}`,
+        {
+          headers: {
+            Authorization: `Bearer ${state.libfy_token_acesso}`,
+            Accept: 'application/json',
+            'Content-Type': 'application/x-www-form-urlencoded',
+          }
+        }
+      ).then(databrut => {
+        commit('SET_PESQUISA_RESULTADO', databrut.data)
+      })
+    },
+    async pesquisaMusica({ commit, state, dispatch }) {
+      let nome = state.pesquisaDoUsuario.replaceAll(' ', '-')
+
+
+      if (!nome) {
+        let ultimaPesquisaFeita = "po"
+        nome = ultimaPesquisaFeita
+      }
+
+      let dadosPreLoad = apiD_musicas.amostra_dados_spotify_tracks_artists
+
+      commit('SET_PESQUISA_RESULTADO', dadosPreLoad)
+
+
+      const tempQuery = `?q=${nome}&type=track%2Cartist&limit=10&offset=0&include_external=audio`
+
+      dispatch('getDadosPesquisa', tempQuery)
+      .catch(DeuRuim => {
+        console.log('DeuRuim' + DeuRuim)
+        dispatch('renovarAccessToken').then(
+          _ => dispatch('getDadosPesquisa', tempQuery))
+      })
+    },
+
+
   },
-
-
-},
   plugins: [meuDataStore]
 })
 
