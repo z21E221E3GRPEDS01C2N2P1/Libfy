@@ -15,7 +15,8 @@
                 />
               </v-slide-group>
             </v-sheet>
-            
+            <NoticiasCarrossel 
+            v-bind:nomeArtistaSelecionado="artistaSelecionado.name"/>
           </v-col>
             <v-expand-transition>
               
@@ -51,9 +52,10 @@ import { mapGetters, mapState } from "vuex";
 import ArtistaCard from "./ArtistaCard.vue";
 import ChatQuick from "./ChatQuick.vue";
 import TrackCard from "./TrackCard.vue";
+import NoticiasCarrossel from "./NoticiasCarrossel.vue"
 
 export default {
-  components: { MusicaCard, ArtistaCard, ChatQuick, TrackCard },
+  components: { MusicaCard, ArtistaCard, ChatQuick, TrackCard,NoticiasCarrossel },
   name: "ResultadoPesquisa",
   computed: {
     ...mapState(["qualquerCois"]),
@@ -68,11 +70,12 @@ export default {
   },
   data: () => {
     return {
-      artistaSelecionado: { id: 99 },
+      artistaSelecionado: { id: 99, name:"the midnight" },
       tamanhoSlideArtist: 12,
       dataraw: [],
       chatThreadAberto: false,
-      nomeArtistaEmIdChatThread: "themidnight"
+      nomeArtistaEmIdChatThread: "themidnight",
+      
     };
   },
   methods: {
@@ -91,6 +94,7 @@ export default {
       if (this.artistaSelecionado.id !== artis.id) {
         this.tamanhoSlideArtist = 6;
         this.artistaSelecionado = artis;
+        
         this.nomeArtistaEmIdChatThread = this.TransformaNomeEmIdChatThread(
           artis.name
         );

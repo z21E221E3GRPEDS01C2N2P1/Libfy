@@ -50,6 +50,9 @@ const store = new Vuex.Store({
     },
     getPesquisaResult(state) {
       return state.resultadoPesquisa
+    },
+    getNoticiasRelacionadasArtista(state){
+      return state.newsrelacionada
     }
 
   },
@@ -83,7 +86,7 @@ const store = new Vuex.Store({
       state.pesquisaDoUsuario = data
     },
     SET_NEWS_RELACIONADA(state, data) {
-
+      
       state.newsrelacionada = data
     }
 
@@ -152,44 +155,7 @@ const store = new Vuex.Store({
 
 
     },
-    later() {
-
-      function newspiOK() {
-        let headers = {
-          headers: {
-            Authorization: `Bearer ${LIBFY_APIKEY_NEWSAPIORG}`,
-            Accept: 'application/json',
-            'Content-Type': 'application/x-www-form-urlencoded',
-          }
-        }
-        let urlnewsapi = `https://newsapi.org/v2/everything`
-        let queryparams = `?q=melanie+martinez&sortBy=popularity`
-        axios.get(`${urlnewsapi}${queryparams}`, headers)
-          .then(data => {
-            debugger
-            console.log(data)
-          }).catch(err => {
-            debugger
-          })
-      }
-      function gnewsApi() {
-
-        commit('SET_NEWS_RELACIONADA', apiD_news)
-
-        return;
-
-        let urlnewsapi = `https://gnews.io/api/v4/search`
-        let queryparams = `?q=melanie+martinez&token=${LIBFY_APIKEY_GNEWS}`
-
-        axios.get(`${urlnewsapi}${queryparams}`)
-          .then(data => {
-            debugger
-            console.log(data)
-          }).catch(err => {
-            debugger
-          })
-      } gnewsApi()
-    },
+    
     async carregarUsuario({ commit }, user) {
       commit("SET_LOGGED_IN", user !== null);
       if (user) {
@@ -237,8 +203,46 @@ const store = new Vuex.Store({
           _ => dispatch('getDadosPesquisa', tempQuery))
       })
     },
-    async pesquisaNoticiaArtista(){
+    async pesquisaNoticiaArtista({commit},payload){
       // to do
+       
+        function newspiOK() {
+          let headers = {
+            headers: {
+              Authorization: `Bearer ${LIBFY_APIKEY_NEWSAPIORG}`,
+              Accept: 'application/json',
+              'Content-Type': 'application/x-www-form-urlencoded',
+            }
+          }
+          let urlnewsapi = `https://newsapi.org/v2/everything`
+          let queryparams = `?q=melanie+martinez&sortBy=popularity`
+          axios.get(`${urlnewsapi}${queryparams}`, headers)
+            .then(data => {
+              debugger
+              console.log(data)
+            }).catch(err => {
+              debugger
+            })
+        }
+        function gnewsApi() {
+          //dev mode
+          commit('SET_NEWS_RELACIONADA', apiD_news)
+  
+          return;
+  
+          let urlnewsapi = `https://gnews.io/api/v4/search`
+          let queryparams = `?q=melanie+martinez&token=${LIBFY_APIKEY_GNEWS}`
+  
+          axios.get(`${urlnewsapi}${queryparams}`)
+            .then(data => {
+              debugger
+              console.log(data)
+            }).catch(err => {
+              debugger
+            })
+        } gnewsApi()
+
+      
     }
 
 
