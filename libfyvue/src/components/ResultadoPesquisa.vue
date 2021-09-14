@@ -127,8 +127,9 @@ export default {
       if (this.artistaSelecionado.id !== artis.id) {
         //reset
         this.chatThreadAberto = false;
+        setTimeout(()=>{
           this.criaChatArtistaThread(artis)
-        
+        },700)
 
       } else {
         this.tamanhoSlideArtist = 12;
