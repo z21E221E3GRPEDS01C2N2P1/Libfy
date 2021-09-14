@@ -353,12 +353,14 @@ export default {
       this.enviaMensagensChat(message);
     },
     focaNoInput() {
-      setTimeout(() => {
-        let msgInp = document.querySelector(
-          '[placeholder="send your message"]'
-        );
-        msgInp.focus();
-      }, 1300);
+      let cssAnimation = {
+          duration: 3000,
+          offset: 0,
+          easing: easeInOutCubic,
+        }
+        setTimeout(()=>{
+          this.$vuetify.goTo('#scrolaAqui',cssAnimation)
+        },700)
     }
   },
   mounted() {
