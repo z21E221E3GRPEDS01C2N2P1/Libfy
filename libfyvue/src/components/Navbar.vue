@@ -12,7 +12,7 @@
       'purple white--text'  : '' ">
         <span class="fa fa-search"></span> Pesquisa
       </router-link>
-      <router-link to="/" :class="
+      <router-link to="/noticias" :class="
       atualRota === 'Noticias' ?
       'purple white--text'  : '' ">
         <span class="fa fa-news"></span> Noticias

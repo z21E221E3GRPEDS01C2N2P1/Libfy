@@ -39,6 +39,11 @@ const rotasmain = [
     component: () => import('./views/PerfilUsuario.vue')
   },
   {
+    path: '/noticias',
+    name: 'Noticias',
+    component: () => import('./views/Noticias.vue')
+  },
+  {
     path: '/about',
     name: 'About',
     // route level code-splitting

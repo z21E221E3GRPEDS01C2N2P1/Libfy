@@ -30,7 +30,8 @@ const store = new Vuex.Store({
       libfy_token_acesso: 'nd',
       libfy_novo_refresh: '',
       deve_recarregar_api: false,
-      newsrelacionada: []
+      newsrelacionada: [],
+      news_pginicial:[]
     }
 
   },
@@ -102,6 +103,9 @@ const store = new Vuex.Store({
     SET_NEWS_RELACIONADA(state, data) {
       
       state.newsrelacionada = data
+    },
+    SET_NEWS_PAGINAINICIAL(state,data){
+     state.news_pginicial = data 
     }
 
   },
@@ -236,13 +240,27 @@ const store = new Vuex.Store({
           commit('SET_NEWS_RELACIONADA', apiD_news)
         })
     },
+    async carregaNoticiaPaginaInicial({commit}) {
+      
+      let urlnewsapi = `https://www.vagalume.com.br/news/index.js`
+      
+      
+      return await axios.get(`${urlnewsapi}`)
+        .then(json => {
+          debugger
+          commit('SET_NEWS_PAGINAINICIAL', json.data)
+        }).catch(err => {    
+          debugger      
+          commit('SET_NEWS_RELACIONADA', apiD_news)
+        })
+    },
     async pesquisaNoticiaArtista({commit,dispatch},payload){
       
         function gnewsApi() {
           
           commit('SET_NEWS_RELACIONADA', apiD_news)
           return
-          //dev mode
+          //dev mode: deletar return acima para entrar em produção
           
           let urlnewsapi = `https://gnews.io/api/v4/search`
           let queryparams = `?q=${payload}&token=EER${LIBFY_APIKEY_GNEWS}`
