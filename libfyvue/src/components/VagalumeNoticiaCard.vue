@@ -25,8 +25,8 @@
 // @ is an alias to /src
 
 export default {
-  name: "NoticiaCard",
-  props: ["ArtistaSelecionado", "vfornoticia"],
+  name: "VagalumeNoticiaCard",
+  props: ["vfornoticia"],
   computed: {
     ibagem() {
       return this.vfornoticia.image || this.vfornoticia.urlToImage;

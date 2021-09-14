@@ -2,13 +2,15 @@
   <div class="news">
     <Navbar></Navbar> 
 
-      <v-main>
+      <v-main class="main mt-10">
       <v-container>
-        <v-row>
+        <v-row cols="12"> 
           <v-col
             v-for="n in 24"
             :key="n"
-            cols="4"
+            
+            sm="12"
+            :md="n%2===0? 4 : 8"
           >
             <v-card height="200"></v-card>
           </v-col>
