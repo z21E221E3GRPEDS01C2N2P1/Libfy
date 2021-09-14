@@ -10,9 +10,9 @@
             :key="n"
             
             sm="12"
-            :md="n%2===0? 4 : 8"
+            :md="(n+1)%3!==0? 3 : 6"
           >
-            <v-card height="200"></v-card>
+            <v-card height="200">{{n}}</v-card>
           </v-col>
         </v-row>
       </v-container>
