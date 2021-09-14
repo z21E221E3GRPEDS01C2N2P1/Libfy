@@ -33,7 +33,7 @@
             </v-expand-transition>
           </v-col>
           <v-expand-transition>
-            <v-col cols="12" md="4" v-if="chatThreadAberto">
+            <v-col cols="12" md="3" v-if="chatThreadAberto">
               <div>
                 <ChatQuick
                   v-bind:artistaThreadSelecionado="nomeArtistaEmIdChatThread"
@@ -110,7 +110,7 @@ export default {
     criaChatArtistaThread() {},
     abrirChatThread(artis) {
       if (this.artistaSelecionado.id !== artis.id) {
-        this.tamanhoSlideArtist = 8;
+        this.tamanhoSlideArtist = 9;
         this.artistaSelecionado = artis;
 
         this.nomeArtistaEmIdChatThread = this.TransformaNomeEmIdChatThread(

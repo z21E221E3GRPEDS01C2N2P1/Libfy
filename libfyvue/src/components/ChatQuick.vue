@@ -24,22 +24,23 @@
       @onType="onType"
       @onClose="onClose"
       ref="chatArtisti"
-      
     >
       <template v-slot:header>
-        <div class="pa-0 ma-0 flex-row"> 
-        <p 
-          class="text-capitalize  white--text text-lg-h6"
-        >{{'sobre ' + artistaThreadSelecionado}}</p>
-        
-          <p
-            v-for="(participant, index) in participants"
-            :key="index"
-            class="text-caption"
-          >
-            {{ participant.name }}
-          </p>
-        
+        <div class="pa-4">
+          <span class="text-capitalize  white--text text-lg-h6">
+            {{ "sobre " + artistaThreadSelecionado }}
+          </span>
+
+          <span class="text-caption white--text">: Participantes :</span>
+          <div class=" cabecalhodentro">
+            <span
+              v-for="partici in participants"
+              v-bind:key="partici.id"
+              class="text-caption"
+            >
+              {{ partici.name }}, &nbsp;
+            </span>
+          </div>
         </div>
       </template>
     </Chat>
@@ -59,6 +60,13 @@ export default {
     ...mapGetters(["getUser"]),
     usuarioatual() {
       return this.getUser;
+    },
+    nomeParticipantes() {
+      let participantsNome = [];
+      for (const participant of this.participants) {
+        participantsNome.push(participant.name);
+      }
+      return participantsNome;
     }
   },
   data() {
@@ -344,18 +352,19 @@ export default {
     onMessageSubmit: function(message) {
       this.enviaMensagensChat(message);
     },
-    focaNoInput(){
-      setTimeout(()=>{
-      let msgInp = document.querySelector('[placeholder="send your message"]')
-      msgInp.focus()
-
-    },1300)
+    focaNoInput() {
+      setTimeout(() => {
+        let msgInp = document.querySelector(
+          '[placeholder="send your message"]'
+        );
+        msgInp.focus();
+      }, 1300);
     }
   },
   mounted() {
     this.carregaParticipantesEmensagens();
     this.addEventListenerFirebase();
-    this.focaNoInput()
+    this.focaNoInput();
   },
   unmounted() {
     this.unsubscribeMsgNovas();
