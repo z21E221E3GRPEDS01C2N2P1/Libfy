@@ -396,8 +396,7 @@
     background: #eee;
 }
 .quick-chat-container {
-
-    height:87vh;
+    height:43vh;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -414,10 +413,11 @@
   ::-webkit-scrollbar-track {
     background: #222;
   }
-  @media (max-width: 850px)
+  @media (min-width: 920px)
 {
   .quick-chat-container { 
-    height:43vh;
+    
+    height:87vh;
      
   }
 } 

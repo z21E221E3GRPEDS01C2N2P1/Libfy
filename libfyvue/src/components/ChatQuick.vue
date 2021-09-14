@@ -14,7 +14,7 @@
       :submit-image-icon-size="submitImageIconSize"
       :async-mode="asyncMode"
       :scroll-bottom="scrollBottom"
-      :display-header="true"
+      :display-header="$vuetify.breakpoint.width>920"
       :send-images="false"
       :profile-picture-config="profilePictureConfig"
       :timestamp-config="timestampConfig"

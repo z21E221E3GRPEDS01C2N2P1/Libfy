@@ -12,6 +12,11 @@
       'purple white--text'  : '' ">
         <span class="fa fa-search"></span> Pesquisa
       </router-link>
+      <router-link to="/" :class="
+      atualRota === 'Noticias' ?
+      'purple white--text'  : '' ">
+        <span class="fa fa-news"></span> Noticias
+      </router-link>
 
       <section v-if="user.loggedIn">
         <div v-if="false">

@@ -23,10 +23,10 @@
                     v-bind:nomeArtistaSelecionado="artistaSelecionado.name"
                   />
                 </v-col>
-                <v-col cols="12" md="6" class="carroextra">
+                <v-col cols="12" md="6" v-if="isDesktop">
                   <NoticiasCarrossel
                     v-bind:nomeArtistaSelecionado="artistaSelecionado.name"
-                    v-bind:aoContrario="true"
+                    v-bind:aoContrario="true"  
                   />
                 </v-col>
               </v-row>
@@ -85,7 +85,12 @@ export default {
     },
     existeArtistasNaPesquisa() {
       return this.gPesquisaResult.artists.items.length > 1;
+    },
+    isDesktop(){
+      return this.$vuetify.breakpoint.width > 930
     }
+    
+
   },
   data: () => {
     return {
@@ -107,9 +112,8 @@ export default {
         .toLowerCase();
       return label;
     },
-    criaChatArtistaThread() {},
-    abrirChatThread(artis) {
-      if (this.artistaSelecionado.id !== artis.id) {
+    criaChatArtistaThread(artis) {
+      
         this.tamanhoSlideArtist = 9;
         this.artistaSelecionado = artis;
 
@@ -118,6 +122,14 @@ export default {
         );
 
         this.chatThreadAberto = true;
+    },
+    abrirChatThread(artis) {
+      if (this.artistaSelecionado.id !== artis.id) {
+        //reset
+        this.chatThreadAberto = false;
+          this.criaChatArtistaThread(artis)
+        
+
       } else {
         this.tamanhoSlideArtist = 12;
         this.artistaSelecionado = { id: 99 };
@@ -134,11 +146,5 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 @import "css/ListaMusicas.scss";
- @media (max-width: 950px)
-{
-  .carroextra{
-    display: none;
-  }
 
-}
 </style>
