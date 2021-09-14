@@ -53,6 +53,14 @@ const store = new Vuex.Store({
     },
     getNoticiasRelacionadasArtista(state){
       return state.newsrelacionada
+    },
+    getNoticiasInvertidaRelacionadasArtista(state){
+      let artigosReverse = [...state.newsrelacionada.articles]
+      let newsInfo = {...state.newsrelacionada}
+      
+      newsInfo.articles = artigosReverse.reverse()
+      return newsInfo;
+      
     }
 
   },

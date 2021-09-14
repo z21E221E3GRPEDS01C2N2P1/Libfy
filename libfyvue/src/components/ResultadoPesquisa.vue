@@ -2,7 +2,7 @@
   <main class="main">
     <div class="musicas ">
       <section class="" v-if="existeArtistasNaPesquisa">
-    <h1 class="titulofileira">Artists</h1>
+        <h1 class="titulofileira">Artists</h1>
         <v-row class="flex-child">
           <v-col cols="12" :md="tamanhoSlideArtist">
             <v-sheet class=" " dark>
@@ -15,19 +15,32 @@
                 />
               </v-slide-group>
             </v-sheet>
-            <NoticiasCarrossel 
-            v-bind:nomeArtistaSelecionado="artistaSelecionado.name"/>
-          </v-col>
-            <v-expand-transition>
+            <v-col cols="12" md="12" v-if="chatThreadAberto">
+              <v-row cols="12" md="12">
+                <v-col cols="12" md="6">
+                  <NoticiasCarrossel
+                    v-bind:nomeArtistaSelecionado="artistaSelecionado.name"
+                  />
+                </v-col>
+                <v-col cols="12" md="6">
+                  <NoticiasCarrossel
+                    v-bind:nomeArtistaSelecionado="artistaSelecionado.name"
+                    v-bind:aoContrario="true"
+                  />
+                </v-col>
+              </v-row>
               
-          <v-col cols="12" md="6" v-if="chatThreadAberto">
-            <div>
-              <ChatQuick
-                v-bind:artistaThreadSelecionado="nomeArtistaEmIdChatThread"
-              ></ChatQuick>
-            </div>
+            </v-col>
           </v-col>
-            </v-expand-transition>
+          <v-expand-transition>
+            <v-col cols="12" md="4" v-if="chatThreadAberto">
+              <div>
+                <ChatQuick
+                  v-bind:artistaThreadSelecionado="nomeArtistaEmIdChatThread"
+                ></ChatQuick>
+              </div>
+            </v-col>
+          </v-expand-transition>
         </v-row>
       </section>
       <h1 class="titulofileira">Songs</h1>
@@ -52,10 +65,16 @@ import { mapGetters, mapState } from "vuex";
 import ArtistaCard from "./ArtistaCard.vue";
 import ChatQuick from "./ChatQuick.vue";
 import TrackCard from "./TrackCard.vue";
-import NoticiasCarrossel from "./NoticiasCarrossel.vue"
+import NoticiasCarrossel from "./NoticiasCarrossel.vue";
 
 export default {
-  components: { MusicaCard, ArtistaCard, ChatQuick, TrackCard,NoticiasCarrossel },
+  components: {
+    MusicaCard,
+    ArtistaCard,
+    ChatQuick,
+    TrackCard,
+    NoticiasCarrossel
+  },
   name: "ResultadoPesquisa",
   computed: {
     ...mapState(["qualquerCois"]),
@@ -65,17 +84,16 @@ export default {
       return this.getPesquisaResult;
     },
     existeArtistasNaPesquisa() {
-       return this.gPesquisaResult.artists.items.length > 1
+      return this.gPesquisaResult.artists.items.length > 1;
     }
   },
   data: () => {
     return {
-      artistaSelecionado: { id: 99, name:"the midnight" },
+      artistaSelecionado: { id: 99, name: "the midnight" },
       tamanhoSlideArtist: 12,
       dataraw: [],
       chatThreadAberto: false,
-      nomeArtistaEmIdChatThread: "themidnight",
-      
+      nomeArtistaEmIdChatThread: "themidnight"
     };
   },
   methods: {
@@ -92,9 +110,9 @@ export default {
     criaChatArtistaThread() {},
     abrirChatThread(artis) {
       if (this.artistaSelecionado.id !== artis.id) {
-        this.tamanhoSlideArtist = 6;
+        this.tamanhoSlideArtist = 8;
         this.artistaSelecionado = artis;
-        
+
         this.nomeArtistaEmIdChatThread = this.TransformaNomeEmIdChatThread(
           artis.name
         );
