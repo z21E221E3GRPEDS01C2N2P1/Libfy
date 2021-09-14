@@ -23,6 +23,7 @@
       @onMessageSubmit="onMessageSubmit"
       @onType="onType"
       @onClose="onClose"
+      ref="chatArtisti"
       
     >
       <template v-slot:header>
@@ -342,11 +343,19 @@ export default {
     unsubscribeMsgNovas: () => {},
     onMessageSubmit: function(message) {
       this.enviaMensagensChat(message);
+    },
+    focaNoInput(){
+      setTimeout(()=>{
+      let msgInp = document.querySelector('[placeholder="send your message"]')
+      msgInp.focus()
+
+    },1300)
     }
   },
   mounted() {
     this.carregaParticipantesEmensagens();
     this.addEventListenerFirebase();
+    this.focaNoInput()
   },
   unmounted() {
     this.unsubscribeMsgNovas();

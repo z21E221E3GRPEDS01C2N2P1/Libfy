@@ -15,22 +15,22 @@
                 />
               </v-slide-group>
             </v-sheet>
-            <v-col cols="12" md="12" v-if="chatThreadAberto">
-              <v-row cols="12" md="12">
+
+            <v-expand-transition>
+              <v-row cols="12" md="12" v-if="chatThreadAberto">
                 <v-col cols="12" md="6">
                   <NoticiasCarrossel
                     v-bind:nomeArtistaSelecionado="artistaSelecionado.name"
                   />
                 </v-col>
-                <v-col cols="12" md="6">
+                <v-col cols="12" md="6" class="carroextra">
                   <NoticiasCarrossel
                     v-bind:nomeArtistaSelecionado="artistaSelecionado.name"
                     v-bind:aoContrario="true"
                   />
                 </v-col>
               </v-row>
-              
-            </v-col>
+            </v-expand-transition>
           </v-col>
           <v-expand-transition>
             <v-col cols="12" md="4" v-if="chatThreadAberto">
@@ -134,4 +134,11 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 @import "css/ListaMusicas.scss";
+ @media (max-width: 950px)
+{
+  .carroextra{
+    display: none;
+  }
+
+}
 </style>

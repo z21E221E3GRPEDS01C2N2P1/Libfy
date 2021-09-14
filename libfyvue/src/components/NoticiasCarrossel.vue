@@ -1,7 +1,7 @@
 <template>
   <v-carousel
     cycle
-    height="370" 
+    height="370" hide-delimiters
       delimiter-icon="mdi-minus"
     hide-delimiter-background
     show-arrows
@@ -27,8 +27,7 @@ export default {
   computed: {
     ...mapGetters(["getNoticiasRelacionadasArtista",
     "getNoticiasInvertidaRelacionadasArtista"]),
-    gNoticias() {
-      debugger
+    gNoticias() { 
       if(this.aoContrario){
         return this.getNoticiasInvertidaRelacionadasArtista;
       }
