@@ -7,12 +7,8 @@
         <v-row cols="12"> 
           <v-col
             v-for="n in 24"
-            :key="n"
-            
-            sm="12"
-            :md="(n+1)%3!==0? 3 : 6"
-          >
-            <v-card height="200">{{n}}</v-card>
+            :key="n" sm="12" :md="(n+1)%3!==0? 6 : 2" >
+            <v-card height="300">{{n+1}}</v-card>
           </v-col>
         </v-row>
       </v-container>
