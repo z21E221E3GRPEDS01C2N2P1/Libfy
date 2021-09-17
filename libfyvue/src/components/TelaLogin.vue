@@ -1,6 +1,6 @@
 <template>
   <main class="loginalternativ">
-    <v-container class="main pa-8 ma-auto lesswidth">
+    <v-container class="main pa-8 ma-auto lesswidth container d-flex justify-content-center">
       <section>
        <div class="ajusteTelaLoginCadastro">
         <div class="login">
@@ -9,7 +9,7 @@
               lazy-src="@/assets/logo.png"
               contain
               class="ml-0 ma-auto"
-              max-width="50%"
+              max-width="20%"
               src="@/assets/logo.png"
             ></v-img>
           </v-container>

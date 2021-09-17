@@ -21,7 +21,6 @@
     display: flex; 
     flex-wrap: wrap;
     flex-direction: column;
-
 }
 .btn{
     color:black;
@@ -43,8 +42,9 @@ a {
     margin-top: 7vh;
     display: flex;
     flex-direction: column;
-    max-width: 500px;
     justify-content: center;
+    position: relative;
+    transform: translateX(+50%);
 }
 
 .ajusteTelaLoginCadastro{
