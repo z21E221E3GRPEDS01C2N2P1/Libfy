@@ -6,9 +6,10 @@
       <v-container>
         <v-row cols="12"> 
           <v-col
-            v-for="n in 24"
-            :key="n" sm="12" :md="(n+1)%3!==0? 3 : 6" >
-            <v-card height="300">{{n}}</v-card>
+            v-for="(noticia,n) in getNoticiasPGinicial.news"
+            :key="n" sm="12" :md="(n)%2!==0? 3 : 4" >
+            
+            <VagalumeNoticiaCard :vfornoticia="noticia"/>
           </v-col>
         </v-row>
       </v-container>
@@ -29,7 +30,7 @@ export default {
     VagalumeNoticiaCard
   },
   computed:{
-    ...mapGetters(['getNoticiaPGinicial'])
+    ...mapGetters(['getNoticiasPGinicial'])
   },
   mounted(){
       this.$store.dispatch('carregaNoticiaPaginaInicial')
