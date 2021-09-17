@@ -9,17 +9,17 @@
               lazy-src="@/assets/logo.png"
               contain
               class="ml-0 ma-auto"
-              max-width="20%"
+              max-width="40%"
               src="@/assets/logo.png"
             ></v-img>
           </v-container>
 
           <div class="loginalternativ">
-            <v-btn rounded to="/cadastrar" class="btn" block
-              ><i class="fab fa-facebook-f ma-sm-8 icone"></i>
-              <div v-if="cadastrando">Cadastre-se com facebook</div>
-              <div v-else>Continue with facebook</div>
-            </v-btn>
+<!--            <v-btn rounded to="/cadastrar" class="btn" block-->
+<!--              ><i class="fab fa-facebook-f ma-sm-8 icone"></i>-->
+<!--              <div v-if="cadastrando">Cadastre-se com facebook</div>-->
+<!--              <div v-else>Continue with facebook</div>-->
+<!--            </v-btn>-->
             <v-btn rounded to="/cadastrar" class="btn" block
               ><i class="fab fa-google ma-sm-8 icone"></i>
               <div v-if="cadastrando">Cadastre-se com Google</div>
