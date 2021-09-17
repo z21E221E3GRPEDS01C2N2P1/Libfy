@@ -68,6 +68,9 @@ const store = new Vuex.Store({
       newsInfo.articles = artigosReverse.reverse()
       return newsInfo;
       
+    },
+    getNoticiaPGinicial(state){
+      return state.news_pginicial
     }
 
   },
@@ -247,10 +250,10 @@ const store = new Vuex.Store({
       
       return await axios.get(`${urlnewsapi}`)
         .then(json => {
-          debugger
+          
           commit('SET_NEWS_PAGINAINICIAL', json.data)
         }).catch(err => {    
-          debugger      
+                
           commit('SET_NEWS_RELACIONADA', apiD_news)
         })
     },
@@ -259,12 +262,10 @@ const store = new Vuex.Store({
         function gnewsApi() {
           
           commit('SET_NEWS_RELACIONADA', apiD_news)
-          return
-          //dev mode: deletar return acima para entrar em produção
-          
+         
           let urlnewsapi = `https://gnews.io/api/v4/search`
           let queryparams = `?q=${payload}&token=EER${LIBFY_APIKEY_GNEWS}`
-  
+          
           axios.get(`${urlnewsapi}${queryparams}`)
           .then(json => {             
               commit('SET_NEWS_RELACIONADA', json.data)              
