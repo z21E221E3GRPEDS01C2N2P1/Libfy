@@ -1,26 +1,27 @@
 <template>
   <main class="loginalternativ">
-    <v-container class="main pa-16 ma-auto lesswidth">
+    <v-container class="main pa-8 ma-auto lesswidth">
       <section>
+       <div class="ajusteTelaLoginCadastro">
         <div class="login">
-          <v-container>
+          <v-container class="ma-auto">
             <v-img
               lazy-src="@/assets/logo.png"
               contain
-              class="ml-15"
-              max-width="40%"
+              class="ml-0 ma-auto"
+              max-width="50%"
               src="@/assets/logo.png"
             ></v-img>
           </v-container>
 
           <div class="loginalternativ">
             <v-btn rounded to="/cadastrar" class="btn" block
-              ><i class="fab fa-facebook-f ma-2 icone"></i>
+              ><i class="fab fa-facebook-f ma-sm-8 icone"></i>
               <div v-if="cadastrando">Cadastre-se com facebook</div>
               <div v-else>Continue with facebook</div>
             </v-btn>
             <v-btn rounded to="/cadastrar" class="btn" block
-              ><i class="fab fa-google ma-2 icone"></i>
+              ><i class="fab fa-google ma-sm-8 icone"></i>
               <div v-if="cadastrando">Cadastre-se com Google</div>
               <div v-else>
                 Continue With Google
@@ -107,7 +108,8 @@
             </v-container>
           </main>
         </div>
-        <v-snackbar
+       </div>
+         <v-snackbar
           color="warning"
           v-model="msgErro.deveAparecer"
           transition="scale-transition"

@@ -43,7 +43,17 @@ a {
     margin-top: 7vh;
     display: flex;
     flex-direction: column;
-} 
+    max-width: 500px;
+    justify-content: center;
+}
+
+.ajusteTelaLoginCadastro{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .login input{
     background: white;
     border-radius: 0px;
