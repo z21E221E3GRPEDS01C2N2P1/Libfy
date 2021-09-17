@@ -1,17 +1,17 @@
 <template>
   <main class="loginalternativ">
-    <v-container class="main pa-8 ma-auto lesswidth container d-flex justify-content-center">
+    <v-container class="main pa-8 ma-auto lesswidth">
       <section>
-       <div class="ajusteTelaLoginCadastro">
+       <div class="container">
         <div class="login">
           <v-container class="ma-auto">
-            <v-img
-              lazy-src="@/assets/logo.png"
-              contain
-              class="ml-0 ma-auto"
-              max-width="40%"
-              src="@/assets/logo.png"
-            ></v-img>
+<!--            <v-img-->
+<!--              lazy-src="@/assets/logo.png"-->
+<!--              contain-->
+<!--              class="ml-0 ma-auto"-->
+<!--              max-width="40%"-->
+<!--              src="@/assets/logo.png"-->
+<!--            ></v-img>-->
           </v-container>
 
           <div class="loginalternativ">
@@ -34,7 +34,7 @@
               <v-col cols="12" sm="5">
                 <v-divider inset color="white"></v-divider>
               </v-col>
-              <v-col cols="12" sm="2"> or </v-col>
+              <v-col cols="12" sm="2" class="text-sm-body-1"> or </v-col>
               <v-col cols="12" sm="5">
                 <v-divider inset color="white"></v-divider>
               </v-col>
@@ -77,7 +77,7 @@
               </div>
               <div v-else>
                 <section class="label">
-                  <a href="/">Esqueceu sua senha?</a>
+                  <a class="text-sm-body-1" href="/">Esqueceu sua senha?</a>
                   <div>
                     <input
                       type="checkbox"
@@ -85,7 +85,7 @@
                       checked
                       class="check"
                     />
-                    <label for="lembrarLogin">Lembrar de mim</label>
+                    <label class="text-sm-body-1" for="lembrarLogin">Lembrar de mim</label>
                   </div>
                 </section>
                 <v-btn
