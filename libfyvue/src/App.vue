@@ -8,6 +8,7 @@
 </template>
 <script>
 
+
 import {busmitter} from './plugins/mitt'
 
 export default {
@@ -25,7 +26,7 @@ export default {
   
 }
 #app{
-  background-color: rgb(61, 49, 49);
+  background-color:var(--cor-fundo);
 }
 .topofixo{
   transition: all 5s,ease-in;

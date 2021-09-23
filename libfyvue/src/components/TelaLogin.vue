@@ -4,29 +4,28 @@
       <section>
        <div class="container">
         <div class="login">
-          <v-container class="ma-auto">
-<!--            <v-img-->
-<!--              lazy-src="@/assets/logo.png"-->
-<!--              contain-->
-<!--              class="ml-0 ma-auto"-->
-<!--              max-width="40%"-->
-<!--              src="@/assets/logo.png"-->
-<!--            ></v-img>-->
+          <v-container class="ma-auto w-25">
+            <v-img
+              lazy-src="@/assets/logo.png"
+              contain
+              class="ml-0 ma-auto"
+              src="@/assets/logo.png"
+            ></v-img>
           </v-container>
 
           <div class="loginalternativ">
-<!--            <v-btn rounded to="/cadastrar" class="btn" block-->
-<!--              ><i class="fab fa-facebook-f ma-sm-8 icone"></i>-->
-<!--              <div v-if="cadastrando">Cadastre-se com facebook</div>-->
-<!--              <div v-else>Continue with facebook</div>-->
-<!--            </v-btn>-->
-            <v-btn rounded to="/cadastrar" class="btn" block
-              ><i class="fab fa-google ma-sm-8 icone"></i>
-              <div v-if="cadastrando">Cadastre-se com Google</div>
-              <div v-else>
+ 
+            
+
+              <v-btn v-if="cadastrando" rounded to="/cadastrar" class="btn">
+              <i class="fab fa-google ma-sm-8 icone"></i>
+                Cadastre-se com Google
+              </v-btn>             
+              <v-btn v-else rounded to="/cadastrar" class="btn">
+              <i class="fab fa-google ma-sm-8 icone"></i>
                 Continue With Google
-              </div>
-            </v-btn>
+              </v-btn>
+            
           </div>
 
           <div class="linhacontainer mt-10">

@@ -1,10 +1,11 @@
 .main,main,html,#app{
     /* reset sidebar */
     background:var(--cor-fundo);
+    background-color: var(--cor-fundo);
     color: white;
        
 }
-
+ 
 .fab{
     margin-right: 1px;
 }
@@ -16,11 +17,14 @@
     margin-top:3vh;
     
 }
+.w-25{
+    width: 25%;
+}
 
 .loginalternativ{
     display: flex; 
     flex-wrap: wrap;
-    flex-direction: column;
+    flex-direction: column; 
 }
 .btn{
     color:black;
