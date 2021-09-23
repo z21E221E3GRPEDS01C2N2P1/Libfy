@@ -1,6 +1,7 @@
 <template>
   
-    
+    <v-slide-item v-if="vfornoticia" v-slot="{ active, toggle }">
+
       <v-card class="mx-auto" max-width="100%" dark
       v-on:click="toggle" 
       :color="active ? 'primary' : 'grey darken-4'">
@@ -18,6 +19,7 @@
         </v-card-text>
       </v-card>
     
+    </v-slide-item>
   
 </template>
 
