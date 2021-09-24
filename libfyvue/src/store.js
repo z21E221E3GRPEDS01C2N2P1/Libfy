@@ -264,10 +264,11 @@ const store = new Vuex.Store({
           
           commit('SET_NEWS_RELACIONADA', apiD_news)
          //return//devmode
-          let urlnewsapi = `https://gnews.io/api/v4/search`
-          let queryparams = `?q=${payload}&token=EER${LIBFY_APIKEY_GNEWS}`
+          //let urlnewsapi = `https://gnews.io/api/v4/search`
+          let urlGNewsApiProxyCORS = 'https://proj-bloco-libfy.herokuapp.com/search'
+          let queryparams = `?q=${payload}&token=${LIBFY_APIKEY_GNEWS}`
           
-          axios.get(`${urlnewsapi}${queryparams}`)
+          axios.get(`${urlGNewsApiProxyCORS}${queryparams}`)
           .then(json => {             
               commit('SET_NEWS_RELACIONADA', json.data)              
             }).catch(err => {              
