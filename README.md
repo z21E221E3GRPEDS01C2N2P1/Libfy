@@ -12,6 +12,10 @@ Projeto desenvolvido por **Elvis Lopes**, **Gabriel Madeira**, **João Victor Ol
 
 O Projeto será uma biblioteca de músicas onde o usuário pode organizar suas preferências, pesquisando músicas, artistas, albuns e playlist.
 
+## Site
+
+https://libfyinfnet.netlify.app
+
 ## API
 
 Consumo da API do Spotify

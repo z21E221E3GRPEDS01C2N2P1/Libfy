@@ -263,7 +263,7 @@ const store = new Vuex.Store({
         function gnewsApi() {
           
           commit('SET_NEWS_RELACIONADA', apiD_news)
-         return//devmode
+         //return//devmode
           let urlnewsapi = `https://gnews.io/api/v4/search`
           let queryparams = `?q=${payload}&token=EER${LIBFY_APIKEY_GNEWS}`
           
