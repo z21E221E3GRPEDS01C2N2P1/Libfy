@@ -1,6 +1,6 @@
 
 <template>
-  <div>
+  <div id="scrolaAqui">
     <Chat
       :participants="participants"
       :myself="myself"
@@ -283,7 +283,7 @@ export default {
                 if (!euMesmo) {
                   this.myself = {
                     profilePicture: "",
-                    name: usuarioAgora.email,
+                    name: usuarioAgora.displayName || usuarioAgora.email || 'amigo',
                     email: usuarioAgora.email,
                     id: this.ultimoIdUsr
                   };

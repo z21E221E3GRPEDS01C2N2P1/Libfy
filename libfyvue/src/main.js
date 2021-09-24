@@ -17,7 +17,7 @@ firebase.auth().onAuthStateChanged(usuario=>{
   store.dispatch("carregarUsuario",usuario)
 })
 let googleProvider = new firebase.auth.GoogleAuthProvider()
-
+googleProvider.addScope('https://www.googleapis.com/auth/user.gender.read');
 Vue.prototype.$firebase = firebase
 Vue.prototype.$gProviderInstancia = googleProvider
 

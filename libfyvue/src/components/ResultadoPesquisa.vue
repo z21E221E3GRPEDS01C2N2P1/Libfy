@@ -18,7 +18,7 @@
 
             <v-expand-transition>
               <v-row cols="12" md="12" v-if="chatThreadAberto">
-                <v-col cols="12" md="6" id="scrolaAqui">
+                <v-col cols="12" md="6" >
                   <NoticiasCarrossel
                     v-bind:nomeArtistaSelecionado="artistaSelecionado.name"
                   />

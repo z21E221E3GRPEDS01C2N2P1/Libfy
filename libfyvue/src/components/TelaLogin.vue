@@ -14,15 +14,10 @@
             </v-container>
 
             <div class="loginalternativ">
-              <v-btn 
-                rounded
-                @click="cadastrarComGoogle"
-                class="btn"
-              >
+              <v-btn rounded @click="cadastrarComGoogle" class="btn">
                 <i class="fab fa-google ma-sm-8 icone"></i>
                 Continue With Google
               </v-btn>
-               
             </div>
 
             <div class="linhacontainer mt-10">
@@ -132,6 +127,8 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "TelaLogin",
   props: {
@@ -143,7 +140,6 @@ export default {
       emailu: "",
       senha: "",
       msgErro: { deveAparecer: false, msg: "" },
-      vers: "nome musfica elvis",
       logando: true
     };
   },
@@ -185,8 +181,9 @@ export default {
         let token = credential.accessToken;
         // The signed-in user info.
         let user = result.user;
-        
-          this.$router.push({ name: "Home" })
+
+        this.$router.push({ name: "Home" });
+
         // ...
       } catch (error) {
         // Handle Errors here.
@@ -201,13 +198,24 @@ export default {
     cadastrarComGoogle() {
       console.log("sofar");
       let provider = this.$gProviderInstancia;
-      
+
       this.$firebase
         .auth()
         .signInWithPopup(provider)
-        .then(this.handleCadastroGoogle) 
+        .then(this.handleCadastroGoogle);
     }
-  
+  },
+  computed: {
+    ...mapGetters(["getUser"])
+  },
+  mounted() {
+    setTimeout(() => {
+      let isLogado = this.getUser.data;
+      
+      if (isLogado) {
+        this.$router.push({ name: "Home" });
+      }
+    }, 500);
   }
 };
 </script>
