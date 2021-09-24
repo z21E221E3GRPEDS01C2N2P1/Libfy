@@ -2,113 +2,112 @@
   <main class="loginalternativ">
     <v-container class="main pa-8 ma-auto lesswidth">
       <section>
-       <div class="container">
-        <div class="login">
-          <v-container class="ma-auto w-25">
-            <v-img
-              lazy-src="@/assets/logo.png"
-              contain
-              class="ml-0 ma-auto"
-              src="@/assets/logo.png"
-            ></v-img>
-          </v-container>
+        <div class="container">
+          <div class="login">
+            <v-container class="ma-auto w-25">
+              <v-img
+                lazy-src="@/assets/logo.png"
+                contain
+                class="ml-0 ma-auto"
+                src="@/assets/logo.png"
+              ></v-img>
+            </v-container>
 
-          <div class="loginalternativ">
- 
-            
-
-              <v-btn v-if="cadastrando" rounded to="/cadastrar" class="btn">
-              <i class="fab fa-google ma-sm-8 icone"></i>
-                Cadastre-se com Google
-              </v-btn>             
-              <v-btn v-else rounded to="/cadastrar" class="btn">
-              <i class="fab fa-google ma-sm-8 icone"></i>
+            <div class="loginalternativ">
+              <v-btn 
+                rounded
+                @click="cadastrarComGoogle"
+                class="btn"
+              >
+                <i class="fab fa-google ma-sm-8 icone"></i>
                 Continue With Google
               </v-btn>
-            
-          </div>
+               
+            </div>
 
-          <div class="linhacontainer mt-10">
-            <v-row no-gutters>
-              <v-col cols="12" sm="5">
-                <v-divider inset color="white"></v-divider>
-              </v-col>
-              <v-col cols="12" sm="2" class="text-sm-body-1"> or </v-col>
-              <v-col cols="12" sm="5">
-                <v-divider inset color="white"></v-divider>
-              </v-col>
-            </v-row>
-          </div>
+            <div class="linhacontainer mt-10">
+              <v-row no-gutters>
+                <v-col cols="12" sm="5">
+                  <v-divider inset color="white"></v-divider>
+                </v-col>
+                <v-col cols="12" sm="2" class="text-sm-body-1"> or </v-col>
+                <v-col cols="12" sm="5">
+                  <v-divider inset color="white"></v-divider>
+                </v-col>
+              </v-row>
+            </div>
 
-          <main>
-            <form action="">
-              <section class="label">
-                <div>
-                  <label for="loginE">Email</label>
-                  <input
-                    type="type"
-                    v-model="emailu"
-                    placeholder="Enter your e-mail"
-                    id="loginE"
-                    class="input"
-                  />
-                </div>
-                <div>
-                  <label for="passx">Password</label>
-                  <input
-                    type="password"
-                    v-model="senha"
-                    placeholder="Enter your password"
-                    id="passx"
-                    class="input"
-                  />
-                </div>
-              </section>
-
-              <div v-if="cadastrando">
-                <v-btn
-                  rounded
-                  v-on:click="cadastrarLogin"
-                  class="btn mb-10 mt-10"
-                  block
-                  >Cadastrar</v-btn
-                >
-              </div>
-              <div v-else>
+            <main>
+              <form action="">
                 <section class="label">
-                  <a class="text-sm-body-1" href="/">Esqueceu sua senha?</a>
                   <div>
+                    <label for="loginE">Email</label>
                     <input
-                      type="checkbox"
-                      id="lembrarLogin"
-                      checked
-                      class="check"
+                      type="type"
+                      v-model="emailu"
+                      placeholder="Enter your e-mail"
+                      id="loginE"
+                      class="input"
                     />
-                    <label class="text-sm-body-1" for="lembrarLogin">Lembrar de mim</label>
+                  </div>
+                  <div>
+                    <label for="passx">Password</label>
+                    <input
+                      type="password"
+                      v-model="senha"
+                      placeholder="Enter your password"
+                      id="passx"
+                      class="input"
+                    />
                   </div>
                 </section>
-                <v-btn
-                  rounded
-                  class="btn mb-10 mt-10"
-                  block
-                  v-on:click="logarLogin"
-                  >Entrar</v-btn
-                >
-              </div>
-            </form>
 
-            <div class="linha"></div>
-            <v-container class="loginalternativ">
-              <h6>Nao tem uma conta?</h6>
+                <div v-if="cadastrando">
+                  <v-btn
+                    rounded
+                    v-on:click="cadastrarLogin"
+                    class="btn mb-10 mt-10"
+                    block
+                    >Cadastrar</v-btn
+                  >
+                </div>
+                <div v-else>
+                  <section class="label">
+                    <a class="text-sm-body-1" href="/">Esqueceu sua senha?</a>
+                    <div>
+                      <input
+                        type="checkbox"
+                        id="lembrarLogin"
+                        checked
+                        class="check"
+                      />
+                      <label class="text-sm-body-1" for="lembrarLogin"
+                        >Lembrar de mim</label
+                      >
+                    </div>
+                  </section>
+                  <v-btn
+                    rounded
+                    class="btn mb-10 mt-10"
+                    block
+                    v-on:click="logarLogin"
+                    >Entrar</v-btn
+                  >
+                </div>
+              </form>
 
-              <v-btn rounded to="/cadastrar" class="btn">
-                Sign up for Libfy
-              </v-btn>
-            </v-container>
-          </main>
+              <div class="linha"></div>
+              <v-container class="loginalternativ">
+                <h6>Nao tem uma conta?</h6>
+
+                <v-btn rounded to="/cadastrar" class="btn">
+                  Sign up for Libfy
+                </v-btn>
+              </v-container>
+            </main>
+          </div>
         </div>
-       </div>
-         <v-snackbar
+        <v-snackbar
           color="warning"
           v-model="msgErro.deveAparecer"
           transition="scale-transition"
@@ -174,10 +173,41 @@ export default {
           this.$router.push({ name: "Home" });
         })
         .catch(erro => {
-           this.msgErro.deveAparecer = true;
+          this.msgErro.deveAparecer = true;
           this.msgErro.msg = `${erro.message}`;
         });
+    },
+    handleCadastroGoogle(result) {
+      /** @type {firebase.auth.OAuthCredential} */
+      try {
+        let credential = result.credential;
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        let token = credential.accessToken;
+        // The signed-in user info.
+        let user = result.user;
+        
+          this.$router.push({ name: "Home" })
+        // ...
+      } catch (error) {
+        // Handle Errors here.
+        let errorCode = error.code;
+        let errorMessage = error.message;
+        // The email of the user's account used.
+        let email = error.email;
+        // The firebase.auth.AuthCredential type that was used.
+        let credential = error.credential;
+      }
+    },
+    cadastrarComGoogle() {
+      console.log("sofar");
+      let provider = this.$gProviderInstancia;
+      
+      this.$firebase
+        .auth()
+        .signInWithPopup(provider)
+        .then(this.handleCadastroGoogle) 
     }
+  
   }
 };
 </script>

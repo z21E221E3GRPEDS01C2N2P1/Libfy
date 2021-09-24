@@ -16,9 +16,10 @@ import store from './store'
 firebase.auth().onAuthStateChanged(usuario=>{
   store.dispatch("carregarUsuario",usuario)
 })
-
+let googleProvider = new firebase.auth.GoogleAuthProvider()
 
 Vue.prototype.$firebase = firebase
+Vue.prototype.$gProviderInstancia = googleProvider
 
 Vue.config.productionTip = false
 
