@@ -279,10 +279,10 @@ export default {
                 let euMesmo = particpantes.filter(
                   participante => participante.email === usuarioAgora.email
                 )[0];
-
+                let semFotoURL = 'https://pixabay.com/get/geac93755230ab62f141e6a53a5564682803f4ba99ce246cf4d9233250697a57f3efb78b0f0fbc88ef2b72ef54595ed38_640.png'
                 if (!euMesmo) {
                   this.myself = {
-                    profilePicture: "",
+                    profilePicture: usuarioAgora.profilePicture || semFotoURL,
                     name: usuarioAgora.displayName || usuarioAgora.email || 'amigo',
                     email: usuarioAgora.email,
                     id: this.ultimoIdUsr
@@ -356,7 +356,7 @@ export default {
       let cssAnimation = {
           duration: 3000,
           offset: 0,
-          easing: easeInOutCubic,
+          easing: 'easeInOutCubic',
         }
         setTimeout(()=>{
           this.$vuetify.goTo('#scrolaAqui',cssAnimation)
