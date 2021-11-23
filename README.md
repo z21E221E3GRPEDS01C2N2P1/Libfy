@@ -13,6 +13,11 @@ Projeto desenvolvido por **Elvis Lopes**, **Gabriel Madeira**, **João Victor Ol
 O Projeto será uma biblioteca de músicas onde o usuário pode organizar suas preferências, pesquisando músicas, artistas, albuns e playlist.
 
 ## Demonstraçao
+
+Para testar o chat é possível utilizar a conta de teste: 
+Email: tes@te.com
+senha: 12345678
+
 ![demonstracao gif](https://raw.githubusercontent.com/z21E221E3GRPEDS01C2N2P1/Libfy/main/2.documentation/demo.gif)
        
 ## Site
